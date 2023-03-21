@@ -1,0 +1,202 @@
+
+@import 'fonts'
+@import './_vars'
+
+@mixin r($screenWidth)
+	@media only screen and (max-width: $screenWidth + 'px')
+		@content
+
+
+@mixin rmin($screenWidth)
+	@media only screen and (min-width: $screenWidth + 'px')
+		@content
+
+:root
+	--index: calc(1vh + 1vw)
+button, input
+	outline: none
+html, body
+	min-height: 100vh
+	height: auto
+	+helvr
+.vti__dropdown.disabled
+	background-color: transparent !important
+body
+	color: $light
+	+helvr
+	font-size: 18px
+	-ms-overflow-style: none
+	scrollbar-width: none
+	// overflow-x: hidden
+	background-color: #111111
+	&::-webkit-scrollbar
+		display: none
+	.bmodal
+		-ms-overflow-style: none
+		scrollbar-width: none
+		// overflow-x: hidden
+		&::-webkit-scrollbar
+			display: none
+	&.active-bmodal
+		overflow: hidden
+	&.active-popup
+		overflow: hidden
+	&.active-datepicker
+		+r(768)
+			overflow: hidden
+	&.active-widget
+		+r(768)
+			overflow: hidden
+.container
+	max-width: 1400px
+	padding: 0 16px
+	margin: 0 auto
+	+r(768)
+		padding: 0 25px
+.ls-text
+	&-small
+		letter-spacing: -0.6px
+		+r(991)
+			letter-spacing: 1px
+.order
+	&-0
+		order: 1
+	&-1
+		order: 2
+	&-2
+		order: 3
+	&-3
+		order: 4
+.mdorder
+	&-0
+		+r(990)
+			order: 1
+	&-1
+		+r(990)
+			order: 2
+	&-2
+		+r(990)
+			order: 3
+	&-3
+		+r(990)
+			order: 4
+.smorder
+	+r(768)
+		&-0
+			order: 1
+		&-1
+			order: 2
+		&-2
+			order: 3
+		&-3
+			order: 4
+
+.section
+	&-title
+		+eu
+		text-transform: uppercase
+		font-size: 58px
+		letter-spacing: -2px
+		line-height: 0.96
+				
+		+r(991)
+			font-size: 46px
+			font-size: calc(var(--index) * 2.6)
+			line-height: 0.96
+			letter-spacing: -1.5px
+		+r(768)
+			// font-size: 28px
+			// line-height: 27px
+			letter-spacing: -1px
+		&.order-title, &.service-title
+			+r(480)
+				font-size: calc(var(--index) * 1.9)
+				
+	&-desc
+		font-size: 18px
+		line-height: 23px
+		+r(768)
+			font-size: 16px
+			line-height: 20px
+// .invest
+// 	.section-title
+
+// 		+r(360)
+// 			font-size: 22px
+// .service
+// 	.section-title
+
+// 		+r(360)
+// 			font-size: 22px
+// .order
+// 	.section-title
+// 		+r(360)
+// 			font-size: 22px
+
+.oferta
+	color: $light
+	line-height: 23px
+	padding: 241px 80px 131px
+	background: $dark700
+	border-radius: 70px
+	border-bottom-left-radius: 0px
+	border-bottom-right-radius: 0px
+	+r(991)
+		padding: 153px 49px 101px
+	+r(600)
+		padding: 76px 25px 81px
+		border-radius: 44px
+		
+		border-bottom-left-radius: 0px
+		border-bottom-right-radius: 0px
+		font-size: 14px
+		line-height: 18px
+	h2
+		+helvb
+		font-size: 24px
+		margin-top: 42px
+		margin-bottom: 2px
+		+r(991)
+			margin-top: 22px
+		+r(600)
+			font-size: 18px
+			margin-bottom: 2px
+			margin-top: 20px
+			line-height: 23px
+		&.sub
+			margin-top: 19px
+		&.head
+			text-transform: uppercase
+			margin-top: 62px
+			+r(991)
+				margin-top: 22px
+			+r(600)
+				margin-top: 20px
+				margin-bottom: 2px
+		&.foot
+			margin-top: 42px
+			margin-bottom: 25pxb
+	h1
+		+eu
+		font-size: 58px
+		text-transform: uppercase
+		margin-bottom: 5px
+		letter-spacing: -1.9px
+		line-height: 56px
+		+r(991)
+			font-size: 42px
+			line-height: 40px
+			letter-spacing: -1.3px
+			margin-bottom: 3px
+		+r(768)
+			font-size: 32px
+			line-height: 34px
+		+r(600)
+			font-size: 22px
+			line-height: 21px
+			letter-spacing: -0.7px
+			margin-bottom: 5px
+		+r(380)
+			font-size: 18px
+			line-height: 21px
+

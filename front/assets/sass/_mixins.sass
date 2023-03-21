@@ -1,0 +1,8 @@
+@mixin r($screenWidth)
+	@media only screen and (max-width: $screenWidth + 'px')
+		@content
+
+
+@mixin rmin($screenWidth)
+	@media only screen and (min-width: $screenWidth + 'px')
+		@content

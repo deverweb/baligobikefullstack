@@ -1,0 +1,30 @@
+
+$light: #FBFBFD
+$dark: #111111
+$dark700: #202020
+$dark600: #1A1A1A
+$dark500: #282828
+$dark300: #181818
+$dark200: #1E1E1E
+$fontSize: calc(1vw + 1vh)
+$green: #30B21B
+
+=eu
+  font-family: 'Eurostile-Extended-Black'
+=helvb
+  font-family: 'helveticaneuecyr-bold'
+=helvr
+  font-family: 'helveticaneuecyr-roman'
+=helvm
+  font-family: 'helveticaneuecyr-medium'
+
+@mixin r($screenWidth)
+  @media only screen and (max-width: $screenWidth + 'px')
+    @content
+
+
+@mixin rmin($screenWidth)
+  @media only screen and (min-width: $screenWidth + 'px')
+    @content
+
+	
