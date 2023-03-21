@@ -1,0 +1,9 @@
+**/.git
+**/*docker-compose*
+**/node_modules/
+**/.nuxt/
+**/.output/
+**/.vscode/
+**/dist/
+**/obj/
+**/pckage-lock.json
