@@ -18,7 +18,7 @@ nuxtApp.hook("page:finish", () => {
   // window.scrollTo(0, 0)
 });
 
-console.log("PROCESS ENV", process.env);
+// console.log("PROCESS ENV", process.env);
 console.log("PROCESS ENV DOC_ID", process.env.DOC_ID);
 
 onMounted(async () => {
