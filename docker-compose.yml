@@ -11,7 +11,8 @@ services:
       - .env
     # ports:
     #   - 3000:3000
-    # environment:
+    environment:
+      - DOC_ID='1hPuTlodRw_hJdsG__4Hxn0av_dCgACiSqB7Tv_opcZM'
     # - NITRO_PORT=80
     # - NITRO_HOST=hello-world.com
     command: node .output/server/index.mjs
