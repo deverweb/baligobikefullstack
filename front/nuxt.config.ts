@@ -51,6 +51,7 @@ export default defineNuxtConfig({
       CENT_API_TOKEN: process.env.CENT_API_TOKEN,
       CENT_SHOP_ID: process.env.CENT_SHOP_ID,
     },
+    DOC_ID: process.env.DOC_ID,
   },
   swiper: {
     modules: ["navigation"],
