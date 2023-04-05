@@ -1,6 +1,6 @@
 import { ComputedRef, Ref } from 'vue'
-export type LayoutKey = "default"
-declare module "D:/OSPanel/domains/dockerbaligo/front/node_modules/nuxt/dist/pages/runtime/composables" {
+export type LayoutKey = "agent" | "default"
+declare module "D:/OSPanel/domains/baligofullstack/front/node_modules/nuxt/dist/pages/runtime/composables" {
   interface PageMeta {
     layout?: false | LayoutKey | Ref<LayoutKey> | ComputedRef<LayoutKey>
   }

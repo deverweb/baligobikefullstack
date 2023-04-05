@@ -15,7 +15,8 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/@nuxtjs/i18n/dist/runtime/plugins/i18n").default> &
   InjectionType<typeof import("../../plugins/v-calendar").default> &
   InjectionType<typeof import("../../plugins/vue-tel-input").default> &
-  InjectionType<typeof import("../../plugins/slider").default>
+  InjectionType<typeof import("../../plugins/slider").default> &
+  InjectionType<typeof import("../../plugins/vue-gtm.client").default>
 
 declare module '#app' {
   interface NuxtApp extends NuxtAppInjections { }

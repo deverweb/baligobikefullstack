@@ -75,8 +75,8 @@
           </div>
         </form>
       </div>
-      <div class="orderbike relative md:max-w-[80%] md:mx-auto">
-        <img class="object-contain max-w-none lg:max-w-full" :src="bikeImageSrc" alt="" />
+      <div class="orderbike max-w-[48%] relative md:max-w-[80%] md:mx-auto">
+        <img class="object-contain max-w-full" :src="bikeImageSrc" alt="" />
         <SectionIndexFormTooltip
           class="left-[9.4%] top-[29.5%] sm:left-[13.6%] sm:top-[12.1%]"
           :tooltip="tooltips.first"
@@ -136,18 +136,23 @@ const formData = ref({
     active: false,
   },
 });
-const onSubmit = handleSubmit((values) => {
-  formStore.fillForm(values);
-  commercialStore.smallFormOrder({
-    order_date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString().slice(0, -3),
-    client_name: values.client_name,
-    client_messenger: " +" + values.client_phone.substring(1),
-    order_date_start: values.date.start,
-    order_date_end: values.date.end,
-    bike_choice: values.bike.name,
-  });
-  router.push({ path: "/order" });
-});
+const onSubmit = handleSubmit(
+  (values) => {
+    formStore.fillForm(values);
+    commercialStore.smallFormOrder({
+      order_date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString().slice(0, -3),
+      client_name: values.client_name,
+      client_messenger: " +" + values.client_phone.substring(1),
+      order_date_start: values.date.start,
+      order_date_end: values.date.end,
+      bike_choice: values.bike.name,
+    });
+    router.push({ path: "/order" });
+  }
+  // (values) => {
+  //   console.log("values: ", values);
+  // }
+);
 
 const bikeImageSrc = "/img/index/order-bike.png";
 const tooltips = {

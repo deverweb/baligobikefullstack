@@ -18,11 +18,6 @@ nuxtApp.hook("page:finish", () => {
   // window.scrollTo(0, 0)
 });
 
-const config = useRuntimeConfig();
-// console.log("PROCESS ENV", process.env);
-console.log("PROCESS ENV DOC_ID", process.env.DOC_ID);
-console.log("CONFIG DOC_ID", config.DOC_ID);
-
 onMounted(async () => {
   if (process.client && window) {
     window.history.scrollRestoration = "auto";
@@ -45,16 +40,6 @@ watch(
     });
   }
 );
-
-// useHead({
-//   script: [
-//     {
-//       src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyAqNPzsf4Ee-OuexRYSOddBXzMHQnHuxME&libraries=places",
-//       async: true,
-//       defer: true,
-//     },
-//   ],
-// });
 </script>
 
 <style lang="sass">

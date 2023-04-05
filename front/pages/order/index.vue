@@ -244,7 +244,16 @@
               >
                 <SvgMailIcon class="w-[15px] h-[11px]" fill="#616162"></SvgMailIcon
               ></SectionCustomTextField>
-              <SectionCustomTextField
+              <SectionCustomPhoneField
+                :prefered-countries="['ID', 'RU', 'UA']"
+                class=""
+                :subTitle="'Номер мессенджера для связи'"
+                type="order"
+                name="clientPhone"
+              >
+                <SvgPhoneIcon fill="#FBFBFD" class="opacity-50"></SvgPhoneIcon>
+              </SectionCustomPhoneField>
+              <!-- <SectionCustomTextField
                 :type="'number'"
                 class="ci__payment-form"
                 name="clientPhone"
@@ -252,7 +261,7 @@
                 :subTitle="'Номер мессенджера для связи'"
               >
                 <SvgPhoneIcon fill="#616162"></SvgPhoneIcon
-              ></SectionCustomTextField>
+              ></SectionCustomTextField> -->
               <SectionCustomSelectField
                 :styleType="'order'"
                 class="cs__order-form"

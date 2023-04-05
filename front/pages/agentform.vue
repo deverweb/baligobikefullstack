@@ -68,9 +68,9 @@
                 <SvgPersonIcon></SvgPersonIcon>
               </SectionCustomTextField>
               <SectionCustomPhoneField
+                :prefered-countries="['ID', 'RU', 'UA']"
                 class=""
                 :subTitle="translate('Номер WhatsApp', 'WhatsApp number')"
-                :preferedCountries="['ID']"
                 type="order"
                 name="clientPhone"
               >
@@ -341,6 +341,10 @@ const formStore = useFormStore();
 //   client_name: "12312312",
 //   client_phone: "+62 31 2312312",
 // });
+
+definePageMeta({
+  layout: "agent",
+});
 
 const computedDayPrice = computed(() => {
   if (formStore.dateDif > 30 && (formStore.rate.isMonthly || formStore.rate.isFixed)) {

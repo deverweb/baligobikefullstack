@@ -1,5 +1,5 @@
 
-import { defuFn } from 'D:/OSPanel/domains/dockerbaligo/front/node_modules/defu/dist/defu.mjs'
+import { defuFn } from 'D:/OSPanel/domains/baligofullstack/front/node_modules/defu/dist/defu.mjs'
 
 const inlineConfig = {}
 

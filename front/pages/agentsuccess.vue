@@ -20,6 +20,10 @@
 const { locale } = useI18n();
 
 locale.value = "en";
+
+definePageMeta({
+  layout: "agent",
+});
 </script>
 
 <style lang="sass"></style>
