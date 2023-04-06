@@ -23,7 +23,7 @@ services:
     container_name: front
     restart: always
     env_file:
-      - ./.env/frontend.dev.env
+      - ./env/frontend.dev.env
     build:
       context: ./front
       dockerfile: Dockerfile
