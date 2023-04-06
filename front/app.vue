@@ -19,7 +19,8 @@ nuxtApp.hook("page:finish", () => {
 });
 let config = useRuntimeConfig();
 if (config) {
-  console.log(config.value);
+  console.log("congif", config);
+  console.log("congif.value", config.value);
 } else {
   console.log("no process env");
 }

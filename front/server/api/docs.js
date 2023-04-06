@@ -3,7 +3,7 @@ import { GoogleSpreadsheet } from "google-spreadsheet";
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const config = useRuntimeConfig();
-  console.log(config);
+  console.log("config", config);
   // const doc = new GoogleSpreadsheet("1hPuTlodRw_hJdsG__4Hxn0av_dCgACiSqB7Tv_opcZM");
   const doc_id = process.env.DOC_ID || config.DOC_ID || config.value.DOC_ID;
   const email_key = process.env.EMAIL_KEY;

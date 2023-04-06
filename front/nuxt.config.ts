@@ -89,11 +89,13 @@ export default defineNuxtConfig({
     DOC_ID: "1hPuTlodRw_hJdsG__4Hxn0av_dCgACiSqB7Tv_opcZM",
     GOOGLE_MAPS_API_KEY: "AIzaSyB-pliMJcE5T6ImjjMfFNzJ3vobhPfuRNs",
     DTEST1: process.env.DTEST,
+    DTEST2: process.env.DTEST2,
     public: {
       CENT_API_TOKEN: process.env.CENT_API_TOKEN,
       CENT_SHOP_ID: process.env.CENT_SHOP_ID,
       TEST: "TEST",
-      DTEST2: process.env.DTEST,
+      DTEST1: process.env.DTEST,
+      DTEST2: process.env.DTEST2,
     },
   },
   swiper: {
