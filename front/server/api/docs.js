@@ -2,8 +2,9 @@ import { GoogleSpreadsheet } from "google-spreadsheet";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
+  const config = useRuntimeConfig();
   // const doc = new GoogleSpreadsheet("1hPuTlodRw_hJdsG__4Hxn0av_dCgACiSqB7Tv_opcZM");
-  const doc_id = process.env.DOC_ID;
+  const doc_id = process.env.DOC_ID || config.DOC_ID;
   const email_key = process.env.EMAIL_KEY;
   const private_key = process.env.PRIVATE_KEY;
   // const doc = new GoogleSpreadsheet("1LHmvh_YJztViJKhoT4TPiaVOWYS08cpbwKaLPszpBkI");
