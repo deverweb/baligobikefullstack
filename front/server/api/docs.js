@@ -3,7 +3,16 @@ import { GoogleSpreadsheet } from "google-spreadsheet";
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const config = useRuntimeConfig();
-  console.log("config", config);
+  // console.log("config", config);
+  console.log("super test using different variations");
+  if (process) {
+    console.log("process:  ", process);
+    console.log("processSUPERTEST:  ", process.env.SUPERTEST);
+  }
+  if (config) {
+    console.log("config exist :", config);
+    console.log("config.supertest: ", config.SUPERTEST);
+  }
   // const doc = new GoogleSpreadsheet("1hPuTlodRw_hJdsG__4Hxn0av_dCgACiSqB7Tv_opcZM");
   const doc_id = process.env.DOC_ID || config.DOC_ID || config.value.DOC_ID;
   const email_key = process.env.EMAIL_KEY;

@@ -5,6 +5,7 @@ WORKDIR /var/www/html/front
 
 ENV DTEST2=DTEST2
 
+
 COPY package*.json ./
 RUN npm install
 COPY . .
