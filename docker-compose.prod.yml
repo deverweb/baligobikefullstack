@@ -14,7 +14,7 @@ services:
     # links:
     # - front
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/nginx-prod.conf:/etc/nginx/nginx.conf
     networks:
       - app_network
   front:
@@ -33,6 +33,7 @@ services:
     environment:
       - HOST=0.0.0.0
       - PORT=3000
+      - DTEST=DTEST
     command: node .output/server/index.mjs
   wordpress:
     image: wordpress

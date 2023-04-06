@@ -19,7 +19,7 @@ nuxtApp.hook("page:finish", () => {
 });
 let config = useRuntimeConfig();
 if (config) {
-  console.log(config);
+  console.log(config.value);
 } else {
   console.log("no process env");
 }
