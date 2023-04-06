@@ -17,7 +17,7 @@ nuxtApp.hook("page:finish", () => {
   store.activeMobileMenu = false;
   // window.scrollTo(0, 0)
 });
-if (process.env) {
+if (process) {
   console.log(process.env);
 } else {
   console.log("no process env");
