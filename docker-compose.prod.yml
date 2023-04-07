@@ -10,6 +10,8 @@ services:
       - ./data/certbot/www:/var/www/certbot
     networks:
       - app_network
+    depends_on:
+      - nginx
   nginx:
     container_name: nginx
     image: nginx
@@ -21,7 +23,6 @@ services:
       # - front
       - wordpress
       - db
-      - certbot
     # links:
     # - front
     volumes:
