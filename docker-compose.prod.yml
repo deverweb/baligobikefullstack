@@ -6,9 +6,8 @@ services:
     container_name: certbot
     command: certonly --webroot --webroot-path=/var/www/certbot --email andreydever@gmail.com --agree-tos --no-eff-email -d deverweb.ru -d www.deverweb.ru -d admin.deverweb.ru
     volumes:
-      - certbot-etc:/etc/letsencrypt
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/lib/letsencrypt:/var/lib/letsencrypt
     networks:
       - app_network
   nginx:
@@ -84,7 +83,6 @@ services:
 volumes:
   wordpress:
   db:
-  certbot-etc:
 networks:
   app_network:
     driver: bridge
