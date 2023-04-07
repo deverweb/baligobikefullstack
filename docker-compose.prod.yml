@@ -4,10 +4,10 @@ services:
   certbot:
     image: certbot/certbot
     container_name: certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email andreydever@gmail.com --agree-tos --no-eff-email -d deverweb.ru -d www.deverweb.ru -d admin.deverweb.ru
+    command: certonly --webroot --webroot-path=/var/www/html --email andreydever@gmail.com --agree-tos --no-eff-email -d deverweb.ru -d www.deverweb.ru -d admin.deverweb.ru --keep
     volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
-      - /var/lib/letsencrypt:/var/lib/letsencrypt
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
     networks:
       - app_network
   nginx:
@@ -83,6 +83,8 @@ services:
 volumes:
   wordpress:
   db:
+  certbot-etc:
+  certbot-var:
 networks:
   app_network:
     driver: bridge
