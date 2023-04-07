@@ -4,8 +4,6 @@ services:
   certbot:
     image: certbot/certbot
     container_name: certbot
-    depends_on:
-      - nginx
     command: certonly --webroot --webroot-path=/var/www/certbot --email andreydever@gmail.com --agree-tos -d deverweb.ru -d www.deverweb.ru -d admin.deverweb.ru
     volumes:
       - ./certbot/conf:/etc/letsencrypt
@@ -23,7 +21,7 @@ services:
       # - front
       - wordpress
       - db
-      - cerbot
+      - certbot
     # links:
     # - front
     volumes:
