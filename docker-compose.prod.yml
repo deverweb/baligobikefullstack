@@ -14,9 +14,9 @@ services:
       - certbot
     volumes:
       - ./nginx/nginx-prod.conf:/etc/nginx/nginx.conf
-      - /home/app-folder/volumes/certbot/letsencrypt:/etc/letsencrypt
-      - /home/app-folder/volumes/certbot/www:/tmp/letsencrypt
-      - /home/app-folder/volumes/certbot/log:/var/log
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /etc/www:/tmp/letsencrypt
+      - /etc/log:/var/log
     networks:
       - app_network
     environment:
@@ -26,11 +26,11 @@ services:
     image: certbot/certbot:latest
     container_name: certbot
     # command: certonly --webroot --webroot-path=/var/html/www --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
-    command: certonly --webroot --agree-tos --renew-by-default  --text --email andreydever@gmail.com -w /tmp/letsencrypt -d deverweb.ru -d www.deverweb.ru -d admin.deverweb.ru
+    command: certonly --webroot --agree-tos --renew-by-default  --text --email andreydever@gmail.com -w /etc/letsencrypt -d deverweb.ru -d www.deverweb.ru -d admin.deverweb.ru --nginx
     volumes:
-      - /home/app-folder/volumes/certbot/letsencrypt:/etc/letsencrypt
-      - /home/app-folder/volumes/certbot/www:/tmp/letsencrypt
-      - /home/app-folder/volumes/certbot/log:/var/log
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /etc/www:/tmp/letsencrypt
+      - /etc/log:/var/log
     networks:
       - app_network
 
