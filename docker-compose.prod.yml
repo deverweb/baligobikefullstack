@@ -24,7 +24,6 @@ services:
   certbot:
     image: certbot/certbot
     container_name: certbot
-    # command: certonly --webroot --webroot-path=/var/www/html --email andreydever@gmail.com --agree-tos --no-eff-email -d deverweb.ru -d www.deverweb.ru --keep
     command: certonly --webroot --webroot-path=/var/www/html --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
     volumes:
       - certbot-etc:/etc/letsencrypt
@@ -86,11 +85,7 @@ volumes:
   certbot-etc:
   certbot-var:
   web-root:
-    # driver: local
-    # driver_opts:
-    #   type: none
-    #   device: /home/admin/node_project/views/
-    #   o: bind
+
 networks:
   app_network:
     driver: bridge
