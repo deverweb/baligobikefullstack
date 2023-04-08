@@ -14,9 +14,8 @@ services:
       - certbot
     volumes:
       - ./nginx/nginx-prod.conf:/etc/nginx/nginx.conf
-      - /etc/letsencrypt:/etc/letsencrypt
-      - /etc/www:/tmp/letsencrypt
-      - /etc/log:/var/log
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
     networks:
       - app_network
     environment:
@@ -26,14 +25,10 @@ services:
     image: certbot/certbot:latest
     container_name: certbot
     # command: certonly --webroot --webroot-path=/var/html/www --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
-    command: certbot certonly --webroot -w /var/www/html/front -d deverweb.ru -d www.deverweb.ru -w /var/www/html -d admin.deverweb.ru
+    command: certonly --webroot -w /var/www/html/front -d deverweb.ru -d www.deverweb.ru -w /var/www/html -d admin.deverweb.ru
     volumes:
-      - /etc/letsencrypt:/etc/letsencrypt
-      - /etc/www:/tmp/letsencrypt
-      - /etc/log:/var/log
-    networks:
-      - app_network
-
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
   front:
     networks:
       - app_network
@@ -85,6 +80,8 @@ services:
 volumes:
   wordpress:
   db:
+  certbot-etc:
+  certbot-var:
 
 networks:
   app_network:
