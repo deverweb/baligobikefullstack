@@ -24,7 +24,7 @@ services:
   certbot:
     image: certbot/certbot
     container_name: certbot
-    command: certbot certonly --webroot --webroot-path=/var/www/html --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
+    command: certbot certonly --webroot --webroot-path=/var/html/www --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
     volumes:
       - certbot-etc:/etc/letsencrypt
       - certbot-var:/var/lib/letsencrypt
