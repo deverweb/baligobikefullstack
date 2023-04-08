@@ -69,6 +69,7 @@ services:
   db:
     image: mysql:5.7
     restart: always
+    container_name: db
     environment:
       MYSQL_DATABASE: exampledb
       MYSQL_USER: exampleuser
