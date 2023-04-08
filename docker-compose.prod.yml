@@ -14,21 +14,23 @@ services:
       - certbot
     volumes:
       - ./nginx/nginx-prod.conf:/etc/nginx/nginx.conf
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
+      - /home/app-folder/volumes/certbot/letsencrypt:/etc/letsencrypt
+      - /home/app-folder/volumes/certbot/www:/tmp/letsencrypt
+      - /home/app-folder/volumes/certbot/log:/var/log
     networks:
       - app_network
     environment:
       - EMAIL=andreydever@gmail.com
       - DOMAIN=deverweb.ru
   certbot:
-    image: certbot/certbot
+    image: certbot/certbot:v1.8.0
     container_name: certbot
-    command: certbot certonly --webroot --webroot-path=/var/html/www --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
+    # command: certonly --webroot --webroot-path=/var/html/www --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
+    command: certonly --webroot --agree-tos --renew-by-default --preferred-challenges http-01 --server https://acme-v02.api.letsencrypt.org/directory --text --email andreydever@gmail.com -w /tmp/letsencrypt -d deverweb.ru -d www.deverweb.ru -d admin.deverweb.ru
     volumes:
-      - certbot-etc:/etc/letsencrypt
-      - certbot-var:/var/lib/letsencrypt
-      - web-root:/var/html/www
+      - /home/app-folder/volumes/certbot/letsencrypt:/etc/letsencrypt
+      - /home/app-folder/volumes/certbot/www:/tmp/letsencrypt
+      - /home/app-folder/volumes/certbot/log:/var/log
     networks:
       - app_network
 
@@ -83,9 +85,6 @@ services:
 volumes:
   wordpress:
   db:
-  certbot-etc:
-  certbot-var:
-  web-root:
 
 networks:
   app_network:
