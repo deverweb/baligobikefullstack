@@ -23,10 +23,10 @@ services:
       - EMAIL=andreydever@gmail.com
       - DOMAIN=deverweb.ru
   certbot:
-    image: certbot/certbot:v1.8.0
+    image: certbot/certbot:latest
     container_name: certbot
     # command: certonly --webroot --webroot-path=/var/html/www --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
-    command: certonly --webroot --agree-tos --renew-by-default --preferred-challenges http-01 --server https://acme-v02.api.letsencrypt.org/directory --text --email andreydever@gmail.com -w /tmp/letsencrypt -d deverweb.ru -d www.deverweb.ru -d admin.deverweb.ru
+    command: certonly --webroot --agree-tos --renew-by-default  --text --email andreydever@gmail.com -w /tmp/letsencrypt -d deverweb.ru -d www.deverweb.ru -d admin.deverweb.ru
     volumes:
       - /home/app-folder/volumes/certbot/letsencrypt:/etc/letsencrypt
       - /home/app-folder/volumes/certbot/www:/tmp/letsencrypt
