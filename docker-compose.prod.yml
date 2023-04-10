@@ -22,7 +22,6 @@ services:
     depends_on:
       # - front
       - wordpress
-      - certbot
     volumes:
       - ./nginx/nginx-prod.conf:/etc/nginx/nginx.conf
       - certbot-etc:/etc/letsencrypt:rw
