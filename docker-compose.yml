@@ -15,7 +15,7 @@ services:
       - ./nginx/nginx-prod.conf:/etc/nginx/nginx.conf
       - certbot-etc:/etc/letsencrypt:rw
       - certbot-var:/var/lib/letsencrypt:rw
-      - ./certbot/data:/var/www/html:rw
+      - ./certbot/data:/var/www/certbot:rw
       - /var/log/nginx:/var/log/nginx
     networks:
       - app_network
@@ -28,11 +28,11 @@ services:
     depends_on:
       - nginx
     # command: certonly --webroot --webroot-path=/var/html/www --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
-    command: certonly -v --webroot --webroot-path /var/www/html --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru -d www.deverweb.ru  --webroot-path /var/www/html -d admin.deverweb.ru
+    command: certonly -v --webroot --webroot-path /var/www/certbot --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru -d www.deverweb.ru  --webroot-path /var/www/certbot -d admin.deverweb.ru
     volumes:
       - certbot-etc:/etc/letsencrypt:rw
       - certbot-var:/var/lib/letsencrypt:rw
-      - ./certbot/data:/var/www/html:rw
+      - ./certbot/data:/var/www/certbot:rw
 
     networks:
       - app_network
@@ -71,7 +71,7 @@ services:
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
     volumes:
-      - ./back/wp-content:/var/www/html/wp-content
+      - ./back/wp-content:/var/www/certbot/wp-content
     networks:
       - app_network
 
