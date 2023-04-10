@@ -3,36 +3,18 @@ version: "3.9"
 services:
   nginx:
     container_name: nginx
-    image: nginx:latest
-    restart: unless-stopped
+    image: nginx
+    restart: always
     ports:
       - "80:80"
-      - "443:443"
     depends_on:
-      - certbot
       # - front
       - wordpress
+      - db
+    # links:
+    # - front
     volumes:
-      - ./nginx/nginx-prod.conf:/etc/nginx/nginx.conf
-      - certbot-etc:/etc/letsencrypt:rw
-      - certbot-var:/var/lib/letsencrypt:rw
-      - ./certbot/data:/var/www/certbot:rw
-    networks:
-      - app_network
-    environment:
-      - EMAIL=andreydever@gmail.com
-      - DOMAIN=deverweb.ru
-  certbot:
-    image: certbot/certbot:latest
-    container_name: certbot
-    # depends_on:
-    #   - nginx
-    # command: certonly --webroot --webroot-path=/var/html/www --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
-    command: certonly  --webroot --webroot-path /var/www/certbot -d deverweb.ru -d www.deverweb.ru
-    volumes:
-      - certbot-etc:/etc/letsencrypt:rw
-      - certbot-var:/var/lib/letsencrypt:rw
-      - ./certbot/data:/var/www/certbot:rw
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     networks:
       - app_network
   front:
@@ -40,8 +22,6 @@ services:
       - app_network
     container_name: front
     restart: always
-    env_file:
-      - .env
     build:
       context: ./front
       dockerfile: Dockerfile
@@ -51,7 +31,6 @@ services:
     environment:
       - HOST=0.0.0.0
       - PORT=3000
-      - DTEST=DTEST
     command: node .output/server/index.mjs
   wordpress:
     image: wordpress
@@ -72,7 +51,6 @@ services:
   db:
     image: mysql:5.7
     restart: always
-    container_name: db
     environment:
       MYSQL_DATABASE: exampledb
       MYSQL_USER: exampleuser
@@ -86,9 +64,6 @@ services:
 volumes:
   wordpress:
   db:
-  certbot-etc:
-  certbot-var:
-
 networks:
   app_network:
     driver: bridge
