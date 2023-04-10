@@ -16,6 +16,7 @@ services:
       - certbot-etc:/etc/letsencrypt:rw
       - certbot-var:/var/lib/letsencrypt:rw
       - ./certbot/data:/var/www/certbot:rw
+      - web-root:/var/www/html:rw
     networks:
       - app_network
     environment:
@@ -27,13 +28,12 @@ services:
     depends_on:
       - nginx
     # command: certonly --webroot --webroot-path=/var/html/www --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
-    command: certonly -v  --webroot --webroot-path /app/public --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru -d www.deverweb.ru  --webroot-path /var/www/html -d admin.deverweb.ru
+    command: certonly -v --webroot --webroot-path /var/www/html --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru -d www.deverweb.ru  --webroot-path /var/www/html -d admin.deverweb.ru
     volumes:
       - certbot-etc:/etc/letsencrypt:rw
       - certbot-var:/var/lib/letsencrypt:rw
       - ./certbot/data:/var/www/certbot:rw
-      - ./certbot/data:/app/public:rw
-      - ./certbot/data:/var/www/html:rw
+      - web-root:/var/www/html:rw
     networks:
       - app_network
   front:
@@ -94,7 +94,7 @@ volumes:
   db:
   certbot-etc:
   certbot-var:
-
+  web-root:
 networks:
   app_network:
     driver: bridge
