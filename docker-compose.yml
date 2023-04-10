@@ -37,7 +37,7 @@ services:
     networks:
       - app_network
   front:
-    image: node:16-alpine
+    # image: node:16-alpine
     networks:
       - app_network
     container_name: front
@@ -47,10 +47,10 @@ services:
     volumes:
       - ./front:/app
     command:
-      - npm install && npm run build && node .output/server/index.mjs
-    # build:
-    #   context: ./front
-    #   dockerfile: Dockerfile
+      - node .output/server/index.mjs
+    build:
+      context: ./front
+      dockerfile: Dockerfile
     depends_on:
       - db
       - wordpress
