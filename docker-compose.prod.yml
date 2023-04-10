@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  ssl:
+  certbot:
     image: certbot/certbot:latest
     container_name: certbot
     # command: certonly --webroot --webroot-path=/var/html/www --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
