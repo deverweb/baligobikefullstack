@@ -27,23 +27,30 @@ services:
     depends_on:
       - nginx
     # command: certonly --webroot --webroot-path=/var/html/www --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
-    command: certonly  --webroot --webroot-path /var/www/html/front --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru -d www.deverweb.ru  --werbroot-path /var/www/html -d admin.deverweb.ru
+    command: certonly  --webroot --webroot-path /app --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru -d www.deverweb.ru  --webroot-path /var/www/html -d admin.deverweb.ru
     volumes:
       - certbot-etc:/etc/letsencrypt:rw
       - certbot-var:/var/lib/letsencrypt:rw
       - ./certbot/data:/var/www/certbot:rw
+      - ./certbot/data:/app:rw
+      - ./certbot/data:/var/www/html:rw
     networks:
       - app_network
   front:
+    image: node:16-alpine
     networks:
       - app_network
     container_name: front
     restart: always
     env_file:
       - .env
-    build:
-      context: ./front
-      dockerfile: Dockerfile
+    volumes:
+      - ./front:/app
+    command:
+      - npm install && npm run build && node .output/server/index.mjs
+    # build:
+    #   context: ./front
+    #   dockerfile: Dockerfile
     depends_on:
       - db
       - wordpress
@@ -51,7 +58,7 @@ services:
       - HOST=0.0.0.0
       - PORT=3000
       - DTEST=DTEST
-    command: node .output/server/index.mjs
+    # command: node .output/server/index.mjs
   wordpress:
     image: wordpress
     restart: always
