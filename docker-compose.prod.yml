@@ -9,6 +9,7 @@ services:
       - "80:80"
       - "443:443"
     depends_on:
+      - certbot
       # - front
       - wordpress
     volumes:
@@ -24,8 +25,8 @@ services:
   certbot:
     image: certbot/certbot:latest
     container_name: certbot
-    depends_on:
-      - nginx
+    # depends_on:
+    #   - nginx
     # command: certonly --webroot --webroot-path=/var/html/www --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
     command: certonly  --webroot --webroot-path /var/www/certbot -d deverweb.ru -d www.deverweb.ru
     volumes:
