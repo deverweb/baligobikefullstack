@@ -15,7 +15,7 @@ services:
       - ./nginx/nginx-prod.conf:/etc/nginx/nginx.conf
       - certbot-etc:/etc/letsencrypt:rw
       - certbot-var:/var/lib/letsencrypt:rw
-      - ./certbot/data:/var/www/certbot:rw
+      - ./certbot/data:/var/www:rw
       - certbot_challenges:/var/www/.well-known/acme-challenge
     networks:
       - app_network
@@ -28,12 +28,12 @@ services:
     depends_on:
       - nginx
     # command: certonly --webroot --webroot-path=/var/html/www --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
-    command: certonly -v --webroot --webroot-path /var/www/certbot --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru -d www.deverweb.ru  --webroot-path /var/www/certbot -d admin.deverweb.ru
+    command: certonly -v --dry-run --preferred-challenges http-01 --webroot --webroot-path /var/www --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru -d www.deverweb.ru  --webroot-path /var/www -d admin.deverweb.ru
     volumes:
       - certbot-etc:/etc/letsencrypt:rw
       - certbot-var:/var/lib/letsencrypt:rw
-      - ./certbot/data:/var/www/certbot:rw
-      - certbot_challenges:/var/www/.well-known/acme-challenge
+      - ./certbot/data:/var/www:rw
+      - certbot_challenges:/var/www/.well-known/acme-challenge:rw
 
     networks:
       - app_network
