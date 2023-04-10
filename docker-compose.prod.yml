@@ -7,7 +7,7 @@ services:
     depends_on:
       - nginx
     # command: certonly --webroot --webroot-path=/var/html/www --email andreydever@gmail.com --agree-tos --no-eff-email --staging -d deverweb.ru  -d www.deverweb.ru
-    command: certonly  --webroot -w /var/www/certbot -d deverweb.ru -d www.deverweb.ru -w
+    command: certonly  --webroot --webroot-path /var/www/certbot -d deverweb.ru -d www.deverweb.ru
     volumes:
       - certbot-etc:/etc/letsencrypt:rw
       - certbot-var:/var/lib/letsencrypt:rw
