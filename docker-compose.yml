@@ -15,8 +15,8 @@ services:
       - ./nginx/nginx-prod.conf:/etc/nginx/nginx.conf
       - certbot-etc:/etc/letsencrypt:rw
       - certbot-var:/var/lib/letsencrypt:rw
-      - ./certbot/data:/var/www/certbot:rw
-      - web-root:/var/www/html:rw
+      - ./certbot/data:/var/www/html:rw
+      - /var/log/nginx:/var/log/nginx
     networks:
       - app_network
     environment:
@@ -32,8 +32,8 @@ services:
     volumes:
       - certbot-etc:/etc/letsencrypt:rw
       - certbot-var:/var/lib/letsencrypt:rw
-      - ./certbot/data:/var/www/certbot:rw
-      - web-root:/var/www/html:rw
+      - ./certbot/data:/var/www/html:rw
+
     networks:
       - app_network
   front:
@@ -94,7 +94,6 @@ volumes:
   db:
   certbot-etc:
   certbot-var:
-  web-root:
 networks:
   app_network:
     driver: bridge
