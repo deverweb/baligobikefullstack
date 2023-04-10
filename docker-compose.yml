@@ -37,20 +37,15 @@ services:
     networks:
       - app_network
   front:
-    # image: node:16-alpine
+    build:
+      context: ./front
+      dockerfile: Dockerfile
     networks:
       - app_network
     container_name: front
     restart: always
     env_file:
       - .env
-    volumes:
-      - ./front:/app
-    command:
-      - node .output/server/index.mjs
-    build:
-      context: ./front
-      dockerfile: Dockerfile
     depends_on:
       - db
       - wordpress
@@ -58,7 +53,7 @@ services:
       - HOST=0.0.0.0
       - PORT=3000
       - DTEST=DTEST
-    # command: node .output/server/index.mjs
+    command: node .output/server/index.mjs
   wordpress:
     image: wordpress
     restart: always
