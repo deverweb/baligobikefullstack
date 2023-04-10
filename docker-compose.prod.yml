@@ -32,7 +32,8 @@ services:
       - certbot-etc:/etc/letsencrypt:rw
       - certbot-var:/var/lib/letsencrypt:rw
       - ./certbot/data:/var/www/certbot:rw
-
+    networks:
+      - app_network
   front:
     networks:
       - app_network
