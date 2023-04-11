@@ -17,13 +17,7 @@ nuxtApp.hook("page:finish", () => {
   store.activeMobileMenu = false;
   // window.scrollTo(0, 0)
 });
-let config = useRuntimeConfig();
-if (config) {
-  console.log("congif", config);
-  console.log("congif.value", config.value);
-} else {
-  console.log("no process env");
-}
+
 onMounted(async () => {
   if (process.client && window) {
     window.history.scrollRestoration = "auto";

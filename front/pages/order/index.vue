@@ -721,22 +721,43 @@ watch(
   }
 );
 
+const formatDate = (date, addTime) => {
+  const day = date.getDate().toString().padStart(2, "0"); // добавляем ведущий ноль, если день меньше 10
+  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // добавляем ведущий ноль, если месяц меньше 10
+  const year = date.getFullYear().toString();
+  if (addTime) {
+    const hours = date.getUTCHours().toString().padStart(2, "0"); // добавляем ведущий ноль, если час меньше 10
+    const minutes = date.getUTCMinutes().toString().padStart(2, "0"); // добавляем ведущий ноль, если минуты меньше 10
+    const seconds = date.getUTCSeconds().toString().padStart(2, "0"); // добавляем ведущий ноль, если секунды меньше 10
+
+    const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds} UTC`;
+    return formattedDate;
+  } else {
+    const formattedDate = `${day}/${month}/${year}`;
+    return formattedDate;
+  }
+};
+
 const submit = handleSubmit(async () => {
   // console.log(errors.value);
 });
 
 const onSubmit = handleSubmit(
   async (values) => {
+    let orderDate;
+    let orderDayStart;
+    let orderDayEnd;
+
     commercialStore.orderBike({
       order_id: values.order_id,
-      order_date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString().slice(0, -3),
+      order_date: formatDate(new Date(), true),
       client_name: formStore.client_name,
       client_surname: values.clientName,
       client_phone: values.clientPhone,
       client_social: values.clientMessenger.name,
       client_email: values.clientEmail,
-      order_date_start: new Date(formStore.dates.start).toLocaleDateString(),
-      order_date_end: new Date(formStore.dates.end).toLocaleDateString(),
+      order_date_start: formatDate(new Date(formStore.dates.start)),
+      order_date_end: formatDate(new Date(formStore.dates.end)),
       bike_model: formStore.bike.name,
       bike_painting: drawing.value,
       location_delivery: values.firstAddress,

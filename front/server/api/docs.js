@@ -3,11 +3,9 @@ import { GoogleSpreadsheet } from "google-spreadsheet";
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
   const config = useRuntimeConfig();
-  // console.log("config", config);
-  console.log("super test using different variations");
   if (process) {
-    console.log("process:  ", process);
-    console.log("processSUPERTEST:  ", process.env.SUPERTEST);
+    console.log("PROCESS OBJ: ", process);
+    console.log("process.env.DOC_ID: ", process.env.DOC_ID);
   }
   if (config) {
     console.log("config exist :", config);
@@ -24,10 +22,11 @@ export default defineEventHandler(async (event) => {
     private_key: private_key,
   });
   //
+
   let sheet;
   await doc.loadInfo();
   if (body.sheet == "investform") {
-    sheet = doc.sheetsByIndex[2];
+    sheet = doc.sheetsByIndex[3];
 
     await sheet.addRow({
       order_date: body.data.date,
@@ -39,21 +38,20 @@ export default defineEventHandler(async (event) => {
     return "if smallform";
   }
   if (body.sheet == "smallform") {
-    sheet = doc.sheetsByIndex[1];
-
+    sheet = doc.sheetsByIndex[0];
     await sheet.addRow({
       order_date: body.data.order_date,
       client_name: body.data.client_name,
       client_messenger: body.data.client_messenger,
-      order_date_start: new Date(body.data.order_date_start).toLocaleDateString(),
-      order_date_end: new Date(body.data.order_date_end).toLocaleDateString(),
+      order_date_start: body.data.order_date_start,
+      order_date_end: body.data.order_date_end,
       bike_model: body.data.bike_choice,
     });
     return "if smallform";
   }
 
   if (body.sheet == "bigform") {
-    sheet = doc.sheetsByIndex[0];
+    sheet = doc.sheetsByIndex[1];
     const rows = await sheet.getRows();
     let data = body.data;
     await sheet.addRow({
@@ -63,7 +61,7 @@ export default defineEventHandler(async (event) => {
     return "if bigform";
   }
   if (body.sheet == "agentform") {
-    sheet = doc.sheetsByIndex[3];
+    sheet = doc.sheetsByIndex[2];
     const rows = await sheet.getRows();
     let data = body.data;
     await sheet.addRow({

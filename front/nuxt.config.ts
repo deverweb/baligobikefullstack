@@ -86,18 +86,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     CLIENT_ID: process.env.CLIENT_ID,
     SECRET_ID: process.env.SECRET_ID,
-    DOC_ID: "1hPuTlodRw_hJdsG__4Hxn0av_dCgACiSqB7Tv_opcZM",
+    DOC_ID: process.env.DOC_ID,
     GOOGLE_MAPS_API_KEY: "AIzaSyB-pliMJcE5T6ImjjMfFNzJ3vobhPfuRNs",
-    DTEST1: process.env.DTEST,
-    DTEST2: process.env.DTEST2,
-    SUPERTEST: process.env.SUPERTEST,
     public: {
-      CENT_API_TOKEN: process.env.CENT_API_TOKEN,
-      CENT_SHOP_ID: process.env.CENT_SHOP_ID,
-      TEST: "TEST",
-      DTEST1: process.env.DTEST,
-      DTEST2: process.env.DTEST2,
-      SUPERTESTPUBLIC: process.env.SUPERTEST,
+      TESTING_ENV: process.env.TESTING_ENV,
     },
   },
   swiper: {

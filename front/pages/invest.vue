@@ -420,10 +420,27 @@ useHead({
   ],
 });
 
+const formatDate = (date, addTime) => {
+  const day = date.getDate().toString().padStart(2, "0"); // добавляем ведущий ноль, если день меньше 10
+  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // добавляем ведущий ноль, если месяц меньше 10
+  const year = date.getFullYear().toString();
+  if (addTime) {
+    const hours = date.getUTCHours().toString().padStart(2, "0"); // добавляем ведущий ноль, если час меньше 10
+    const minutes = date.getUTCMinutes().toString().padStart(2, "0"); // добавляем ведущий ноль, если минуты меньше 10
+    const seconds = date.getUTCSeconds().toString().padStart(2, "0"); // добавляем ведущий ноль, если секунды меньше 10
+
+    const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds} UTC`;
+    return formattedDate;
+  } else {
+    const formattedDate = `${day}/${month}/${year}`;
+    return formattedDate;
+  }
+};
+
 const onSubmit = (values, { resetForm }) => {
   // pretty print the values object
   commercialStore.investFormOrder({
-    date: new Date().toLocaleDateString() + " " + new Date().toLocaleTimeString().slice(0, -3),
+    date: formatDate(new Date(), true),
     client_name: values.client_name,
     messenger: values.messenger,
     client_phone: " +" + values.client_phone.substring(1),

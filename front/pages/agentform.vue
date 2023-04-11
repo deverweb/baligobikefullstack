@@ -345,7 +345,22 @@ const formStore = useFormStore();
 definePageMeta({
   layout: "agent",
 });
+const formatDate = (date, addTime) => {
+  const day = date.getDate().toString().padStart(2, "0"); // добавляем ведущий ноль, если день меньше 10
+  const month = (date.getMonth() + 1).toString().padStart(2, "0"); // добавляем ведущий ноль, если месяц меньше 10
+  const year = date.getFullYear().toString();
+  if (addTime) {
+    const hours = date.getUTCHours().toString().padStart(2, "0"); // добавляем ведущий ноль, если час меньше 10
+    const minutes = date.getUTCMinutes().toString().padStart(2, "0"); // добавляем ведущий ноль, если минуты меньше 10
+    const seconds = date.getUTCSeconds().toString().padStart(2, "0"); // добавляем ведущий ноль, если секунды меньше 10
 
+    const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds} UTC`;
+    return formattedDate;
+  } else {
+    const formattedDate = `${day}/${month}/${year}`;
+    return formattedDate;
+  }
+};
 const computedDayPrice = computed(() => {
   if (formStore.dateDif > 30 && (formStore.rate.isMonthly || formStore.rate.isFixed)) {
     return Number((formStore.rate.dayPriceUSD / 30).toFixed(2));
@@ -435,13 +450,13 @@ onMounted(() => {
 const onSubmit = handleSubmit(
   async (values) => {
     commercialStore.agentFormOrder({
-      order_date: new Date().toLocaleDateString() + "  " + new Date().toLocaleTimeString().slice(0, -3),
+      order_date: formatDate(new Date(), true),
       villa_name: formStore.hotelName,
       agent_wa: " +" + formStore.agentNumber.substring(1),
       client_name: values.clientName,
       client_wa: " +" + values.clientPhone.substring(1),
-      order_date_start: new Date(formStore.dates.start).toLocaleDateString(),
-      order_date_end: new Date(formStore.dates.end).toLocaleDateString(),
+      order_date_start: formatDate(new Date(formStore.dates.start)),
+      order_date_end: formatDate(new Date(formStore.dates.end)),
       bike_model: formStore.bike.name,
       adult_helmets: values.adultHelmetCount,
       kid_helmets: values.childHelmetCount,

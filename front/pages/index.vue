@@ -1,9 +1,6 @@
 <template>
   <div class="lel">
     <SectionIndexOffer></SectionIndexOffer>
-    <TheButton @click="getData" class="w-[350px] h-[70px] fixed left-5">
-      <span>Get data</span>
-    </TheButton>
     <SectionIndexCardsBlock></SectionIndexCardsBlock>
     <SectionIndexSlider></SectionIndexSlider>
     <SectionIndexForm></SectionIndexForm>
@@ -26,12 +23,7 @@ const computedTitle = computed(() => {
       break;
   }
 });
-const getData = async () => {
-  let fetchResult = await fetch("http://admin.localhost/wp-json/markers/v1/post");
-  console.log(fetchResult);
-  let data = await fetchResult.json();
-  console.log(data);
-};
+
 const computedDescription = computed(() => {
   switch (locale.value) {
     case "ru":
