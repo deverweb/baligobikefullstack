@@ -1,5 +1,5 @@
 <template>
-  <div class="lel">
+  <div>
     <SectionIndexOffer></SectionIndexOffer>
     <SectionIndexCardsBlock></SectionIndexCardsBlock>
     <SectionIndexSlider></SectionIndexSlider>
@@ -12,6 +12,11 @@
 </template>
 
 <script setup>
+let response = await fetch("https://admin.deverweb.ru/wp-json/markers/v1/post");
+console.log(response);
+let responseResult = await response.json();
+console.log(responseResult);
+
 const { locale } = useI18n();
 const computedTitle = computed(() => {
   switch (locale.value) {
