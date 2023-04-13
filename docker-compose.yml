@@ -67,7 +67,7 @@ services:
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
     volumes:
-      - ./back/wp-content:/var/www/html/wp-content
+      - ./back/wp-content:/var/www/html/wp-content:rw
     networks:
       - app_network
 
