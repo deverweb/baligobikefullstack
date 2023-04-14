@@ -88,13 +88,13 @@ function  markers_endpoint( $request_data ) {
   //   'offer_title' => get_field('offer_title', 'options'),
   //   'offer_title2' => get_field('offer_title', 'options')
   // ];
-	// $bikes = [];
-	// $bikesOrigin = get_posts([
-	// 	'post_type' => 'bike',
-	// 	'post_status' => 'publish',
-	// 	'numberposts' => -1
-	// 	// 'order'    => 'ASC'
-	// ]);
+	$bikes = [];
+	$bikesOrigin = get_posts([
+		'post_type' => 'bike',
+		'post_status' => 'publish',
+		'numberposts' => -1
+		// 'order'    => 'ASC'
+	]);
 	
 	foreach ($bikesOrigin as $bike) {
 		print_r($bike);
