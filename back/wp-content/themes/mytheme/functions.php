@@ -97,8 +97,13 @@ function  markers_endpoint( $request_data ) {
 	]);
 	for ($i=0; $i < count($bikesOrigin); $i++) { 
 		$id = $bikesOrigin[$i]['ID'];
-		array_push($bikes, get_fields($id));
+		
 	};
+	foreach ($bikesOrigin as $key => $data) {
+		// $post_date = $data->post_date; // 2017-07-10 11:50:32
+		$id = $key['ID'];
+		array_push($bikes, get_fields($id));
+	}
   $common = get_fields('options');
   $main_page = get_fields(24);
   $invest_page = get_fields(141);
