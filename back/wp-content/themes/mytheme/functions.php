@@ -84,7 +84,7 @@ function  markers_endpoint( $request_data ) {
   // ];
 
   // $posts = get_fields('options');
-  $posts = get_fields('options', 24);
+  $posts = get_fields(24);
   return  $posts;
 }
   
