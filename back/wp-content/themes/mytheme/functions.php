@@ -97,7 +97,7 @@ function  markers_endpoint( $request_data ) {
 	]);
 	
 	foreach ($bikesOrigin as $bike) {
-		array_push($bikes, get_fields($bike['ID']));
+		array_push($bikes, get_fields($bike->ID));
 	}
   $common = get_fields('options');
   $main_page = get_fields(24);
