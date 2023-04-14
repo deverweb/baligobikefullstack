@@ -4,7 +4,6 @@ function add_cors_http_header(){
 	header("Access-Control-Allow-Origin: *");
 }
 add_action('init', 'baligo_init');
-// COMMENT
 function baligo_init() {
 	register_post_type('bike', [
 		'label'  => 'Байки',
@@ -83,7 +82,9 @@ function  markers_endpoint( $request_data ) {
   //   'offer_title' => get_field('offer_title', 'options'),
   //   'offer_title2' => get_field('offer_title', 'options')
   // ];
-  $posts = get_fields('options');
+
+  // $posts = get_fields('options');
+  $posts = get_fields('options', 24);
   return  $posts;
 }
   
