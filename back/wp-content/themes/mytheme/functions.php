@@ -96,7 +96,7 @@ function  markers_endpoint( $request_data ) {
 		'about_page' => $about_page,
 		'faq_page' => $faq_page,
 		'bikes' => $bikes,
-	]
+	];
   return  $posts;
 }
   
