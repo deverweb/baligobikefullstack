@@ -83,7 +83,14 @@ function  markers_endpoint( $request_data ) {
   //   'offer_title2' => get_field('offer_title', 'options')
   // ];
 
-  $bikes = get_fields('options');
+	$bikes = get_posts([
+		'post_type' => 'bike',
+		'post_status' => 'publish',
+		'numberposts' => -1
+		// 'order'    => 'ASC'
+	]);
+
+  $common = get_fields('options');
   $main_page = get_fields(24);
   $invest_page = get_fields(141);
   $contacts_page = get_fields(143);
@@ -91,11 +98,12 @@ function  markers_endpoint( $request_data ) {
   $faq_page = get_fields(137);
 	$posts = [
 		'main_page' => $main_page,
-		'invest_apge' => $invest_apge,
+		'invest_page' => $invest_page,
 		'contacts_page' => $contacts_page,
 		'about_page' => $about_page,
 		'faq_page' => $faq_page,
-		'bikes' => $bikes,
+		'common' => $common,
+		'bikes' => $bikes
 	];
   return  $posts;
 }
