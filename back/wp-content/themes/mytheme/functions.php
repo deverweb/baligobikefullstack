@@ -96,7 +96,7 @@ function  markers_endpoint( $request_data ) {
 		// 'order'    => 'ASC'
 	]);
 	for ($i=0; $i < count($bikesOrigin); $i++) { 
-		$id = $bikesOrigin[i]['ID'];
+		$id = $bikesOrigin[$i]['ID'];
 		array_push($bikes, get_fields($id));
 	};
   $common = get_fields('options');
