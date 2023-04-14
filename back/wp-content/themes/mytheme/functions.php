@@ -88,19 +88,20 @@ function  markers_endpoint( $request_data ) {
   //   'offer_title' => get_field('offer_title', 'options'),
   //   'offer_title2' => get_field('offer_title', 'options')
   // ];
-	$bikes = [];
-	$bikesOrigin = get_posts([
-		'post_type' => 'bike',
-		'post_status' => 'publish',
-		'numberposts' => -1
-		// 'order'    => 'ASC'
-	]);
+	// $bikes = [];
+	// $bikesOrigin = get_posts([
+	// 	'post_type' => 'bike',
+	// 	'post_status' => 'publish',
+	// 	'numberposts' => -1
+	// 	// 'order'    => 'ASC'
+	// ]);
 	
-	foreach ($bikesOrigin as $key => $data) {
-		// $post_date = $data->post_date; // 2017-07-10 11:50:32
-		$id = $key['ID'];
-		array_push($bikes, get_fields($id));
-	}
+	// foreach ($bikesOrigin as $key => $data) {
+	// 	// $post_date = $data->post_date; // 2017-07-10 11:50:32
+	// 	// $id = $key['ID'];
+	// 	array_push($bikes, get_fields($id));
+	// }
+	$bikes = get_fields(15);
   $common = get_fields('options');
   $main_page = get_fields(24);
   $invest_page = get_fields(141);
