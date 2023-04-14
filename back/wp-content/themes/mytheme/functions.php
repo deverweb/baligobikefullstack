@@ -95,10 +95,7 @@ function  markers_endpoint( $request_data ) {
 		'numberposts' => -1
 		// 'order'    => 'ASC'
 	]);
-	for ($i=0; $i < count($bikesOrigin); $i++) { 
-		$id = $bikesOrigin[$i]['ID'];
-		
-	};
+	
 	foreach ($bikesOrigin as $key => $data) {
 		// $post_date = $data->post_date; // 2017-07-10 11:50:32
 		$id = $key['ID'];
