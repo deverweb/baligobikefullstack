@@ -3,6 +3,12 @@
 function add_cors_http_header(){
 	header("Access-Control-Allow-Origin: *");
 }
+
+function remove_editor() {
+  remove_post_type_support('page', 'editor');
+}
+add_action('admin_init', 'remove_editor');
+
 add_action('init', 'baligo_init');
 function baligo_init() {
 	register_post_type('bike', [
@@ -82,14 +88,17 @@ function  markers_endpoint( $request_data ) {
   //   'offer_title' => get_field('offer_title', 'options'),
   //   'offer_title2' => get_field('offer_title', 'options')
   // ];
-
-	$bikes = get_posts([
+	$bikes = [];
+	$bikesOrigin = get_posts([
 		'post_type' => 'bike',
 		'post_status' => 'publish',
 		'numberposts' => -1
 		// 'order'    => 'ASC'
 	]);
-
+	for ($i=0; $i < count($bikesOrigin); $i++) { 
+		$id = $bikesOrigin[i]['ID'];
+		array_push($bikes, get_fields($id));
+	};
   $common = get_fields('options');
   $main_page = get_fields(24);
   $invest_page = get_fields(141);
