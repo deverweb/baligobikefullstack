@@ -96,12 +96,11 @@ function  markers_endpoint( $request_data ) {
 	// 	// 'order'    => 'ASC'
 	// ]);
 	
-	// foreach ($bikesOrigin as $key => $data) {
-	// 	// $post_date = $data->post_date; // 2017-07-10 11:50:32
-	// 	// $id = $key['ID'];
-	// 	array_push($bikes, get_fields($id));
-	// }
-	$bikes = get_fields(15);
+	foreach ($bikesOrigin as $bike) {
+		print_r($bike);
+		$id = $bike['ID'];
+		array_push($bikes, get_fields($id));
+	}
   $common = get_fields('options');
   $main_page = get_fields(24);
   $invest_page = get_fields(141);
