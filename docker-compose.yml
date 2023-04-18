@@ -73,10 +73,6 @@ services:
       - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     networks:
       - app_network
-    php:
-      ini:
-        memory_limit: 512M
-        max_execution_time: 300
 
   db:
     image: mysql:5.7
