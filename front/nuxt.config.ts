@@ -24,33 +24,42 @@ export default defineNuxtConfig({
         // 			async: true,
         // 			defer: true,
         // 		},
+        {
+          src: "https://www.googletagmanager.com/gtag/js?id=G-VSHN7NHQL4",
+          type: "text/javascript",
+          async: true,
+        },
+        {
+          type: "text/javascript",
+          async: true,
+          innerHTML: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}gtag('js', new Date()); gtag('config', 'G-VSHN7NHQL4');`,
+        },
+        {
+          type: "text/javascript",
+          async: true,
+          innerHTML: `!function(f,b,e,v,n,t,s)
+					{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+					n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+					if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+					n.queue=[];t=b.createElement(e);t.async=!0;
+					t.src=v;s=b.getElementsByTagName(e)[0];
+					s.parentNode.insertBefore(t,s)}(window, document,'script',
+					'https://connect.facebook.net/en_US/fbevents.js');
+					fbq('init', '1234729477162668');
+					fbq('track', 'PageView');
+					</script>`,
+        },
+        {
+          type: "text/javascript",
+          async: true,
+          innerHTML: `window.replainSettings = { id: '1264a380-7025-4ec0-9c79-522e48fd5eff' }; 
+					(function(u){var s=document.createElement('script');s.async=true;s.src=u; 
+					var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x); 
+					})('https://widget.replain.cc/dist/client.js'); 
+					`,
+        },
         // {
-        //   src: "https://www.googletagmanager.com/gtag/js?id=G-VSHN7NHQL4",
-        //   type: "text/javascript",
-        //   async: true,
-        // },
-        // {
-        //   type: "text/javascript",
-        //   async: true,
-        //   innerHTML: `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}gtag('js', new Date()); gtag('config', 'G-VSHN7NHQL4');`,
-        // },
-        // {
-        //   type: "text/javascript",
-        //   async: true,
-        //   innerHTML: `!function(f,b,e,v,n,t,s)
-        // 	{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        // 	n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        // 	if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        // 	n.queue=[];t=b.createElement(e);t.async=!0;
-        // 	t.src=v;s=b.getElementsByTagName(e)[0];
-        // 	s.parentNode.insertBefore(t,s)}(window, document,'script',
-        // 	'https://connect.facebook.net/en_US/fbevents.js');
-        // 	fbq('init', '1234729477162668');
-        // 	fbq('track', 'PageView');
-        // 	</script>`,
-        // },
-        // {
-        // 	children: `<script async src="https://www.googletagmanager.com/gtag/js?id=G-123123123"></script>`,
+        // 	children: `<script async src="https://www.googletagmanager.com/gtag/js?id=G-123123123"></>`,
         // },
         // {
         // 	children: `<script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}gtag('js', new Date()); gtag('config', 'G-VSHN7NHQL4');</script>`
@@ -86,10 +95,10 @@ export default defineNuxtConfig({
   runtimeConfig: {
     CLIENT_ID: process.env.CLIENT_ID,
     SECRET_ID: process.env.SECRET_ID,
-    DOC_ID: process.env.DOC_ID,
     GOOGLE_MAPS_API_KEY: "AIzaSyB-pliMJcE5T6ImjjMfFNzJ3vobhPfuRNs",
     public: {
-      TESTING_ENV: process.env.TESTING_ENV,
+      CENT_API_TOKEN: process.env.CENT_API_TOKEN,
+      CENT_SHOP_ID: process.env.CENT_SHOP_ID,
     },
   },
   swiper: {

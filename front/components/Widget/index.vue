@@ -213,8 +213,10 @@ let isOrder = computed(() => {
 	transform: translateY(20px)
 .wg
 	position: fixed
-	right: 100px
-	bottom: 80px
+	// right: 100px
+	// bottom: 80px
+	right: 27px
+	bottom: 105px
 	// position: sticky
 	// right: 100px
 	// bottom: 140px
@@ -222,13 +224,21 @@ let isOrder = computed(() => {
 	// right: 100px
 	// margin-left: auto
 	+r(1200)
-		right: 70px
+		// right: 70px
+
+		right: 29px
 		bottom: 50px
+		bottom: 105px
 	+r(990)
-		right: 50px
+		// right: 50px
+		bottom: 105px
+
+		right: 27px
 	+r(600)
 		right: 25px
 		bottom: 25px
+		right: 30px
+		bottom: 105px
 	&-circle
 		width: 60px
 		height: 60px
