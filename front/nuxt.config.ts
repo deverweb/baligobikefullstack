@@ -108,7 +108,6 @@ export default defineNuxtConfig({
   i18n: {
     strategy: "no_prefix",
     // skipSettingLocaleOnNavigate: true,
-
     locales: [
       {
         code: "en",
@@ -125,6 +124,7 @@ export default defineNuxtConfig({
       //   name: "Український",
       // },
     ],
+
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: "i18n_redirected",
@@ -132,7 +132,7 @@ export default defineNuxtConfig({
     },
     vueI18n: {
       legacy: false,
-
+      fallbackLocale: "en",
       locale: "ru",
       messages: {
         ru: {
