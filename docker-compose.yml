@@ -68,6 +68,7 @@ services:
       WORDPRESS_DB_NAME: exampledb
     volumes:
       - ./back/wp-content:/var/www/html/wp-content:rw
+      - ./upload.ini:/usr/local/etc/php/conf.d/upload.ini
     networks:
       - app_network
 
