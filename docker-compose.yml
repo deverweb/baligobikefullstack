@@ -69,7 +69,7 @@ services:
     volumes:
       - ./back/wp-content:/var/www/html/wp-content:rw
       - ./back/.htaccess:/var/www/html/.htaccess:rw
-      - ./upload.ini:/usr/local/etc/php/conf.d/upload.ini
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     networks:
       - app_network
 
