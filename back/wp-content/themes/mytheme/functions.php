@@ -9,6 +9,40 @@ function remove_editor() {
 }
 add_action('admin_init', 'remove_editor');
 
+
+
+add_action('rest_api_init', function () {
+  register_rest_route('markers/v1', '/save-file', [
+    'methods' => 'POST',
+    'callback' => 'markers_save_file',
+    'permission_callback' => function () {
+      return current_user_can('edit_posts');
+    }
+  ]);
+});
+
+function markers_save_file(WP_REST_Request $request) {
+  $file = $request->get_file_params()['file'];
+  if (!$file) {
+    return new WP_Error('no_file', 'Файл не найден.', ['status' => 400]);
+  }
+  $file_type = wp_check_filetype($file['name']);
+  if (!$file_type || !in_array($file_type['ext'], ['jpg', 'jpeg', 'png'])) {
+    return new WP_Error('invalid_file_type', 'Пожалуйста, выберите только изображение!', ['status' => 400]);
+  }
+  if (!wp_is_upload_file($file['tmp_name'])) {
+    return new WP_Error('upload_failed', 'Не удалось загрузить файл.', ['status' => 500]);
+  }
+  $upload_dir = wp_upload_dir();
+  $target_dir = $upload_dir['path'] . '/' . basename($file['name']);
+  $target_url = $upload_dir['url'] . '/' . basename($file['name']);
+  if (move_uploaded_file($file['tmp_name'], $target_dir)) {
+    return ['file_url' => $target_url];
+  } else {
+    return new WP_Error('upload_failed', 'Не удалось загрузить файл.', ['status' => 500]);
+  }
+}
+
 add_action('init', 'baligo_init');
 function baligo_init() {
 	register_post_type('bike', [
@@ -44,19 +78,7 @@ function baligo_init() {
 
 add_action('init','add_cors_http_header');
 
-// add_action( 'rest_api_init', function( ) {
 
-// 	// register the rest endpoint
-// 	register_rest_route( 'post/v1', 'post', array(
-// 			'methods' => array( 'GET', ),
-// 			'get_callback' => function( $data ) {
-// 				$posts = get_fields('options');
-//   			return  $posts;
-// 					// return 'HERE';
-// 			},
-// 	) );
-
-// } );
 
 add_action('rest_api_init', function() {
   register_rest_route( 'markers/v1', '/post/', array(
@@ -84,10 +106,7 @@ function my_acf_op_init()
 
 
 function  markers_endpoint( $request_data ) {
-  // $posts = [
-  //   'offer_title' => get_field('offer_title', 'options'),
-  //   'offer_title2' => get_field('offer_title', 'options')
-  // ];
+ 
 	$bikes = [];
 	$bikesOrigin = get_posts([
 		'post_type' => 'bike',
