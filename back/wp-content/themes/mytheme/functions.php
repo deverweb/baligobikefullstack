@@ -15,9 +15,7 @@ add_action('rest_api_init', function () {
   register_rest_route('markers/v1', '/save-file', [
     'methods' => 'POST',
     'callback' => 'markers_save_file',
-    'permission_callback' => function () {
-      return current_user_can('edit_posts');
-    }
+    
   ]);
 });
 
