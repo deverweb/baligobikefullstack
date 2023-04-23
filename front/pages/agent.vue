@@ -262,9 +262,9 @@ const computedDayPriceRup = computed(() => {
     return formStore.rate.dayPriceRUP;
   }
 });
-
 const onSubmit = handleSubmit((values) => {
   formStore.fillAgentForm(values);
+
   router.push({ path: "/agentform/" });
 });
 </script>

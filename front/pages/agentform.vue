@@ -79,14 +79,18 @@
             </div>
             <SectionCustomFileField
               :name="'passport'"
-              :required="true"
+              :required="false"
               :subTitle="translate('Фото документа', 'Document photo')"
               :defaultLabel="translate('Загрузите фото документа клиента', `Upload a photo of the client's document`)"
             >
               <SvgFileIcon></SvgFileIcon>
             </SectionCustomFileField>
           </div>
-          <TheButton class="mt-[50px] md:hidden btn-primary__dark w-full h-[70px] gap-[15px]" type="submit">
+          <TheButton
+            :loading="loading"
+            class="mt-[50px] md:hidden btn-primary__dark w-full h-[70px] gap-[15px]"
+            type="submit"
+          >
             <SvgCalendarIcon></SvgCalendarIcon>
             <span>{{ translate("Забронировать даты и комплектующие", "Book dates and accessories") }} </span>
           </TheButton>
@@ -230,6 +234,7 @@
           <div class="sm:px-[25px] md:px-[50px] order-mobile-modal-btn">
             <hr class="hidden md:block sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
             <TheButton
+              :loading="loading"
               @click.prevent="onSubmit"
               class="mt-[50px] sm:mt-0 sm:w-full sm:ml-0 hidden md:flex btn-primary__dark w-full h-[70px] gap-[15px]"
               type="submit"
@@ -257,6 +262,7 @@ import { useCommercialStore } from "~~/store/commercial";
 const router = useRouter();
 const { locale } = useI18n();
 locale.value = "eng";
+let loading = ref(false);
 gsap.registerPlugin(ScrollTrigger);
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
@@ -618,6 +624,7 @@ onMounted(() => {
 });
 const onSubmit = handleSubmit(
   async (values) => {
+    loading.value = true;
     let formData = new FormData();
     formData.append("file", values.passport);
     let { data } = await useFetch("https://admin.baligo.bike/wp-json/markers/v1/save-file", {
@@ -626,7 +633,7 @@ const onSubmit = handleSubmit(
       body: formData,
     });
     let fileUrl = data.value;
-    commercialStore.agentFormOrder({
+    await commercialStore.agentFormOrder({
       order_date: formatDate(new Date(), true),
       villa_name: formStore.hotelName,
       agent_wa: " +" + formStore.agentNumber.substring(1),
@@ -641,6 +648,7 @@ const onSubmit = handleSubmit(
       fullprice: formStore.computedRupPrice,
       file: fileUrl.file_url,
     });
+    loading.value = false;
     useRouter().push("/agentsuccess/");
   },
   async (values) => {
