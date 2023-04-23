@@ -28,9 +28,7 @@ function markers_save_file(WP_REST_Request $request) {
   if (!$file_type || !in_array($file_type['ext'], ['jpg', 'jpeg', 'png'])) {
     return new WP_Error('invalid_file_type', 'Пожалуйста, выберите только изображение!', ['status' => 400]);
   }
-  if (!wp_is_upload_file($file['tmp_name'])) {
-    return new WP_Error('upload_failed', 'Не удалось загрузить файл.', ['status' => 500]);
-  }
+ 
   $upload_dir = wp_upload_dir();
   $target_dir = $upload_dir['path'] . '/' . basename($file['name']);
   $target_url = $upload_dir['url'] . '/' . basename($file['name']);
