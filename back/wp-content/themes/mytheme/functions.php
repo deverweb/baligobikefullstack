@@ -27,7 +27,7 @@ function myplugin_sanitize_file_name( $file_name ) {
 	return $unique_name;
 }
 
-function myplugin_upload_image( $request ) {
+function markers_save_file( $request ) {
 	$uploaded_file = $request->get_file_params()['file'];
 
 	// проверяем формат файла
