@@ -79,7 +79,7 @@
             </div>
             <SectionCustomFileField
               :name="'passport'"
-              :required="false"
+              :required="true"
               :subTitle="translate('Фото документа', 'Document photo')"
               :defaultLabel="translate('Загрузите фото документа клиента', `Upload a photo of the client's document`)"
             >
@@ -256,40 +256,230 @@ import { useFormStore } from "~~/store/form";
 import { useCommercialStore } from "~~/store/commercial";
 const router = useRouter();
 const { locale } = useI18n();
-locale.value = "en";
-const formErrors = useFormErrors();
+locale.value = "eng";
 gsap.registerPlugin(ScrollTrigger);
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
-// formStore.fillForm({
+// formStore.fillBikeInfo({
+//   model: "HONDA PCX 160 CC",
+//   name: "HONDA PCX 160 CC",
+//   settings: [
+//     {
+//       name: {
+//         ru: "Год выпуска",
+//         eng: "Year",
+//       },
+//       value: {
+//         ru: "2022",
+//         eng: "2022",
+//       },
+//     },
+//     {
+//       name: {
+//         ru: "Объем багажника",
+//         eng: "Trunk volume",
+//       },
+//       value: {
+//         ru: "30 литров",
+//         eng: "30 liters",
+//       },
+//     },
+//     {
+//       name: {
+//         ru: "Мощность",
+//         eng: "Capacity",
+//       },
+//       value: {
+//         ru: "16 л.с.",
+//         eng: "16 hp",
+//       },
+//     },
+//     {
+//       name: {
+//         ru: "Объем топливного бака",
+//         eng: "Fuel tank volume",
+//       },
+//       value: {
+//         ru: "8,1 Литров",
+//         eng: "8,1 liters",
+//       },
+//     },
+//     {
+//       name: {
+//         ru: "Средний расход",
+//         eng: "Average consumption",
+//       },
+//       value: {
+//         ru: "2,5 литров / 100 км",
+//         eng: "2,5 liters / 100 km",
+//       },
+//     },
+//   ],
+//   bikes: [
+//     {
+//       id: "0",
+//       drawing: "Red Bull",
+//       title: "Red Bull",
+//       img: "https://admin.baligo.bike/wp-content/uploads/2023/04/pcx-redbull.png",
+//     },
+//   ],
+//   id: "HONDA PCX 160 CC",
+//   rates: [
+//     {
+//       isFixed: true,
+//       isMonthly: false,
+//       minDays: 1,
+//       maxDays: 3,
+//       dayPriceRUP: 700000,
+//       dayPriceUSD: 47,
+//     },
+//     {
+//       isFixed: false,
+//       isMonthly: false,
+//       minDays: 4,
+//       maxDays: 7,
+//       dayPriceRUP: 270000,
+//       dayPriceUSD: 18,
+//     },
+//     {
+//       isFixed: false,
+//       isMonthly: false,
+//       minDays: 8,
+//       maxDays: 14,
+//       dayPriceRUP: 220000,
+//       dayPriceUSD: 15,
+//     },
+//     {
+//       isFixed: false,
+//       isMonthly: false,
+//       minDays: 15,
+//       maxDays: 21,
+//       dayPriceRUP: 170000,
+//       dayPriceUSD: 11,
+//     },
+//     {
+//       isFixed: false,
+//       isMonthly: true,
+//       minDays: 22,
+//       maxDays: 90,
+//       dayPriceRUP: 3500000,
+//       dayPriceUSD: 233,
+//     },
+//   ],
+//   img: "https://admin.baligo.bike/wp-content/uploads/2023/04/pcx-redbull.png",
+//   discount: 20,
+//   ruDescription:
+//     "Honda PCX - один из самых популярных максискутеров на Бали. Он идеально подходит для тех, кто решил побывать в каждой точке загадочного Бали. Будьте уверены, что вы не устанете, перемещаясь на этом современном красавце и получите массу впечатлений от езды. За счёт низкой посадки он комфортен в использовании парням и девушкам.\r\n\t\t\t\tОбновленная система топливного распределения позволяет проехать на полном баке до 250 км. Яркая светодиодная оптика поможет с комфортом перемещаться в ночное время. Байк комплектуется удобным электронным smart-ключом и имеет вместительный багажник.",
+//   engDescription:
+//     "Honda PCX is one of the most popular maxi scooters in Bali. It is ideal for those who decide to visit every point of the mysterious Bali. Rest assured that you won't get tired riding this modern beauty and you'll have a great riding experience. Due to the low fit, it is comfortable to use for boys and girls.\r\n\t\t\t\tThe updated fuel distribution system allows you to drive on a full tank up to 250 km. Bright LED optics will help you move comfortably at night. The bike is equipped with a convenient electronic smart-key and has a spacious trunk.",
+// });
+// formStore.fillDateInfo({
+//   start: "2023-04-23T10:00:53.590Z",
+//   end: "2023-04-28T10:00:53.590Z",
+// });
+// formStore.fillAgentForm({
 //   date: {
-//     start: "2023-02-23T17:19:12.706Z",
-//     end: "2023-03-27T17:19:12.706Z",
+//     start: "2023-04-23T09:42:24.776Z",
+//     end: "2023-04-27T09:42:24.776Z",
 //   },
 //   bike: {
-//     model: "HONDA VARIO 160 CC",
-//     engDescription:
-//       "Honda Vario 160 - This bike is for those who want something nimble and dynamic. It will be comfortable to move around the city and at the same time easy enough to drive and frisky enough to overtake on the highway. Diode optics and combined brakes set this bike apart from other models in this class. The bike is equipped with an 18L trunk, which freely fits a motorcycle helmet.",
-//     ruDescription:
-//       "Honda Vario 160 - Этот байк подходит для тех, кто хочет что-то маневренное и динамичное. Он будет комфортен для перемещения по городу и в то же время достаточно лёгкий в управлении и резвый для совершения обгона на трассе. Диодная оптика и комбинированные тормоза выделяют этот байк на фоне других моделей данного класса. Байк оснащен багажником 18л, в который свободно влезает мотошлем.\n\t\t\t\t",
-//     year: "2022",
-//     trunk_volume: "18",
-//     capacity: "11,1",
-//     fuel_tank_volume: "5,5",
-//     average_consumption: "2,3",
-//     bikes: [
+//     model: "YAMAHA NMAX 155 CC",
+//     name: "YAMAHA NMAX 155 CC",
+//     settings: [
 //       {
-//         id: "honda vario 1",
-//         img: "/img/bikes/vario-redbull.png",
-//         drawing: "Redbull",
+//         name: {
+//           ru: "Год выпуска",
+//           eng: "Year",
+//         },
+//         value: {
+//           ru: "2022",
+//           eng: "2022",
+//         },
 //       },
 //       {
-//         id: "honda vario 2",
-//         img: "/img/bikes/vario-blue-full.png",
-//         drawing: "Blue Full",
+//         name: {
+//           ru: "Сухой вес",
+//           eng: "Dry weight",
+//         },
+//         value: {
+//           ru: "127 кг",
+//           eng: "127 kg",
+//         },
+//       },
+//       {
+//         name: {
+//           ru: "Объем багажника",
+//           eng: "Trunk volume",
+//         },
+//         value: {
+//           ru: "30 литров",
+//           eng: "30 liters",
+//         },
+//       },
+//       {
+//         name: {
+//           ru: "Мощность",
+//           eng: "Capacity",
+//         },
+//         value: {
+//           ru: "15,1 л.с.",
+//           eng: "15,1 hp",
+//         },
+//       },
+//       {
+//         name: {
+//           ru: "Объем топливного бака",
+//           eng: "Fuel tank volume",
+//         },
+//         value: {
+//           ru: "7,1 Литров",
+//           eng: "7,1 liters",
+//         },
+//       },
+//       {
+//         name: {
+//           ru: "Средний расход",
+//           eng: "Average consumption",
+//         },
+//         value: {
+//           ru: "2,5 литров / 100 км",
+//           eng: "2,5 liters / 100 km",
+//         },
 //       },
 //     ],
-//     discount: 20,
+//     bikes: [
+//       {
+//         id: "0",
+//         drawing: "Bitcoin",
+//         title: "Bitcoin",
+//         img: "https://admin.baligo.bike/wp-content/uploads/2023/04/nmax-bitcoin.png",
+//       },
+//       {
+//         id: "1",
+//         drawing: "Blue",
+//         title: "Blue",
+//         img: "https://admin.baligo.bike/wp-content/uploads/2023/04/nmax-blue.png",
+//       },
+//       {
+//         id: "2",
+//         drawing: "RedBull Panther",
+//         title: "RedBull Panther",
+//         img: "https://admin.baligo.bike/wp-content/uploads/2023/04/nmax-redbull-panther-black-yellow.png",
+//       },
+//       {
+//         id: "3",
+//         drawing: "Redbull",
+//         title: "Redbull",
+//         img: "https://admin.baligo.bike/wp-content/uploads/2023/04/nmax-redbull.png",
+//       },
+//       {
+//         id: "4",
+//         drawing: "Viva Magenta",
+//         title: "Viva Magenta",
+//         img: "https://admin.baligo.bike/wp-content/uploads/2023/04/nmax-viva-magenta.png",
+//       },
+//     ],
+//     id: "YAMAHA NMAX 155 CC",
 //     rates: [
 //       {
 //         isFixed: true,
@@ -301,25 +491,25 @@ const formStore = useFormStore();
 //       },
 //       {
 //         isFixed: false,
+//         isMonthly: false,
 //         minDays: 4,
 //         maxDays: 7,
-//         isMonthly: false,
 //         dayPriceRUP: 270000,
 //         dayPriceUSD: 18,
 //       },
 //       {
 //         isFixed: false,
+//         isMonthly: false,
 //         minDays: 8,
 //         maxDays: 14,
-//         isMonthly: false,
 //         dayPriceRUP: 220000,
 //         dayPriceUSD: 15,
 //       },
 //       {
 //         isFixed: false,
+//         isMonthly: false,
 //         minDays: 15,
 //         maxDays: 21,
-//         isMonthly: false,
 //         dayPriceRUP: 170000,
 //         dayPriceUSD: 11,
 //       },
@@ -328,20 +518,20 @@ const formStore = useFormStore();
 //         isMonthly: true,
 //         minDays: 22,
 //         maxDays: 90,
-//         dayPriceUSD: 233,
 //         dayPriceRUP: 3500000,
+//         dayPriceUSD: 233,
 //       },
 //     ],
-//     id: "9221",
-//     img: "/img/bikes/vario-redbull.png",
-//     brand: "HONDA",
-//     mark: "VARIO 160 CC",
-//     name: "HONDA VARIO 160 CC",
+//     img: "https://admin.baligo.bike/wp-content/uploads/2023/04/nmax-bitcoin.png",
+//     discount: 20,
+//     ruDescription:
+//       "На 2022 модельный год Yamaha одарила NMAX рядом важных доработок, сделав популярную модель ещё лучше. Обновленный NMAX 155 получил диодный свет, более спортивную облицовку и слегка доработанную эргономику. Посадка была сделана чуть просторнее для удобства высоких райдеров, а руль стал выше, обеспечив более удобную и расслабленную позу. Также для водителя предусмотрены удлиненные подножки, благодаря ним ноги можно вытянуть, что создает дополнительное удобство.\r\n",
+//     engDescription:
+//       "For the 2022 model year, Yamaha has given the NMAX a number of important upgrades to make the popular model even better. The updated NMAX 155 received LED lighting, a sportier fascia and slightly improved ergonomics. The seating position has been slightly wider for the comfort of taller riders, while the handlebars have been raised for a more comfortable and relaxed posture.\r\n",
 //   },
-//   client_name: "12312312",
-//   client_phone: "+62 31 2312312",
+//   hotel_name: "123123213123",
+//   agent_number: "+6221312312312",
 // });
-
 definePageMeta({
   layout: "agent",
 });
@@ -369,17 +559,6 @@ const computedDayPrice = computed(() => {
   }
 });
 
-// watch(
-//   () => activeMobileMenu.value,
-//   () => {
-//     if (activeMobileMenu.value) {
-//       document.body.classList.add("active-popup");
-//     } else {
-//       document.body.classList.remove("active-popup");
-//     }
-//   }
-// );
-
 const computedDayRupPrice = computed(() => {
   if (formStore.dateDif > 30 && (formStore.rate.isMonthly || formStore.rate.isFixed)) {
     return Number((formStore.rate.dayPriceRUP / 30).toFixed(2));
@@ -394,12 +573,7 @@ const translate = (ruStr, engStr) => {
 
 let drawing = ref(formStore.bike.drawing);
 
-const handleBikeImage = (payload) => {
-  drawing.value = payload.drawing;
-  formStore.bikeImage = payload.img;
-};
-
-const { handleSubmit, errors } = useForm();
+const { handleSubmit } = useForm();
 let order = ref(null);
 let orderSticky = ref(null);
 let orderBody = ref(null);
@@ -442,13 +616,16 @@ onMounted(() => {
   // }, 500)
   // ScrollTrigger.getById("index").enable()
 });
-
-// onBeforeUnmount(() => {
-//   ScrollTrigger.getById("index").kill();
-// });
-
 const onSubmit = handleSubmit(
   async (values) => {
+    let formData = new FormData();
+    formData.append("file", values.passport);
+    let { data } = await useFetch("https://admin.baligo.bike/wp-json/markers/v1/save-file", {
+      method: "POST",
+
+      body: formData,
+    });
+    let fileUrl = data.value;
     commercialStore.agentFormOrder({
       order_date: formatDate(new Date(), true),
       villa_name: formStore.hotelName,
@@ -462,8 +639,9 @@ const onSubmit = handleSubmit(
       kid_helmets: values.childHelmetCount,
       raincoats: values.rainCoatCount,
       fullprice: formStore.computedRupPrice,
+      file: fileUrl.file_url,
     });
-    useRouter().push("/agentsuccess");
+    useRouter().push("/agentsuccess/");
   },
   async (values) => {
     window.scrollTo({

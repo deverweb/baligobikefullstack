@@ -20,13 +20,13 @@
           <SvgCloseIcon class="w-[20px] h-[20px]" fill="#000000"></SvgCloseIcon>
         </button>
         <div class="bmodal-left">
-          <div class="bmodal-title xsm:order-1 hidden md:block text-center">
+          <!-- <div class="bmodal-title xsm:order-1 hidden md:block text-center">
             {{ bike?.model }}
-          </div>
-          <div class="bmodal-price xsm:order-2 hidden md:block text-center">
+          </div> -->
+          <!-- <div class="bmodal-price xsm:order-2 hidden md:block text-center">
             ({{ locale == "ru" ? "от" : "from" }} {{ bike.rates[3].dayPriceUSD }}$ /
             {{ locale == "ru" ? "день" : "day" }})
-          </div>
+          </div> -->
           <div class="bmodal-img xsm:order-3">
             <img :src="bikeImg" class="max-w-[90%] h-[450px] xsm:h-full" alt="" />
           </div>
@@ -37,7 +37,7 @@
               :showPrice="false"
               :bg="false"
               :name="'bikeValue'"
-              :options="bike?.bikes"
+              :options="bike.bikes"
             ></SectionCustomRadioField>
           </div>
           <p
@@ -46,7 +46,11 @@
             {{ locale == "ru" ? bike.ruDescription : bike.engDescription }}
           </p>
           <ul class="bmodal-list xsm:order-5 xsm:mb-[57px] md:mb-[43px]">
-            <li>
+            <li v-for="setting in bike.settings">
+              <span>{{ setting.name[localeStr] }}:</span>
+              <span>{{ setting.value[localeStr] }}</span>
+            </li>
+            <!-- <li>
               <span>{{ langObj.year }}:</span>
               <span>{{ bike.year }}</span>
             </li>
@@ -69,7 +73,7 @@
             <li v-if="bike.average_consumption">
               <span>{{ langObj.average_consumption }}:</span>
               <span>{{ bike.average_consumption }} {{ langObj.fuel_tank_volume_second }}</span>
-            </li>
+            </li> -->
           </ul>
         </div>
         <div class="bmodal-right flex flex-col">
@@ -142,7 +146,9 @@ const handleRadioChange = (value) => {
   formStore.choosedDrawing = value.id;
   img.value = value.img;
 };
-
+const localeStr = computed(() => {
+  return locale.value == "ru" ? "ru" : "eng";
+});
 const handleBron = () => {
   globalStore.activeBikeModal = false;
   indexForm.changeSelectedOption(bike.value);
@@ -161,7 +167,7 @@ const langObj = computed(() => {
       liters: "Литров",
       fuel_tank_volume_second: "литров / 100 км",
     };
-  if (locale.value == "en")
+  if (locale.value == "eng")
     return {
       year: "Year",
       trunk_volume: "Trunk volume",

@@ -47,7 +47,7 @@ let choosedDate = ref("");
 let computedLabel = computed(() => {
   if (choosedDate.value == "") {
     if (locale.value == "ru") return "От какого — До какого";
-    if (locale.value == "en") return "From - To";
+    if (locale.value == "eng") return "From - To";
     return "От какого — До какого";
   } else {
     return choosedDate.value;
@@ -75,7 +75,7 @@ const onDatePick = (payload) => {
 const isRequired = (value) => {
   if (!value) {
     if (locale.value == "ru") return "Необходимо выбрать";
-    if (locale.value == "en") return "Have to select";
+    if (locale.value == "eng") return "Have to select";
   }
   return true;
 };

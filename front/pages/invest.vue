@@ -7,23 +7,13 @@
         class="flex flex-col w-full lg:pb-[196px] sm:pb-[48px] md:pb-[324px] h-full relative justify-center xl:justify-start pt-[86px] sm:pt-[64px] xl:pt-[166px]"
       >
         <h1
-          v-html="
-            test(
-              'ИнвестиЦИи<br />в бизнес аренды скутеров на балИ',
-              'Investing<br />in a scooter rental business in Bali'
-            )
-          "
+          v-html="wpData.invest_page.offer_title[locale]"
           class="font-Euroblack lil:text-[24px] lil:leading-[24px] sm:text-[34px] sm:mb-[20px] sm:leading-[37px] leading-[0.97] lg:max-w-[80%] md:max-w-[initial] max-w-[65%] sm:tracking-[-1.2px] tracking-[-2.3px] uppercase text-[70px] md:text-[60px] lg:mb-[49px] mb-[31px]"
         ></h1>
         <p
           class="mb-[80px] max-w-[570px] sm:w-full sm:max-w-full sm:text-[16px] sm:leading-[20px] sm:mb-[40px] lg:mb-[61px] pl-[5px] lg:pl-0 leading-[1.25] font-Helvmed text-[20px]"
         >
-          {{
-            test(
-              "От 24% годовых в долларах. Ежемесячные выплаты. Работает, как депозит в банке.",
-              "From 24% per annum in dollars. Monthly payments. Works like a bank deposit."
-            )
-          }}
+          {{ wpData.invest_page.offer_text[locale] }}
         </p>
         <div
           class="invest-offer-image md:max-w-[600px] sm:mb-[32px] sm:w-full xsm:max-w-full sm:max-w-[80%] sm:static bottom-[calc(0%-81px)] md:w-[94%] md:right-[calc(0%-206px)] md:bottom-[calc(0%-52px)] xl:bottom-[calc(0%-15px)] xl:w-[52%] absolute lg:right-[-65px] right-[-198px] w-[55%]"
@@ -55,7 +45,7 @@
       <h2
         class="font-Euroblack sm:max-w-[80%] sm:mx-auto uppercase text-[58px] sm:text-[32px] sm:leading-[31px] md:mb-[55px] md:text-[46px] tracking-[-0.6px] md:tracking-[-1.3px] text-light text-center mb-[69px] sm:mb-[45px]"
       >
-        {{ test("Почему байки?", "Why bikes?") }}
+        {{ wpData.invest_page.why_title[locale] }}
       </h2>
       <SectionCustomCards class="mb-[80px]" :blocks="locale == 'ru' ? ruSixBlocks : engSixBlocks"></SectionCustomCards>
     </section>
@@ -85,104 +75,10 @@
               ></div>
               <div class="">{{ test("Инвестиции в недвижимость", "Real estate investment") }}</div>
             </div>
-            <div class="tabled-row tabled-row__first">
-              <div v-html="test(`Порог входа<br />(минимальная сумма)`, `Entry threshold<br />(minimum amount)`)"></div>
-              <div>
-                <span>{{ test("от", "from") }}</span> 20 000$
-              </div>
-              <div>
-                <span>{{ test("от", "from") }}</span> 200 000$
-              </div>
-            </div>
-            <div class="tabled-row pt-[35px] pb-[37px]">
-              <div>{{ test("% годовых", "% per annum") }}</div>
-              <div>
-                <span>{{ test("от", "from") }}</span> 24%
-              </div>
-              <div>
-                <span>{{ test("от", "from") }}</span> 15%
-              </div>
-            </div>
-            <div class="tabled-row">
-              <div
-                v-html="
-                  test(
-                    'Срок возврата инвестиций<br />(тело депозита)',
-                    'Return period of investment<br />(deposit body)'
-                  )
-                "
-              ></div>
-              <div>{{ test("100% после 3 лет", "100% after 3 years") }}</div>
-              <div>{{ test("После продажи недвижимости", "After the sale of the property") }}</div>
-            </div>
-            <div class="tabled-row">
-              <div>{{ test("Период выплаты % (дохода)", "Payment period % (income)") }}</div>
-              <div>{{ test("Каждый месяц", "Every month") }}</div>
-              <div>{{ test("Раз в квартал", "Once a quarter") }}</div>
-            </div>
-            <div class="tabled-row">
-              <div>{{ test("Первый доход (первая выплата %)", "First income (first payment %)") }}</div>
-              <div>{{ test("На 3 месяц", "3rd month") }}</div>
-              <div>{{ test("На 15 месяц", "15nth month") }}</div>
-            </div>
-            <div class="tabled-row">
-              <div>{{ test("Недостатки", "Flaws") }}</div>
-              <div>{{ test("Отсутствуют", "Missing") }}</div>
-              <div>
-                <ul>
-                  <li>
-                    1. {{ test("Долгий срок ожидания первой прибыли", "Long waiting period for the first profit") }}
-                  </li>
-                  <li>2. {{ test("Большой порог входа", "Large entry threshold") }}</li>
-                  <li>
-                    3. {{ test("Заморозка денежных средств на длительный период", "Freezing funds for a long period") }}
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="tabled-row">
-              <div>{{ test("Риски", "Risks") }}</div>
-              <div>
-                {{
-                  test(
-                    "Риски для инвестора отсутствуют, т.к. компания все риски берёт на себя.",
-                    "There are no risks for the investor, because The company assumes all risks."
-                  )
-                }}
-              </div>
-              <div>
-                <ul>
-                  <li>1. {{ test("Риск срыва сроков", "Risk of missed deadlines") }}</li>
-                  <li>
-                    2.
-                    {{
-                      test(
-                        "Юридические риски (оформленные земли и объекта недвижимости)",
-                        "Legal risks (registered land and real estate)"
-                      )
-                    }}
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="tabled-row">
-              <div>{{ test("Вывод", "Withdrawal") }}</div>
-              <div>
-                {{
-                  test(
-                    "Подходит для тех, кто не располагает большой суммой и хочет ежемесячный доход и быстрый возврат инвестиций",
-                    "Suitable for those who do not have a large amount of money and want a monthly income and a quick return on investment"
-                  )
-                }}
-              </div>
-              <div>
-                {{
-                  test(
-                    "Подходит для тех, кто располагает большими средствами и инвестирует на долгосрок",
-                    "Suitable for those who have large funds and invest for the long term"
-                  )
-                }}
-              </div>
+            <div class="tabled-row" v-for="row in wpData.invest_page.table_row">
+              <div v-html="row.name[locale]"></div>
+              <div v-html="row.bike[locale]"></div>
+              <div v-html="row.house[locale]"></div>
             </div>
           </div>
         </div>
@@ -195,15 +91,10 @@
         <div
           class="uppercase font-Euroblack text-[58px] md:text-[48px] leading-[0.96] tracking-[-0.6px] text-center mb-[26px] lil:text-[20px] sm:text-[24px]"
         >
-          {{ test("Калькулятор инвестирования", "Investment Calculator") }}
+          {{ wpData.invest_page.calc_title[locale] }}
         </div>
         <div class="section-desc text-center mb-[72px] md:mb-[21px] max-w-[375px] mx-auto">
-          {{
-            test(
-              "Рассчитайте доходность своих инвестиций в бизнес аренды байков на Бали.",
-              "Calculate the return on your investment in a bike rental business in Bali."
-            )
-          }}
+          {{ wpData.invest_page.calc_subtitle[locale] }}
         </div>
         <div class="calc-main flex md:flex-col justify-between">
           <div class="calc-left sm:pt-[24px] pt-[32px] md:w-full lg:w-[38%] sm:px-0 md:px-[38px] w-[45.5%]">
@@ -294,16 +185,11 @@
       class="invest-blocks sm:bg-transparent sm:pb-[100px] md:pb-[100px] md:mb-[-80px] relative sm:pt-[66px] md:pt-[89px] pt-[120px] pb-[50px] md:rounded-t-[44px] md:bg-dark-300 md:rounded-b-none rounded-b-[70px] sm:rounded-b-[44px]"
     >
       <h2
-        v-html="test('Процесс<br />инвестирования', 'Investment<br />process')"
+        v-html="wpData.invest_page.process_title[locale]"
         class="font-Euroblack uppercase text-[58px] lil:text-[18px] leading-[0.96] tracking-[-0.6px] md:text-[44px] sm:text-[24px] text-light text-center mb-[26px] md:mb-[26px] sm:mb-[31px]"
       ></h2>
       <p class="section-desc text-center lil:max-w-[90%] max-w-[405px] mx-auto text-light mb-[52px]">
-        {{
-          test(
-            "Стать инвестором компании Bali.Go можно всего за несколько простых шагов",
-            "You can become an investor in Bali.Go in just a few simple steps"
-          )
-        }}
+        {{ wpData.invest_page.process_subtitle[locale] }}
       </p>
       <SectionCustomCards
         class="mb-[80px] bg-transparent"
@@ -317,17 +203,12 @@
         <div
           class="invest-form-title sm:mb-[18px] lil:text-[22px] sm:tracking-[-0.9px] sm:text-[27px] md:w-full md:text-[44px] w-[90%] mx-auto mb-[28px] tracking-[-1.6px] font-Euroblack uppercase leading-[0.96] text-center text-[52px]"
         >
-          {{ test("ИНВЕСТИРУЙТЕ В Бизнес аренды скутеров НА БАЛИ", "INVEST IN BALI Scooter Rental Business") }}
+          {{ wpData.invest_page.form_title[locale] }}
         </div>
         <div
           class="invest-form-subtitle md:max-w-[470px] md:mx-auto sm:mb-[28px] section-desc md:mb-[49px] text-center mb-[60px]"
         >
-          {{
-            test(
-              "Заполните форму и наш менеджер свяжется с вами в ближайшее время для обсуждения деталей.",
-              "Fill out the form and our manager will contact you shortly to discuss the details."
-            )
-          }}
+          {{ wpData.invest_page.form_subtitle[locale] }}
         </div>
         <Form @submit="onSubmit" class="flex-wrap invest-form-tag flex">
           <SectionCustomTextField
@@ -372,7 +253,7 @@
           >
             <SvgMoneyIcon class="sm:w-[16] sm:h-[12px]" fill="#181818"></SvgMoneyIcon>
           </SectionCustomSelectField>
-          <TheButton type="submit" class="btn-primary__light w-[360px] h-[70px] bg-green text-light">
+          <TheButton :loading="loading" type="submit" class="btn-primary__light w-[360px] h-[70px] bg-green text-light">
             <span>{{ test("Оставить заявку", "Submit your application") }}</span>
           </TheButton>
         </Form>
@@ -382,12 +263,12 @@
 </template>
 
 <script setup>
-import { useForm, Form } from "vee-validate";
+import { Form } from "vee-validate";
 import { useCommercialStore } from "~~/store/commercial";
-
+import { useWordpressStore } from "~~/store/wordpressStore";
+const wpStore = useWordpressStore();
+const wpData = wpStore.wpData;
 const { locale } = useI18n();
-const route = useRoute();
-const { handleSubmit } = useForm();
 const test = (ruStr, engStr) => {
   return locale.value == "ru" ? ruStr : engStr;
 };
@@ -399,16 +280,10 @@ const MIN_VALUE = 20000;
 const messengerOptions = ref(["Viber", "Telegram", "Whatsapp"]);
 const computedTitle = computed(() => {
   if (locale.value == "ru") return "Инвестиции на Бали";
-  if (locale.value == "en") return "Investment in Bali";
+  if (locale.value == "eng") return "Investment in Bali";
   // test("Инвестиции на Бали", "Investment in Bali");
 });
-// useServerSeoMeta({
-//   title: () => {
-//     if (locale.value == "ru") return "Инвестиции на Бали";
-//     if (locale.value == "en") return "Investment in Bali";
-//   },
-//   description: () => computedTitle.value,
-// });
+let loading = ref(false);
 useHead({
   title: () => computedTitle.value,
   meta: [{ name: "description", content: () => computedTitle.value }],
@@ -437,15 +312,17 @@ const formatDate = (date, addTime) => {
   }
 };
 
-const onSubmit = (values, { resetForm }) => {
+const onSubmit = async (values, { resetForm }) => {
   // pretty print the values object
-  commercialStore.investFormOrder({
+  loading.value = true;
+  let data = await commercialStore.investFormOrder({
     date: formatDate(new Date(), true),
     client_name: values.client_name,
     messenger: values.messenger,
     client_phone: " +" + values.client_phone.substring(1),
     invest_size: values.invest_size,
   });
+  loading.value = false;
   resetForm();
 };
 
@@ -504,145 +381,25 @@ const ROI_middle = computed(() => {
   }
   return ROI_all.value / (monthCount.value / 12);
 });
-// const PERCENT = computed(() => {
-//   return ((24 + (monthCount.value - 24) * 0.5) / 100 / 12).toFixed(4);
-// });
-// const YEAR_PERCENT = computed(() => {
-//   return Math.round(PERCENT.value * 1200);
-// });
-// const month_pay = computed(() => {
-//   if (investSum.value < MIN_VALUE || typeof investSum.value != "number") {
-//     return 0;
-//   }
-//   return Math.round(investSum.value * PERCENT.value);
-// });
-// const percent_sum = computed(() => {
-//   if (investSum.value < MIN_VALUE || typeof investSum.value != "number") {
-//     return 0;
-//   }
-//   return Math.round(Number(investSum.value * monthCount.value * PERCENT.value));
-// });
-// const return_sum = computed(() => {
-//   if (investSum.value < MIN_VALUE || typeof investSum.value != "number") {
-//     return 0;
-//   }
-//   return Math.round(Number(percent_sum.value + investSum.value));
-// });
 
-// const ROI_all = computed(() => {
-//   if (investSum.value < MIN_VALUE || typeof investSum.value != "number") {
-//     return 0;
-//   }
-//   if (investSum.value == 0 || !investSum.value) {
-//     return 0;
-//   } else {
-//     return Math.round(((return_sum.value - investSum.value) / investSum.value) * 100);
-//   }
-// });
-// const ROI_middle = computed(() => {
-//   if (investSum.value < MIN_VALUE) {
-//     return 0;
-//   }
-//   return Math.round(ROI_all.value / (monthCount.value / 12));
-// });
+const createBlocksArray = (arr, langStr) => {
+  return arr.map((item) => {
+    if (item.text.hasOwnProperty(langStr)) {
+      let title = item.title[langStr];
+      let text = item.text[langStr];
 
-const engProcessBlocks = [
-  {
-    title: "Apply",
-    text: "You leave a request on the site and indicate the amount of investment",
-  },
-  {
-    title: "Contact Manager",
-    text: "Our manager is contacting you to discuss details",
-  },
-  {
-    title: "Contract execution",
-    text: "The manager draws up an investment contract",
-  },
-  {
-    title: "Payment Transfer to USDT",
-    text: "Contract payment with USDT stablecoin",
-  },
-  {
-    title: "Contract Payouts in USDT",
-    text: "Receive timely payments for % in USDT",
-  },
-];
+      return {
+        title,
+        text,
+      };
+    }
+  });
+};
 
-const ruProcessBlocks = [
-  {
-    title: "Подача заявки",
-    text: "Вы оставляете заявку на сайте и указываете сумму инвестиций",
-  },
-  {
-    title: "Связь с менеджером",
-    text: "C вами связывается наш менеджер для обсуждения деталей",
-  },
-  {
-    title: "Оформление контракта",
-    text: "Менеджер оформляет инвестиционный контракт",
-  },
-  {
-    title: "Перевод оплаты в USDT",
-    text: "Оплата контракта стейблкоином USDT",
-  },
-  {
-    title: "Выплаты по контракту в USDT",
-    text: "Получаете своевременные выплаты по % в USDT",
-  },
-];
-const ruSixBlocks = [
-  {
-    title: "Диверсификация рисков",
-    text: "Ваши деньги работают на Азиатском рынке",
-  },
-  {
-    title: "Высокий доход",
-    text: "% доходности, выше чем у любого банка, ROI от 24 - 30% в год",
-  },
-  {
-    title: "Ежемесячные выплаты",
-    text: "% выплачиваются ежемесячно начиная с 3 месяца",
-  },
-  {
-    title: "Низкий порог входа",
-    text: "Стартовая инвестиция от 20&nbsp;000$",
-  },
-  {
-    title: "Высокий уровень ликвидности",
-    text: "Байки можно быстро продать или обменять",
-  },
-  {
-    title: "16+ млн туристов ЕЖЕГОДНО",
-    text: " Бали - 4 инвестиционно-привлекательное место в мире по версии Forbes",
-  },
-];
-const engSixBlocks = [
-  {
-    title: "Risk Diversification",
-    text: "Your money works in the Asian market",
-  },
-  {
-    title: "High Income",
-    text: "% return, higher than any bank, ROI from 24 - 30% per year",
-  },
-  {
-    title: "Monthly Payments",
-    text: "% paid monthly starting from the 3rd month",
-  },
-  {
-    title: "Low Entry Bar",
-    text: "Starting investment from 20&nbsp;000$",
-  },
-  {
-    title: "High level of liquidity",
-    text: "Bikes can be quickly sold or traded",
-  },
-  {
-    title: "16+ million tourists ANNUALLY",
-    text: "Bali is the 4th investment-attractive place in the world according to Forbes",
-  },
-];
+const engProcessBlocks = createBlocksArray(wpData.invest_page.process_cards, "eng");
+const ruProcessBlocks = createBlocksArray(wpData.invest_page.process_cards, "ru");
+const engSixBlocks = createBlocksArray(wpData.invest_page.why_cards, "eng");
+const ruSixBlocks = createBlocksArray(wpData.invest_page.why_cards, "ru");
 </script>
 
 <style lang="sass">

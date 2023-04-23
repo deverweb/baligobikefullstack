@@ -17,7 +17,7 @@ const computedTitle = computed(() => {
   switch (locale.value) {
     case "ru":
       return "Аренда байков на Бали - Baligo.bike. Сервис №1 по аренде байков";
-    case "en":
+    case "eng":
       return "Bike rental in Bali - Baligo.bike. The №1 service for bike rental";
     default:
       break;

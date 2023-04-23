@@ -7,7 +7,7 @@
       <div class="footer-col pt-[4px] flex flex-col items-start">
         <Logo class="text-[32px] tracking-[-1px] mb-[9px]"></Logo>
 
-        <NuxtLink class="footer-link mb-[9px] text-[16px]" to="/terms">{{ $t("footerRights.terms") }}</NuxtLink>
+        <NuxtLink class="footer-link mb-[9px] text-[16px]" to="/terms/">{{ $t("footerRights.terms") }}</NuxtLink>
         <div class="footer-rights">baligo.bike © 2022, All rights reserved.</div>
       </div>
       <div class="footer-col pl-[23px] pt-[11px]">
@@ -17,22 +17,28 @@
           <span @click="handleFooterClickRend" class="tracking-[-0.5px]">{{ $t("footerRights.rentBike") }}</span>
         </div>
         <div class="footer-policy inline-flex text-[16px] items-baseline flex-col">
-          <NuxtLink class="inline-block mb-[12px] font-Helvreg" to="/oferta">{{ $t("footerRights.oferta") }}</NuxtLink>
-          <NuxtLink class="inline-block" to="/policy">{{ $t("footerRights.privacyPolicy") }}</NuxtLink>
+          <NuxtLink class="inline-block mb-[12px] font-Helvreg" to="/oferta/">{{ $t("footerRights.oferta") }}</NuxtLink>
+          <NuxtLink class="inline-block" to="/policy/">{{ $t("footerRights.privacyPolicy") }}</NuxtLink>
         </div>
       </div>
       <div class="footer-col pl-[30px] pt-[11px]">
-        <a href="mailto:info@baligo.bike" class="footer-action mb-[17px] cursor-pointer">
+        <a
+          :href="`mailto:${wpData.common.contacts_email.toLowerCase()}`"
+          class="footer-action mb-[17px] cursor-pointer"
+        >
           <SvgMailIcon class="mr-[15px]" fill="#30B21B"></SvgMailIcon>
-          <span>info@baligo.bike</span>
+          <span>{{ wpData.common.contacts_email }}</span>
         </a>
-        <a :href="`tel:${'+62 813 374 13 060'.replace(/\s/g, '')}`" class="footer-action mb-[17px] cursor-pointer">
+        <a
+          :href="`tel:${wpData.common.contacts_phone.replace(/\s/g, '')}`"
+          class="footer-action mb-[17px] cursor-pointer"
+        >
           <SvgPhoneIcon class="mr-[15px] w-[12px] h-[12px]" fill="#30B21B"></SvgPhoneIcon>
-          <span>+62 813 374 13 060</span>
+          <span>{{ wpData.common.contacts_phone }}</span>
         </a>
         <div class="footer-action">
           <SvgGeoIcon class="mr-[15px] w-[12px] h-[12px]" fill="#30B21B"></SvgGeoIcon>
-          <span>Jl. Batu Mejan Canggu 38,<br />Canggu</span>
+          <span v-html="wpData.common.contacts_address"></span>
         </div>
       </div>
       <div class="footer-col items-end">
@@ -55,11 +61,11 @@
         <Logo class="text-[28px] tracking-[-0.9px] mb-[13px]"></Logo>
         <div class="footer-col-container">
           <div class="footer-policy mb-[10px] inline-flex text-[16px] items-baseline flex-col">
-            <NuxtLink class="footer-link mb-[10px] text-[16px]" to="/terms">{{ $t("footerRights.terms") }}</NuxtLink>
-            <NuxtLink class="inline-block mb-[10px] font-Helvreg" to="/oferta">{{
+            <NuxtLink class="footer-link mb-[10px] text-[16px]" to="/terms/">{{ $t("footerRights.terms") }}</NuxtLink>
+            <NuxtLink class="inline-block mb-[10px] font-Helvreg" to="/oferta/">{{
               $t("footerRights.oferta")
             }}</NuxtLink>
-            <NuxtLink class="inline-block" to="/policy">{{ $t("footerRights.privacyPolicy") }}</NuxtLink>
+            <NuxtLink class="inline-block" to="/policy/">{{ $t("footerRights.privacyPolicy") }}</NuxtLink>
           </div>
           <div class="footer-dev mb-[10px] flex">
             <span class="mr-[5px]">{{ $t("footerRights.dev") }}</span>
@@ -69,17 +75,23 @@
         </div>
       </div>
       <div class="footer-col pt-[6px] pl-[13px]">
-        <a href="mailto:info@baligo.bike" class="footer-action mb-[19px] cursor-pointer">
+        <a
+          :href="`mailto:${wpData.common.contacts_email.toLowerCase()}`"
+          class="footer-action mb-[19px] cursor-pointer"
+        >
           <SvgMailIcon class="mr-[15px]" fill="#30B21B"></SvgMailIcon>
-          <span>info@baligo.bike</span>
+          <span>{{ wpData.common.contacts_email }}</span>
         </a>
-        <a :href="`tel:${'+62 813 374 13 060'.replace(/\s/g, '')}`" class="footer-action mb-[19px] cursor-pointer">
+        <a
+          :href="`tel:${wpData.common.contacts_phone.replace(/\s/g, '')}`"
+          class="footer-action mb-[19px] cursor-pointer"
+        >
           <SvgPhoneIcon class="mr-[15px] w-[12px] h-[12px]" fill="#30B21B"></SvgPhoneIcon>
-          <span>+62 813 374 13 060</span>
+          <span>{{ wpData.common.contacts_phone }}</span>
         </a>
         <div class="footer-action">
           <SvgGeoIcon class="mr-[13px] w-[12px] h-[12px]" fill="#30B21B"></SvgGeoIcon>
-          <span>Jl. Batu Mejan Canggu 38,<br />Canggu</span>
+          <span v-html="wpData.common.contacts_address"></span>
         </div>
         <div class="footer-payments flex gap-[8px] mt-[53px]">
           <div
@@ -93,22 +105,25 @@
     </div>
     <div class="footer-mobile hidden sm:grid">
       <Logo class="text-[28px] tracking-[-0.9px] mb-[40px]"></Logo>
-      <a href="mailto:info@baligo.bike" class="footer-action mb-[19px] cursor-pointer">
+      <a :href="`mailto:${wpData.common.contacts_email.toLowerCase()}`" class="footer-action mb-[19px] cursor-pointer">
         <SvgMailIcon class="mr-[15px]" fill="#30B21B"></SvgMailIcon>
-        <span>info@baligo.bike</span>
+        <span>{{ wpData.common.contacts_email }}</span>
       </a>
-      <a :href="`tel:${'+62 813 374 13 060'.replace(/\s/g, '')}`" class="footer-action mb-[19px] cursor-pointer">
+      <a
+        :href="`tel:${wpData.common.contacts_phone.replace(/\s/g, '')}`"
+        class="footer-action mb-[19px] cursor-pointer"
+      >
         <SvgPhoneIcon class="mr-[15px] w-[12px] h-[12px]" fill="#30B21B"></SvgPhoneIcon>
-        <span>+62 813 374 13 060</span>
+        <span>{{ wpData.common.contacts_phone }}</span>
       </a>
       <div class="footer-action mb-[46px]">
         <SvgGeoIcon class="mr-[13px] w-[12px] h-[12px]" fill="#30B21B"></SvgGeoIcon>
-        <span>Jl. Batu Mejan Canggu 38,<br />Canggu</span>
+        <span v-html="wpData.common.contacts_address"></span>
       </div>
       <div class="footer-policy mb-[16px] inline-flex text-[16px] items-baseline flex-col">
-        <NuxtLink class="footer-link mb-[15px] text-[16px]" to="/terms">{{ $t("footerRights.terms") }}</NuxtLink>
-        <NuxtLink class="inline-block mb-[15px] font-Helvreg" to="/oferta">{{ $t("footerRights.oferta") }}</NuxtLink>
-        <NuxtLink class="inline-block" to="/policy">{{ $t("footerRights.privacyPolicy") }}</NuxtLink>
+        <NuxtLink class="footer-link mb-[15px] text-[16px]" to="/terms/">{{ $t("footerRights.terms") }}</NuxtLink>
+        <NuxtLink class="inline-block mb-[15px] font-Helvreg" to="/oferta/">{{ $t("footerRights.oferta") }}</NuxtLink>
+        <NuxtLink class="inline-block" to="/policy/">{{ $t("footerRights.privacyPolicy") }}</NuxtLink>
       </div>
       <div class="footer-dev mb-[14px] flex">
         <span class="mr-[5px]">{{ $t("footerRights.dev") }}</span>
@@ -128,8 +143,13 @@
 </template>
 
 <script setup>
+import { useWordpressStore } from "~~/store/wordpressStore";
+
 let route = useRoute();
 let router = useRouter();
+const { locale } = useI18n();
+const wpStore = useWordpressStore();
+const wpData = wpStore.wpData;
 const payments = ["/svg/footer/visa.svg", "/svg/footer/master.svg", "/svg/footer/inter.svg"];
 const handleFooterClickRend = async () => {
   if (route.path == "/") {

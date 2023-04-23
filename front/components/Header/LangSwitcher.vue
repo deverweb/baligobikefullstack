@@ -1,15 +1,9 @@
 <template>
   <div class="lang relative">
-    <button
-      class="lang-switcher flex items-center"
-      @click="store.activeLangSwitcher = !store.activeLangSwitcher"
-    >
+    <button class="lang-switcher flex items-center" @click="store.activeLangSwitcher = !store.activeLangSwitcher">
       <SvgWorldIcon class="opacity-30 mr-[10px]"></SvgWorldIcon>
-      <span class="uppercase w-[25px] mr-[10px] leading-[1]">{{ locale }}</span>
-      <SvgArrowDownIcon
-        class="transition"
-        :class="{ 'rotate-180': store.activeLangSwitcher }"
-      ></SvgArrowDownIcon>
+      <span class="uppercase mr-[10px] w-[25px] leading-[1]">{{ localeString }}</span>
+      <SvgArrowDownIcon class="transition" :class="{ 'rotate-180': store.activeLangSwitcher }"></SvgArrowDownIcon>
     </button>
     <TransitionSlideDown>
       <div
@@ -35,6 +29,13 @@
 import { useGlobalStore } from "~~/store/global";
 const { locale, locales } = useI18n();
 let store = useGlobalStore();
+
+const localeString = computed(() => {
+  if (locale.value == "eng") return "EN";
+  else {
+    return "RU";
+  }
+});
 </script>
 
 <style lang="sass"></style>

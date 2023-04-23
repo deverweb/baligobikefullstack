@@ -26,7 +26,10 @@ export default defineEventHandler(async (event) => {
       messenger: body.data.messenger,
       invest_size: body.data.invest_size,
     });
-    return "if smallform";
+
+    return {
+      loading: false,
+    };
   }
   if (body.sheet == "smallform") {
     sheet = doc.sheetsByIndex[0];
@@ -38,7 +41,9 @@ export default defineEventHandler(async (event) => {
       order_date_end: body.data.order_date_end,
       bike_model: body.data.bike_choice,
     });
-    return "if smallform";
+    return {
+      loading: false,
+    };
   }
 
   if (body.sheet == "bigform") {
@@ -49,7 +54,10 @@ export default defineEventHandler(async (event) => {
       order_id: rows.length,
       ...data,
     });
-    return "if bigform";
+
+    return {
+      loading: false,
+    };
   }
   if (body.sheet == "agentform") {
     sheet = doc.sheetsByIndex[2];
@@ -59,7 +67,10 @@ export default defineEventHandler(async (event) => {
       order_id: rows.length,
       ...data,
     });
-    return "if bigform";
+
+    return {
+      loading: false,
+    };
   }
   return "success";
 });

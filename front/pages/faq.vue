@@ -1,26 +1,46 @@
 <template>
   <main class="flex-grow">
-    <div class="rules pt-[211px] pb-[144px] md:pb-[120px] sm:pb-[80px] md:pt-[93px] xsm:pt-[79px] min-h-screen rounded-t-[70px] sm:rounded-t-[44px] bg-dark-700">
+    <div
+      class="rules pt-[211px] pb-[144px] md:pb-[120px] sm:pb-[80px] md:pt-[93px] xsm:pt-[79px] min-h-screen rounded-t-[70px] sm:rounded-t-[44px] bg-dark-700"
+    >
       <div class="container">
         <h2 class="section-title text-center mb-[25px] md:mb-[26px] xsm:mb-[30px]">
-          {{ $t("faqPage.title") }}
+          {{ wpData.faq_page.faq_title[locale] }}
         </h2>
         <h3 class="section-subtitle text-center mb-[60px] md:mb-[26px] xsm:mb-[30px]">
-          {{ $t("faqPage.text") }}
+          {{ wpData.faq_page.faq_subtitle[locale] }}
         </h3>
       </div>
-      <SectionFaqMain class="rounded-t-[70px] bg-transparent sm:rounded-t-[44px]" :questions="questions"></SectionFaqMain>
+      <SectionFaqMain
+        class="rounded-t-[70px] bg-transparent sm:rounded-t-[44px]"
+        :questions="questions"
+      ></SectionFaqMain>
     </div>
   </main>
 </template>
 
 <script setup>
-let { locale } = useI18n()
-let questions = computed(() => {
-  if (locale.value == "ru") return ruQuestions
-  if (locale.value == "en") return enQuestions
-})
+import { useWordpressStore } from "~~/store/wordpressStore";
 
+let { locale } = useI18n();
+const wpStore = useWordpressStore();
+const wpData = wpStore.wpData;
+let questions = computed(() => {
+  if (locale.value == "ru") return ruQuestions1;
+  if (locale.value == "eng") return engQuestions1;
+});
+const createQuestions = (questionArr, langStr) => {
+  return questionArr.map((questionObj) => {
+    if (questionObj.answer.hasOwnProperty(langStr)) {
+      return {
+        title: questionObj.question[langStr],
+        text: questionObj.answer[langStr],
+      };
+    }
+  });
+};
+const ruQuestions1 = createQuestions(wpData.faq_page.faq_content, "ru");
+const engQuestions1 = createQuestions(wpData.faq_page.faq_content, "eng");
 const ruQuestions = [
   {
     title: "Что делать если я попал в ДТП, а виноват местный. Как договариваться?",
@@ -50,7 +70,7 @@ const ruQuestions = [
     title: "Каким бензином лучше всего заправляться и где это делать?",
     text: "На Бали есть только одна сеть заправок - Pertamania. Вам нужен Pertamax(92) синего цвета. Бензин также можно приобрести практически в любом районе у местных, но он будет дороже, чем на заправке. Они выставляют стеклянные бутылки вдоль дороги или маленькую колонку при своем магазине.",
   },
-]
+];
 const enQuestions = [
   {
     title: "What to do if I got into an accident, and the local is to blame. How to negotiate?",
@@ -84,7 +104,7 @@ const enQuestions = [
     title: "What kind of gasoline is best to refuel and where to do it?",
     text: "There is only one gas station network in Bali - Pertamania. You need Pertamax(92) in blue. Gasoline can also be purchased in almost any area from locals, but it will be more expensive than at a gas station. They display glass bottles along the road or a small column at their store.",
   },
-]
+];
 </script>
 
 <style lang="sass"></style>

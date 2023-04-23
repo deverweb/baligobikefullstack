@@ -265,7 +265,7 @@ const computedDayPriceRup = computed(() => {
 
 const onSubmit = handleSubmit((values) => {
   formStore.fillAgentForm(values);
-  router.push({ path: "/agentform" });
+  router.push({ path: "/agentform/" });
 });
 </script>
 

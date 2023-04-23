@@ -12,7 +12,7 @@
       <input :name="props.name" id="passport" class="hidden" type="file" @change="handleChange" @blur="handleBlur" />
       <SvgDownloadIcon class="ml-auto"></SvgDownloadIcon>
     </label>
-    <div class="error absolute text-red-600 text-[14px] pt-[4px] pl-[6px]">
+    <div class="error absolute field-error text-red-600 text-[14px] pt-[4px] pl-[6px]">
       {{ errorMessage }}
     </div>
   </div>
@@ -21,9 +21,23 @@
 <script setup>
 import { useField } from "vee-validate";
 
+const { locale } = useI18n();
+const imageTypes = ["image/jpeg", "image/png", "image/gif"];
 const isRequired = (values) => {
   if (props.required === false) return true;
-  if (!value.value) return "Необходимо заполнить";
+  if (!value.value) {
+    if (locale.value == "ru") return "Необходимо заполнить";
+    else {
+      return "Required";
+    }
+  }
+  if (imageTypes.indexOf(values.type) === -1) {
+    if (locale.value == "ru") {
+      return "Формат png/jpeg/jpg";
+    } else {
+      return "Only png/jpeg/jpg";
+    }
+  }
   return true;
 };
 
@@ -47,12 +61,6 @@ const useCurrentLabel = computed(() => {
   if (value.value) return currentLabel.value;
   else return props.defaultLabel;
 });
-
-// let useCurrentLabel = computed(() => {
-//   if (!currentLabel.value) {
-//     return "Загрузите фото загранпаспорта";
-//   } else return currentLabel.value;
-// });
 </script>
 
 <style lang="sass"></style>

@@ -72,18 +72,18 @@ let isRequired = (value) => {
   if (props.disabled) return true;
   if (!value) {
     if (locale.value == "ru") return "Обязательное поле";
-    if (locale.value == "en") return "Required";
+    if (locale.value == "eng") return "Required";
   }
   if (props.type == "number") {
     if (props.minValue) {
       if (value < props.minValue) {
         if (locale.value == "ru") return "Значение меньше минимального";
-        if (locale.value == "en") return "Value is less than minimum";
+        if (locale.value == "eng") return "Value is less than minimum";
       }
     }
     if (!/^\d+$/.test(value)) {
       if (locale.value == "ru") return "Только цифры";
-      if (locale.value == "en") return "Numbers only";
+      if (locale.value == "eng") return "Numbers only";
     }
     return true;
   }
@@ -91,13 +91,13 @@ let isRequired = (value) => {
   if (props.type == "string") {
     if (!value) {
       if (locale.value == "ru") return "Обязательное поле";
-      if (locale.value == "en") return "Required";
+      if (locale.value == "eng") return "Required";
     } //
     let regexp = /^(?!\s*$)[-\/'"№., 0-9a-zA-ZА-Яa-я]+$/;
     if (!regexp.test(value)) {
       if (locale.value == "ru") return "Только буквы и цифры";
 
-      if (locale.value == "en") return "Letters and numbers only";
+      if (locale.value == "eng") return "Letters and numbers only";
     }
 
     return true;

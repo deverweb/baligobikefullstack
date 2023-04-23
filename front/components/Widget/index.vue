@@ -50,7 +50,7 @@
         <div
           class="wg-bottom grow-0 h-[130px] shrink-0 py-[30px] bg-light rounded-b-[12px] flex items-center justify-center"
         >
-          <TheButton class="w-[292px] btn-primary__light h-[70px] text-[16px]">
+          <TheButton :loading="loading" class="w-[292px] btn-primary__light h-[70px] text-[16px]">
             <span>{{ btnText }}</span>
           </TheButton>
         </div>
@@ -68,7 +68,7 @@ import { useFormStore } from "~~/store/form";
 
 let { locale } = useI18n();
 gsap.registerPlugin(ScrollTrigger);
-
+let loading = ref(false);
 let commercialStore = useCommercialStore();
 let formStore = useFormStore();
 let router = useRouter();
@@ -80,21 +80,21 @@ let bikeDefaultLabel = computed(() => {
   if (locale.value == "ru") {
     return "Модель байка";
   }
-  if (locale.value == "en") return "Bike Model";
+  if (locale.value == "eng") return "Bike Model";
 });
 
 let namePlaceholder = computed(() => {
   if (locale.value == "ru") {
     return "Ваше Имя";
   }
-  if (locale.value == "en") return "Your Name";
+  if (locale.value == "eng") return "Your Name";
 });
 
 let btnText = computed(() => {
   if (locale.value == "ru") {
     return "Оформление заказа";
   }
-  if (locale.value == "en") return "Checkout";
+  if (locale.value == "eng") return "Checkout";
 });
 
 const formatDate = (date, addTime) => {
@@ -116,11 +116,10 @@ const formatDate = (date, addTime) => {
 
 // let formvalues = useStorage("formvalues");
 const { handleSubmit } = useForm();
-const onSubmit = handleSubmit((values) => {
-  // formvalues.value = values;
+const onSubmit = handleSubmit(async (values) => {
+  loading.value = true;
   formStore.fillForm(values);
-  // console.log(values);
-  commercialStore.smallFormOrder({
+  let data = await commercialStore.smallFormOrder({
     order_date: formatDate(new Date(), true),
     client_name: values.client_name,
     client_messenger: " +" + values.client_phone.substring(1),
@@ -128,7 +127,8 @@ const onSubmit = handleSubmit((values) => {
     order_date_end: formatDate(new Date(formStore.dates.end)),
     bike_choice: values.bike.name,
   });
-  router.push({ path: "/order" });
+  loading.value = data.loading;
+  router.push({ path: "/order/" });
 });
 
 onMounted(() => {

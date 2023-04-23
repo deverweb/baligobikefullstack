@@ -18,21 +18,15 @@
               <SvgCloseIcon></SvgCloseIcon>
             </button>
           </div>
-          <div
-            class="datepicker-body items-center pt-[45px] mb-[40px] sm:flex sm:flex-col text-center"
-          >
-            <div
-              class="datepicker-body-title uppercase max-w-[340px] text-center mb-[15px] font-Euroblack text-[32px]"
-            >
+          <div class="datepicker-body items-center pt-[45px] mb-[40px] sm:flex sm:flex-col text-center">
+            <div class="datepicker-body-title uppercase max-w-[340px] text-center mb-[15px] font-Euroblack text-[32px]">
               {{ $t("datePickerComponent.mobileTitle") }}
             </div>
             <div class="datepicker-body-text max-w-[340px] text-center">
               {{ $t("datePickerComponent.mobileDescription") }}
             </div>
           </div>
-          <div
-            class="phone-datepicker-panel max-w-[340px] mx-auto flex flex-col items-center"
-          >
+          <div class="phone-datepicker-panel max-w-[340px] mx-auto flex flex-col items-center">
             <client-only>
               <DatePicker
                 :min-date="new Date()"
@@ -85,28 +79,20 @@ const handleClose = () => {
 const listenMobile = (date) => {
   let str = "";
   if (locale.value == "ru") {
-    str = `с ${formatDate(range.value.start)} — до ${formatDate(
-      range.value.end
-    )}`;
+    str = `с ${formatDate(range.value.start)} — до ${formatDate(range.value.end)}`;
   }
-  if (locale.value == "en") {
-    str = `from ${formatDate(range.value.start)} — to ${formatDate(
-      range.value.end
-    )}`;
+  if (locale.value == "eng") {
+    str = `from ${formatDate(range.value.start)} — to ${formatDate(range.value.end)}`;
   }
 };
 
 const listen = (date) => {
   let str = "";
   if (locale.value == "ru") {
-    str = `с ${formatDate(range.value.start)} — до ${formatDate(
-      range.value.end
-    )}`;
+    str = `с ${formatDate(range.value.start)} — до ${formatDate(range.value.end)}`;
   }
-  if (locale.value == "en") {
-    str = `from ${formatDate(range.value.start)} — to ${formatDate(
-      range.value.end
-    )}`;
+  if (locale.value == "eng") {
+    str = `from ${formatDate(range.value.start)} — to ${formatDate(range.value.end)}`;
   }
   emit("daypick", { str, date });
 };

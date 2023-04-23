@@ -1,9 +1,20 @@
 <template>
-  <section class="service z-[6] rounded-b-[70px] sm:rounded-b-[44px] md:pb-[46px] relative top-[-70px] pt-[190px] md:pt-[145px] pb-[100px] bg-light text-dark">
+  <section
+    class="service z-[6] rounded-b-[70px] sm:rounded-b-[44px] md:pb-[46px] relative top-[-70px] pt-[190px] md:pt-[145px] pb-[100px] bg-light text-dark"
+  >
     <div class="service-container mx-auto max-w-[1433px] px-[7px] md:px-[40px] xsm:px-[20px]">
-      <h2 v-html="$t('mainPageServices.title')" class="section-title service-title text-center mb-[79px] md:mb-[67px]"></h2>
-      <div class="service-items grid grid-cols-4 xsm:grid-cols-1 md:grid-cols-2 md:gap-x-[11px] items-stretch gap-x-[50px] md:gap-y-[5px] gap-y-[39px]">
-        <div class="service-item md:flex md:px-[20px] md:flex-col md:items-center md:text-center py-[30px] md:pt-[26px] pl-[25px] rounded-[10px]" v-for="(service, i) in services" :key="i">
+      <h2
+        v-html="wpData.main_page.arenda_title[locale]"
+        class="section-title service-title text-center mb-[79px] md:mb-[67px]"
+      ></h2>
+      <div
+        class="service-items grid grid-cols-4 xsm:grid-cols-1 md:grid-cols-2 md:gap-x-[11px] items-stretch gap-x-[50px] md:gap-y-[5px] gap-y-[39px]"
+      >
+        <div
+          class="service-item md:flex md:px-[20px] md:flex-col md:items-center md:text-center py-[30px] md:pt-[26px] pl-[25px] rounded-[10px]"
+          v-for="(service, i) in services"
+          :key="i"
+        >
           <div class="service-item-img xsm:mb-[30px] md:mb-[38px] mb-[36px] flex gap-[22px]">
             <img :src="img" class="h-[44px]" :key="i" v-for="(img, i) in service.svg" />
           </div>
@@ -20,79 +31,105 @@
 </template>
 
 <script setup>
-let { locale } = useI18n()
+import { useWordpressStore } from "~~/store/wordpressStore";
+
+let { locale } = useI18n();
+
+const wpStore = useWordpressStore();
+const wpData = wpStore.wpData;
+
 const services = computed(() => {
-  if (locale.value == "ru") return ruServices
-  if (locale.value == "en") return enServices
-})
-const ruServices = [
-  {
-    svg: ["/svg/services/helmet.svg", "/svg/services/clothes.svg"],
-    text: "1-2 новых шлема и дождевик включены в стоимость аренды",
-  },
-  {
-    svg: ["/svg/services/phone.svg"],
-    text: "Байки оборудованы держателем для телефона или камеры",
-  },
-  {
-    svg: ["/svg/services/insurance.svg"],
-    text: "Страховка от угона и поломок включена в стоимость",
-  },
-  {
-    svg: ["/svg/services/repair.svg"],
-    text: "Техническая поддержка и беслпатные онлайн-консультации",
-  },
-  {
-    svg: ["/svg/services/bike.svg"],
-    text: "Все байки новые - 2022 года выпуска",
-  },
-  {
-    svg: ["/svg/services/surf.svg"],
-    text: "Байки оборудованы держателями для серфа (опционально)",
-  },
-  {
-    svg: ["/svg/services/support.svg"],
-    text: "Круглосуточная поддержка клиентов и помощь в дороге",
-  },
-  {
-    svg: ["/svg/services/carrepair.svg"],
-    text: "Оперативный выезд команды для ремонта или замены байка",
-  },
-]
-const enServices = [
-  {
-    svg: ["/svg/services/helmet.svg", "/svg/services/clothes.svg"],
-    text: "1-2 new helmets included in the rental price.",
-  },
-  {
-    svg: ["/svg/services/phone.svg"],
-    text: "Bikes are equipped with a phone and camera holder.",
-  },
-  {
-    svg: ["/svg/services/insurance.svg"],
-    text: "Theft and breakdown insurance is included in the price.",
-  },
-  {
-    svg: ["/svg/services/repair.svg"],
-    text: "Technical support and free online consultations.",
-  },
-  {
-    svg: ["/svg/services/bike.svg"],
-    text: "All bikes are new, 2022 release.",
-  },
-  {
-    svg: ["/svg/services/surf.svg"],
-    text: "Bikes are equipped with surf holders (optional).",
-  },
-  {
-    svg: ["/svg/services/support.svg"],
-    text: "24/7 customer support and roadside assistance.",
-  },
-  {
-    svg: ["/svg/services/carrepair.svg"],
-    text: "Prompt departure of the team to repair or replace the bike.",
-  },
-]
+  if (locale.value == "ru") return ruServices;
+  if (locale.value == "eng") return engServices;
+});
+const ruServices = wpData.main_page.arenda_cards.map((item) => {
+  if (item.text.hasOwnProperty("ru")) {
+    let svgArray = item.img.map((icon) => icon.svg.url);
+    return {
+      svg: svgArray,
+      text: item.text["ru"],
+    };
+  }
+});
+const engServices = wpData.main_page.arenda_cards.map((item) => {
+  if (item.text.hasOwnProperty("eng")) {
+    let svgArray = item.img.map((icon) => icon.svg.url);
+
+    return {
+      svg: svgArray,
+      text: item.text["eng"],
+    };
+  }
+});
+
+// const ruServices = [
+//   {
+//     svg: ["/svg/services/helmet.svg", "/svg/services/clothes.svg"],
+//     text: "1-2 новых шлема и дождевик включены в стоимость аренды",
+//   },
+//   {
+//     svg: ["/svg/services/phone.svg"],
+//     text: "Байки оборудованы держателем для телефона или камеры",
+//   },
+//   {
+//     svg: ["/svg/services/insurance.svg"],
+//     text: "Страховка от угона и поломок включена в стоимость",
+//   },
+//   {
+//     svg: ["/svg/services/repair.svg"],
+//     text: "Техническая поддержка и беслпатные онлайн-консультации",
+//   },
+//   {
+//     svg: ["/svg/services/bike.svg"],
+//     text: "Все байки новые - 2022 года выпуска",
+//   },
+//   {
+//     svg: ["/svg/services/surf.svg"],
+//     text: "Байки оборудованы держателями для серфа (опционально)",
+//   },
+//   {
+//     svg: ["/svg/services/support.svg"],
+//     text: "Круглосуточная поддержка клиентов и помощь в дороге",
+//   },
+//   {
+//     svg: ["/svg/services/carrepair.svg"],
+//     text: "Оперативный выезд команды для ремонта или замены байка",
+//   },
+// ];
+// const enServices = [
+//   {
+//     svg: ["/svg/services/helmet.svg", "/svg/services/clothes.svg"],
+//     text: "1-2 new helmets included in the rental price.",
+//   },
+//   {
+//     svg: ["/svg/services/phone.svg"],
+//     text: "Bikes are equipped with a phone and camera holder.",
+//   },
+//   {
+//     svg: ["/svg/services/insurance.svg"],
+//     text: "Theft and breakdown insurance is included in the price.",
+//   },
+//   {
+//     svg: ["/svg/services/repair.svg"],
+//     text: "Technical support and free online consultations.",
+//   },
+//   {
+//     svg: ["/svg/services/bike.svg"],
+//     text: "All bikes are new, 2022 release.",
+//   },
+//   {
+//     svg: ["/svg/services/surf.svg"],
+//     text: "Bikes are equipped with surf holders (optional).",
+//   },
+//   {
+//     svg: ["/svg/services/support.svg"],
+//     text: "24/7 customer support and roadside assistance.",
+//   },
+//   {
+//     svg: ["/svg/services/carrepair.svg"],
+//     text: "Prompt departure of the team to repair or replace the bike.",
+//   },
+// ];
 </script>
 
 <style lang="sass">

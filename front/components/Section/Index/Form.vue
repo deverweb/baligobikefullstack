@@ -2,19 +2,19 @@
   <section
     class="order relative z-[7] rounded-b-[70px] sm:rounded-b-[44px] bg-dark-300 py-[151px] lg:pb-[71px] lg:pt-[94px] sm:pt-[50px] text-light"
   >
-    <div class="container flex lg:flex-col lg:items-center lg:text-center">
+    <div class="container items-start justify-between flex lg:flex-col lg:items-center lg:text-center">
       <div class="order-content sm:mb-[78px] max-w-[52%] lg:mb-[46px] lg:max-w-full">
         <h2
           ref="formEl"
           class="section-title xsm:text-[26px] order-title mb-[29px] sm:mb-[22px] lg:mb-[26px] lg:max-w-[70%] lg:mx-auto md:max-w-max"
         >
-          {{ $t("mainPageForm.title") }}
+          {{ wpData.main_page.form_title[locale] }}
         </h2>
         <p
           id="orderbike"
           class="section-desc mb-[49px] sm:max-w-full lg:mb-[51px] sm:mb-[41px] max-w-[380px] lg:mx-auto"
         >
-          {{ $t("mainPageForm.subtitle") }}
+          {{ wpData.main_page.form_subtitle[locale] }}
         </p>
         <form @submit="onSubmit" class="form">
           <div class="max-w-[360px] lg:mx-auto lg:text-left">
@@ -67,6 +67,7 @@
             </SectionCustomSelectField>
             <TheButton
               type="submit"
+              :loading="loading"
               class="w-[360px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
             >
               <SvgCalendarIcon></SvgCalendarIcon>
@@ -103,21 +104,24 @@ import { useForm } from "vee-validate";
 import { useCommercialStore } from "~~/store/commercial";
 import { useFormStore } from "~~/store/form";
 import { useIndexFormStore } from "~~/store/indexform";
+import { useWordpressStore } from "~~/store/wordpressStore";
 let { locale } = useI18n();
 const { handleSubmit } = useForm();
 const router = useRouter();
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
 const indexFormStore = useIndexFormStore();
-
+const wpStore = useWordpressStore();
+const wpData = wpStore.wpData;
+let loading = ref(false);
 let namePlaceholder = computed(() => {
   if (locale.value == "ru") return "Ваше Имя";
-  if (locale.value == "en") return "Your Name";
+  if (locale.value == "eng") return "Your Name";
 });
 
 let bikePlaceholder = computed(() => {
   if (locale.value == "ru") return "Модель байка";
-  if (locale.value == "en") return "Bike model";
+  if (locale.value == "eng") return "Bike model";
 });
 
 const formData = ref({
@@ -154,9 +158,10 @@ const formatDate = (date, addTime) => {
 };
 
 const onSubmit = handleSubmit(
-  (values) => {
+  async (values) => {
+    loading.value = true;
     formStore.fillForm(values);
-    commercialStore.smallFormOrder({
+    let data = await commercialStore.smallFormOrder({
       order_date: formatDate(new Date(), true),
       client_name: values.client_name,
       client_messenger: " +" + values.client_phone.substring(1),
@@ -164,7 +169,8 @@ const onSubmit = handleSubmit(
       order_date_end: formatDate(values.date.end),
       bike_choice: values.bike.name,
     });
-    router.push({ path: "/order" });
+    loading.value = false;
+    router.push({ path: "/order/" });
   }
   // (values) => {
   //   console.log("values: ", values);

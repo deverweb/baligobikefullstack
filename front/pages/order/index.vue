@@ -104,7 +104,7 @@
           <SectionCustomCheckboxField
             class="mb-[47px] sm:mb-[38px]"
             :addText="true"
-            :priceText="'20$ / день'"
+            :priceText="'20$ / {{ locale == 'ru' ? 'день': 'day' }}'"
             :price="'20'"
             :checked="true"
             name="surfBinding"
@@ -157,20 +157,20 @@
                 type="string"
                 :disabled="isDeliveryOfficy"
                 class="ci__payment-form sm:w-[248px] transition-opacity sm:mb-[23px] flex-shrink flex-grow md:mr-0 mr-[25px]"
-                :subTitle="'Локация доставки'"
+                :subTitle="locale == 'ru' ? 'Локация доставки' : 'Delivery location'"
                 :name="'firstAddress'"
                 :autocomplete="true"
-                :placeholder="'Введите адрес'"
+                :placeholder="locale == 'ru' ? 'Введите адрес' : 'Enter address'"
               >
                 <SvgGeoIcon class="h-[15px] w-[11px]" :fill="'#4c4c4d'"></SvgGeoIcon>
               </SectionCustomTextField>
               <SectionCustomSelectField
                 :styleType="'order'"
-                subTitle="Время доставки"
+                :subTitle="locale == 'ru' ? 'Время доставки' : 'Delivery time'"
                 :name="'deliveryTime'"
                 class="w-[248px] sm:w-full sm:mb-[23px] cs__order-form flex-shrink-0"
                 :options="['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00']"
-                :defaultLabel="'Время доставки'"
+                :defaultLabel="locale == 'ru' ? 'Время доставки' : 'Delivery time'"
               >
                 <SvgClockIcon></SvgClockIcon>
               </SectionCustomSelectField>
@@ -180,7 +180,9 @@
                 :checked="false"
                 :name="'getAtOffice'"
                 v-model:isChecked="isDeliveryOfficy"
-                ><span class="sm:text-[16px] text-[14px] font-Helvmed">Заберу в офисе</span></SectionCustomCheckboxField
+                ><span class="sm:text-[16px] text-[14px] font-Helvmed">
+                  {{ locale == "ru" ? "Заберу в офисе" : "Pick up at the office" }}
+                </span></SectionCustomCheckboxField
               >
             </div>
             <div
@@ -189,22 +191,22 @@
               <SectionCustomTextField
                 type="string"
                 class="ci__payment-form sm:mb-[23px] sm:w-[248px] flex-grow flex-shrink md:mr-0 mr-[25px]"
-                :subTitle="'Локация возврата'"
+                :subTitle="locale == 'ru' ? 'Локация возврата' : 'Return location'"
                 :name="'lastAddress'"
                 :autocomplete="true"
                 :disabled="isReturnOffice"
                 :class="{ 'opacity-50 pointer-events-none': isReturnOffice }"
-                :placeholder="'Введите адрес'"
+                :placeholder="locale == 'ru' ? 'Введите адрес' : 'Enter address'"
               >
                 <SvgGeoIcon class="h-[15px] w-[11px]" :fill="'#4c4c4d'"></SvgGeoIcon>
               </SectionCustomTextField>
               <SectionCustomSelectField
                 :styleType="'order'"
-                subTitle="Время возврата"
+                :subTitle="locale == 'ru' ? 'Время возврата' : 'Return time'"
                 :name="'returnTime'"
                 class="w-[248px] sm:mb-[23px] sm:w-full cs__order-form flex-shrink-0"
                 :options="['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00']"
-                :defaultLabel="'Время возврата'"
+                :defaultLabel="locale == 'ru' ? 'Время возврата' : 'Return time'"
               >
                 <SvgClockIcon></SvgClockIcon>
               </SectionCustomSelectField>
@@ -214,7 +216,9 @@
                 :checked="false"
                 v-model:isChecked="isReturnOffice"
                 :name="'returnAtOffice'"
-                ><span class="sm:text-[16px] text-[14px] font-Helvmed">Отдам в офисе</span></SectionCustomCheckboxField
+                ><span class="sm:text-[16px] text-[14px] font-Helvmed">{{
+                  locale == "ru" ? "Отдам в офисе" : "Give in the office"
+                }}</span></SectionCustomCheckboxField
               >
             </div>
           </div>
@@ -222,7 +226,7 @@
             <SectionCustomStep
               class="mb-[38px] sm:mb-[28px]"
               number="4"
-              text="Введите ваши контактные данные"
+              :text="locale == 'ru' ? 'Введите ваши контактные данные' : 'Enter your contact details'"
             ></SectionCustomStep>
             <div
               class="order-client sm:mb-[42px] mb-[37px] sm:grid-cols-1 sm:gap-y-[43px] grid grid-cols-2 gap-x-[25px] gap-y-[38px]"
@@ -231,15 +235,15 @@
                 :type="'string'"
                 class="ci__payment-form"
                 name="clientName"
-                placeholder="Фамилия"
-                :subTitle="'Ваша Фамилия'"
+                :placeholder="locale == 'ru' ? 'Фамилия' : 'Surname'"
+                :subTitle="locale == 'ru' ? 'Ваша фамилия' : 'Your surname'"
               >
                 <SvgPersonIcon></SvgPersonIcon
               ></SectionCustomTextField>
               <SectionCustomTextField
                 class="ci__payment-form"
                 name="clientEmail"
-                placeholder="Введите ваш E-mail"
+                :placeholder="locale == 'ru' ? 'Введите ваш E-mail' : 'Enter your email'"
                 :subTitle="'E-mail'"
               >
                 <SvgMailIcon class="w-[15px] h-[11px]" fill="#616162"></SvgMailIcon
@@ -247,7 +251,7 @@
               <SectionCustomPhoneField
                 :prefered-countries="['ID', 'RU', 'UA']"
                 class=""
-                :subTitle="'Номер мессенджера для связи'"
+                :subTitle="locale == 'ru' ? 'Номер мессенджера для связи' : 'Messenger number'"
                 type="order"
                 name="clientPhone"
               >
@@ -267,8 +271,8 @@
                 class="cs__order-form"
                 :name="'clientMessenger'"
                 :options="[{ name: 'Telegram' }, { name: 'Whatsapp' }, { name: 'Viber' }]"
-                :defaultLabel="'Выберите мессенджер'"
-                :subTitle="'Какой мессенджер используете'"
+                :defaultLabel="locale == 'ru' ? 'Выберите мессенджер' : 'Choose messenger'"
+                :subTitle="locale == 'ru' ? 'Какой мессенджер используете' : 'What messenger do you use'"
               >
                 <SvgTelegramIcon></SvgTelegramIcon>
               </SectionCustomSelectField>
@@ -276,15 +280,19 @@
             <SectionCustomFileField
               :name="'passport'"
               :required="true"
-              :subTitle="'Ваш загранпаспорт'"
-              :defaultLabel="'Загрузите фото загранпаспорта'"
+              :subTitle="locale == 'ru' ? 'Ваш загранпаспорт' : 'Your passport'"
+              :defaultLabel="locale == 'ru' ? 'Загрузите фото загранпаспорта' : 'Upload your passport photo'"
             >
               <SvgFileIcon></SvgFileIcon>
             </SectionCustomFileField>
           </div>
-          <TheButton class="mt-[50px] md:hidden btn-primary__dark w-full h-[70px] gap-[15px]" type="submit">
+          <TheButton
+            :loading="loading"
+            class="mt-[50px] md:hidden btn-primary__dark w-full h-[70px] gap-[15px]"
+            type="submit"
+          >
             <SvgCalendarIcon></SvgCalendarIcon>
-            <span>Забронировать даты и комплектующие</span>
+            <span>{{ locale == "ru" ? "Забронировать даты и комплектующие" : "Book dates and accessories" }}</span>
           </TheButton>
         </form>
       </div>
@@ -311,7 +319,7 @@
               <div
                 class="font-Euroblack uppercase md:mb-[80px] md:text-[30px] sm:mb-[40px] sm:text-[24px] mb-[48px] xl:mb-[36px] tracking-[-0.6px]"
               >
-                Ваш заказ:
+                {{ locale == "ru" ? "Ваш заказ" : "Your order" }}
               </div>
               <div class="order-view-list md:hidden">
                 <div class="order-view-item mb-[38px] xl:mb-[32px] flex items-start">
@@ -324,13 +332,15 @@
                       v-if="!formStore.rate.isMonthly && !formStore.rate.isFixed"
                       class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
                     >
-                      {{ formStore.rate.dayPriceUSD }}$ / день ({{ formStore.computedPrice }}$ итого)
+                      {{ formStore.rate.dayPriceUSD }}$ / {{ locale == "ru" ? "день" : "day" }} ({{
+                        formStore.computedPrice
+                      }}$ {{ locale == "ru" ? "итого" : "summary" }})
                     </div>
                     <div
                       v-if="formStore.rate.isMonthly || formStore.rate.isFixed"
                       class="order-view-item-price text-[14px] opacity-50 font-Helvmed"
                     >
-                      {{ formStore.rate.dayPriceUSD }}$ итого
+                      {{ formStore.rate.dayPriceUSD }}$ {{ locale == "ru" ? "итого" : "summary" }}
                     </div>
                   </div>
                 </div>
@@ -340,16 +350,20 @@
                     <div class="order-view-item-name font-Helvmed text-[16px] mb-[7px] xl:mb-[4px] leading-[1]">
                       BaliGo Custom Surf
                     </div>
-                    <div class="order-view-item-price text-[14px] opacity-50 font-Helvmed">3$ / день (27$ итого)</div>
+                    <div class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
+                      3$ / {{ locale == "ru" ? "день" : "day" }} (27$ {{ locale == "ru" ? "итого" : "summary" }})
+                    </div>
                   </div>
                 </div>
                 <div class="order-view-item flex items-start">
                   <SvgCalendarIcon :fill="'#30B21B'"></SvgCalendarIcon>
                   <div class="ml-[18px] order-view-item-container">
                     <div class="order-view-item-name font-Helvmed text-[16px] mb-[5px] leading-[20px]">
-                      с 19.10.2022<br />по 28.10.2022
+                      {{ locale == "ru" ? "с" : "from" }} 19.10.2022<br />{{ locale == "ru" ? "по" : "to" }} 28.10.2022
                     </div>
-                    <div class="order-view-item-price text-[14px] opacity-50 font-Helvmed">(8$ + 3$) x 9 дней</div>
+                    <div class="order-view-item-price text-[14px] opacity-50 font-Helvmed">
+                      (8$ + 3$) x 9 {{ locale == "ru" ? "дней" : "days" }}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -384,19 +398,23 @@
                     v-if="!formStore.rate.isMonthly && !formStore.rate.isFixed"
                     class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                   >
-                    {{ formStore.rate.dayPriceUSD }}$ / день ({{ formStore.computedPrice }}$ итого)
+                    {{ formStore.rate.dayPriceUSD }}$ / {{ locale == "ru" ? "день" : "day" }} ({{
+                      formStore.computedPrice
+                    }}$ {{ locale == "ru" ? "итого" : "summary" }})
                   </div>
                   <div
                     v-if="formStore.rate.isMonthly && formStore.dateDif > 30"
                     class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                   >
-                    {{ (formStore.rate.dayPriceUSD / 30).toFixed(2) }}$ / день ({{ formStore.computedPrice }}$ итого)
+                    {{ (formStore.rate.dayPriceUSD / 30).toFixed(2) }}$ / {{ locale == "ru" ? "день" : "day" }} ({{
+                      formStore.computedPrice
+                    }}$ {{ locale == "ru" ? "итого" : "summary" }})
                   </div>
                   <div
                     v-if="(formStore.rate.isMonthly || formStore.rate.isFixed) && formStore.dateDif <= 30"
                     class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                   >
-                    {{ formStore.computedPrice }}$ итого
+                    {{ formStore.computedPrice }}$ {{ locale == "ru" ? "итого" : "summary" }}
                   </div>
                   <div class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">
                     {{ formStore.computedPrice }}$
@@ -407,7 +425,7 @@
                   <div
                     class="order-view-item-price text-[14px] opacity-50 font-Helvmed hiddem: sm:block absolute right-0 sm:text-[12px] bottom-[-15px]"
                   >
-                    <!-- {{ formStore.rate.dayPriceUSD }}$ / день -->
+                    <!-- {{ formStore.rate.dayPriceUSD }}$ / {{ locale == 'ru' ? 'день': 'day' }} -->
                   </div>
                 </div>
               </div>
@@ -416,7 +434,8 @@
                 <SvgCalendarIcon :fill="'#30B21B'"></SvgCalendarIcon>
                 <div class="ml-[18px] sm:w-full sm:flex sm:items-center sm:relative order-view-item-container">
                   <div class="order-view-item-name font-Helvmed text-[16px] mb-[4px] leading-[1]">
-                    с {{ formStore.computedDateStrStart }} по
+                    {{ locale == "ru" ? "с" : "from" }} {{ formStore.computedDateStrStart }}
+                    {{ locale == "ru" ? "по" : "to" }}
                     {{ formStore.computedDateStrEnd }}
                   </div>
 
@@ -424,19 +443,20 @@
                     v-if="!formStore.rate.isMonthly && !formStore.rate.isFixed"
                     class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                   >
-                    {{ formStore.rate.dayPriceUSD }}$ x {{ formStore.dateDif }} суток
+                    {{ formStore.rate.dayPriceUSD }}$ x {{ formStore.dateDif }} {{ locale == "ru" ? "суток" : "days" }}
                   </div>
                   <div
                     v-if="formStore.rate.isMonthly && formStore.dateDif > 30"
                     class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                   >
-                    {{ (formStore.rate.dayPriceUSD / 30).toFixed(2) }}$ x {{ formStore.dateDif }} суток
+                    {{ (formStore.rate.dayPriceUSD / 30).toFixed(2) }}$ x {{ formStore.dateDif }}
+                    {{ locale == "ru" ? "суток" : "days" }}
                   </div>
                   <div
                     v-if="(formStore.rate.isMonthly || formStore.rate.isFixed) && formStore.dateDif <= 30"
                     class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed"
                   >
-                    {{ formStore.dateDif }} суток
+                    {{ formStore.dateDif }} {{ locale == "ru" ? "суток" : "days" }}
                   </div>
                 </div>
               </div>
@@ -461,13 +481,13 @@
                     BaliGo Custom Surf
                   </div>
                   <div class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed">
-                    3$ / день (27$ итого)
+                    3$ / {{ locale == "ru" ? "день" : "day" }} (27$ {{ locale == "ru" ? "итого" : "summary" }})
                   </div>
                   <div class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">72$</div>
                   <div
                     class="order-view-item-price text-[14px] opacity-50 font-Helvmed hiddem: sm:block absolute right-0 sm:text-[12px] bottom-[-15px]"
                   >
-                    8$ / день
+                    8$ / {{ locale == "ru" ? "день" : "day" }}
                   </div>
                 </div>
               </div>
@@ -478,13 +498,13 @@
                     BaliGo Custom Surf
                   </div>
                   <div class="order-view-item-price text-[14px] sm:hidden opacity-50 font-Helvmed">
-                    3$ / день (27$ итого)
+                    3$ / {{ locale == "ru" ? "день" : "day" }} (27$ {{ locale == "ru" ? "итого" : "summary" }})
                   </div>
                   <div class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">72$</div>
                   <div
                     class="order-view-item-price text-[14px] opacity-50 font-Helvmed hiddem: sm:block absolute right-0 sm:text-[12px] bottom-[-15px]"
                   >
-                    8$ / день
+                    8$ / {{ locale == "ru" ? "день" : "day" }}
                   </div>
                 </div>
               </div>
@@ -495,13 +515,13 @@
                     BaliGo Custom Surf
                   </div>
                   <div class="order-view-item-price sm:hidden text-[14px] opacity-50 font-Helvmed">
-                    3$ / день (27$ итого)
+                    3$ / {{ locale == "ru" ? "день" : "day" }} (27$ {{ locale == "ru" ? "итого" : "summary" }})
                   </div>
                   <div class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">72$</div>
                   <div
                     class="order-view-item-price text-[14px] opacity-50 font-Helvmed hiddem: sm:block absolute right-0 sm:text-[12px] bottom-[-15px]"
                   >
-                    8$ / день
+                    8$ / {{ locale == "ru" ? "день" : "day" }}
                   </div>
                 </div>
               </div>
@@ -511,11 +531,13 @@
             class="order-summary sm:px-[25px] px-[40px] bg-green md:px-[50px] flex justify-between items-center font-Euroblack text-[16px] h-[92px] uppercase md:rounded-b-[44px] rounded-b-[12px]"
           >
             <div class="order-summary-container flex justify-between w-full xl:hidden md:flex sm:hidden">
-              <span class="tracking-[-0.6px]">ИТОГОВАЯ СТОИМОСТЬ АРЕНДЫ:</span>
+              <span class="tracking-[-0.6px]"
+                >{{ locale == "ru" ? "ИТОГОВАЯ СТОИМОСТЬ АРЕНДЫ" : "TOTAL RENTAL COST" }} :</span
+              >
               <span class="tracking-[-0.6px]">{{ formStore.computedPrice }}$</span>
             </div>
             <div class="order-summary-container w-full justify-between hidden xl:flex md:hidden sm:flex">
-              <span class="tracking-[-0.6px]">ИТОГО:</span>
+              <span class="tracking-[-0.6px]">{{ locale == "ru" ? "ИТОГО" : "TOTAL" }}:</span>
               <span class="tracking-[-0.6px]">{{ formStore.computedPrice }}$</span>
             </div>
           </div>
@@ -524,17 +546,20 @@
           <hr class="hidden md:block sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
           <TheButton
             @click.prevent="onSubmit"
+            :loading="loading"
             class="mt-[50px] sm:mt-0 sm:w-full sm:ml-0 hidden md:flex btn-primary__dark w-full h-[70px] gap-[15px]"
             type="submit"
           >
             <SvgCalendarIcon></SvgCalendarIcon>
-            <span class="sm:hidden">Забронировать даты и комплектующие</span>
+            <span class="sm:hidden">{{
+              locale == "ru" ? "Забронировать даты и комплектующие" : "Book dates and accessories"
+            }}</span>
             <span class="hidden sm:block">{{ $t("buttonBooking") }}</span>
           </TheButton>
         </div>
       </div>
     </div>
-    <div v-else>Загрузка</div>
+    <div v-else>{{ locale == "ru" ? "Загрузка..." : "Loading..." }}</div>
 
     <!-- </div> -->
   </div>
@@ -562,7 +587,7 @@ const formStore = useFormStore();
 //     engDescription:
 //       "Honda Vario 160 - This bike is for those who want something nimble and dynamic. It will be comfortable to move around the city and at the same time easy enough to drive and frisky enough to overtake on the highway. Diode optics and combined brakes set this bike apart from other models in this class. The bike is equipped with an 18L trunk, which freely fits a motorcycle helmet.",
 //     ruDescription:
-//       "Honda Vario 160 - Этот байк подходит для тех, кто хочет что-то маневренное и динамичное. Он будет комфортен для перемещения по городу и в то же время достаточно лёгкий в управлении и резвый для совершения обгона на трассе. Диодная оптика и комбинированные тормоза выделяют этот байк на фоне других моделей данного класса. Байк оснащен багажником 18л, в который свободно влезает мотошлем.\n\t\t\t\t",
+//       "Honda Vario 160 - Этот байк подходит для тех, кто хочет что-то маневренное и динамичное. Он будет комфортен для перемещения {{ locale =='ru' ? 'по' : 'to' }} городу и в то же время достаточно лёгкий в управлении и резвый для совершения обгона на трассе. Диодная оптика и комбинированные тормоза выделяют этот байк на фоне других моделей данного класса. Байк оснащен багажником 18л, в который свободно влезает мотошлем.\n\t\t\t\t",
 //     year: "2022",
 //     trunk_volume: "18",
 //     capacity: "11,1",
@@ -722,11 +747,11 @@ watch(
 );
 
 const formatDate = (date, addTime) => {
-  const day = date.getDate().toString().padStart(2, "0"); // добавляем ведущий ноль, если день меньше 10
+  const day = date.getDate().toString().padStart(2, "0"); // добавляем ведущий ноль, если{ { locale == 'ru' ? 'день': 'day' }} меньше 10
   const month = (date.getMonth() + 1).toString().padStart(2, "0"); // добавляем ведущий ноль, если месяц меньше 10
   const year = date.getFullYear().toString();
   if (addTime) {
-    const hours = date.getUTCHours().toString().padStart(2, "0"); // добавляем ведущий ноль, если час меньше 10
+    const hours = date.getUTCHours().toString().padStart(2, "0"); // добавляем ведущий ноль, если ча{{ locale =='ru' ? 'с' : 'from' }} меньше 10
     const minutes = date.getUTCMinutes().toString().padStart(2, "0"); // добавляем ведущий ноль, если минуты меньше 10
     const seconds = date.getUTCSeconds().toString().padStart(2, "0"); // добавляем ведущий ноль, если секунды меньше 10
 
@@ -737,16 +762,22 @@ const formatDate = (date, addTime) => {
     return formattedDate;
   }
 };
-
+let loading = ref(false);
 const submit = handleSubmit(async () => {
   // console.log(errors.value);
 });
 
 const onSubmit = handleSubmit(
   async (values) => {
-    let orderDate;
-    let orderDayStart;
-    let orderDayEnd;
+    loading.value = true;
+    let formData = new FormData();
+    formData.append("file", values.passport);
+    let { data } = await useFetch("https://admin.baligo.bike/wp-json/markers/v1/save-file", {
+      method: "POST",
+
+      body: formData,
+    });
+    let fileUrl = data.value;
 
     commercialStore.orderBike({
       order_id: values.order_id,
@@ -768,8 +799,10 @@ const onSubmit = handleSubmit(
       kid_helmets: values.childHelmetCount,
       raincoats: values.rainCoatCount,
       full_price: formStore.computedPrice,
+      file: fileUrl.file_url,
     });
-    useRouter().push("/payment");
+    loading.value = false;
+    useRouter().push("/payment/");
   },
   async (values) => {
     window.scrollTo({

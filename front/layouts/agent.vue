@@ -10,5 +10,5 @@
 <script setup>
 const { locale } = useI18n();
 
-locale.value = "en";
+locale.value = "eng";
 </script>

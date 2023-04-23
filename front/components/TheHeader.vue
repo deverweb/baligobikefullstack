@@ -34,7 +34,7 @@ const { ruNavigationLinks, enNavigationLinks } = store;
 let { activeLangSwitcher } = storeToRefs(store);
 let links = computed(() => {
   if (locale.value == "ru") return ruNavigationLinks;
-  if (locale.value == "en") return enNavigationLinks;
+  if (locale.value == "eng") return enNavigationLinks;
   return ruNavigationLinks;
 });
 const OFFSET_TOP = 20;

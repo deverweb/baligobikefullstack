@@ -49,7 +49,7 @@ value.value = 0;
 
 const translate = (ruStr, engStr) => {
   if (locale.value == "ru") return ruStr;
-  if (locale.value == "en") return engStr;
+  if (locale.value == "eng") return engStr;
 };
 
 const props = defineProps({

@@ -52,7 +52,7 @@ const { locale } = useI18n();
 let isFormTouched = useIsFormTouched();
 let isSubmitting = useIsSubmitting();
 let placeholder = computed(() => {
-  if (locale.value == "en") return "Phone number";
+  if (locale.value == "eng") return "Phone number";
   if (locale.value == "ru") return "Номер телефона";
 });
 let ctCode = ref(0);
@@ -65,13 +65,13 @@ let isRequired = () => {
     return true;
   }
 
-  if (ctCode.value == "62" && phoneValue.value.replace(/\s/g, "").length - 3 != 11) {
+  if (phoneValue.value && ctCode.value == "62" && phoneValue.value.replace(/\s/g, "").length - 3 != 11) {
     return translate("Неправильный номер", "Not a valid number");
   }
-  if (ctCode.value == "380" && phoneValue.value.replace(/\s/g, "").length - 1 != 12) {
+  if (phoneValue.value && ctCode.value == "380" && phoneValue.value.replace(/\s/g, "").length - 1 != 12) {
     return translate("Неправильный номер", "Not a valid number");
   }
-  if (ctCode.value == "7" && phoneValue.value.replace(/\s/g, "").length != 12) {
+  if (phoneValue.value && ctCode.value == "7" && phoneValue.value.replace(/\s/g, "").length != 12) {
     return translate("Неправильный номер", "Not a valid number");
   }
 
@@ -261,6 +261,9 @@ const classes = computed(() => {
 		padding-left: 20px
 		border-radius: 12px
 		border: 1px solid #D6D6D6
+		.ci-error
+			color: red
+			font-size: 12px
 		.pf-container
 			display: flex
 			height: 100%

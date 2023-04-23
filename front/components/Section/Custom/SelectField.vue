@@ -115,7 +115,7 @@ let isRequired = (value) => {
   if (props.disabled) return true;
   if (!value) {
     if (locale.value == "ru") return "Необходимо выбрать";
-    if (locale.value == "en") return "Have to select";
+    if (locale.value == "eng") return "Have to select";
   }
   return true;
 };

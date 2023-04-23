@@ -117,7 +117,7 @@ let langObj = computed(() => {
     return {
       choosePayment: "Выберите метод оплаты",
     };
-  if (locale.value == "en")
+  if (locale.value == "eng")
     return {
       choosePayment: "Select a Payment Method",
     };
@@ -190,7 +190,7 @@ let paymentLink = ref("#");
 const onSubmit = () => {
   // console.log(paymentType.value);
   if (paymentType.value == "consult") {
-    router.push("/success");
+    router.push("/success/");
   }
   if (paymentType.value == "russiacard") {
     fetch("https://cent.app/api/v1/bill/create", {

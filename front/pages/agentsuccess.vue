@@ -7,7 +7,7 @@
         Order successfully completed
       </h1>
       <p class="mb-[58px] sm:text-[14px]">Application accepted for work</p>
-      <NuxtLink class="flex justify-center" to="/agent">
+      <NuxtLink class="flex justify-center" to="/agent/">
         <TheButton class="btn-primary__dark w-[300px] h-[70px]">
           <span>Comeback to Mainpage</span>
         </TheButton>
@@ -19,7 +19,7 @@
 <script setup>
 const { locale } = useI18n();
 
-locale.value = "en";
+locale.value = "eng";
 
 definePageMeta({
   layout: "agent",
