@@ -30,8 +30,9 @@ function markers_save_file(WP_REST_Request $request) {
   }
  
   $upload_dir = wp_upload_dir();
-  $target_dir = $upload_dir['path'] . '/' . basename($file['name']);
-  $target_url = $upload_dir['url'] . '/' . basename($file['name']);
+	$file_name = uniqid() . '.' . $file_type['ext'];
+  $target_dir = $upload_dir['path'] . '/' . $file_name;
+  $target_url = $upload_dir['url'] . '/' . $file_name;
   if (move_uploaded_file($file['tmp_name'], $target_dir)) {
     return ['file_url' => $target_url];
   } else {
