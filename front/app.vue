@@ -58,6 +58,7 @@ watch(
 );
 wpStore.wpData = await wpStore.getData();
 // console.log(wpStore.wpData);
+// console.log("wpData: ", wpStore.wpData);
 await commersialStore.fillData(wpStore.wpData.bikes);
 </script>
 

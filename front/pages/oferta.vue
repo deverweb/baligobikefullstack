@@ -1,6 +1,8 @@
 <template>
   <div class="oferta">
-    <h1>ПУБЛІЧНИЙ ДОГОВІР<br />ПРОКАТУ СКУТЕРА</h1>
+    <div class="oferta-ru" v-if="locale == 'ru'" v-html="wpData.oferta_page.page_html_ru"></div>
+    <div class="oferta-eng" v-if="locale == 'eng'" v-html="wpData.oferta_page.page_html_eng"></div>
+    <!-- <h1>ПУБЛІЧНИЙ ДОГОВІР<br />ПРОКАТУ СКУТЕРА</h1>
     <br />ФО Батанін Володимир Сергійович, код ІПН: 3212308851, юридична адреса: м. Київ, вул. Російська, б. 74А, кв. 8, керуючись ст. 633, 634 Цивільного кодексу України, пропонує необмеженому колу осіб отримати послуги з організації перевезення
     відправлень відповідно до положень цього Публічного договору (далі – Договір).
     <br />
@@ -98,14 +100,21 @@
     <br />
     <h2 class="sub foot">8. КОНТАКТНІ ДАНІ.</h2>
     ФО Батанін Володимир Сергійович;
-    <br />Юридична адреса: м.Київ, вул. Російська, б. 74А, кв. 8; <br />Код ІПН: 3212308851; <br />Адреса офіційного сайту: https://baligo.bike/; <br />E-mail: info@baligo.bike.
+    <br />Юридична адреса: м.Київ, вул. Російська, б. 74А, кв. 8; <br />Код ІПН: 3212308851; <br />Адреса офіційного сайту: https://baligo.bike/; <br />E-mail: info@baligo.bike. -->
   </div>
 </template>
 
 <script setup>
+import { useWordpressStore } from "~~/store/wordpressStore";
+
+let { locale } = useI18n();
+
+let wpStore = useWordpressStore();
+let wpData = wpStore.wpData;
+
 useHead({
   title: "Публiчний договiр прокату скутера",
-})
+});
 </script>
 
 <style lang="sass"></style>

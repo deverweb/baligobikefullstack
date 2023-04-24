@@ -7,7 +7,9 @@
       <div class="footer-col pt-[4px] flex flex-col items-start">
         <Logo class="text-[32px] tracking-[-1px] mb-[9px]"></Logo>
 
-        <NuxtLink class="footer-link mb-[9px] text-[16px]" to="/terms/">{{ $t("footerRights.terms") }}</NuxtLink>
+        <NuxtLink class="footer-link mb-[9px] text-[16px]" v-if="!wpData.terms_page.hide_page" to="/terms/">{{
+          $t("footerRights.terms")
+        }}</NuxtLink>
         <div class="footer-rights">baligo.bike © 2022, All rights reserved.</div>
       </div>
       <div class="footer-col pl-[23px] pt-[11px]">
@@ -17,8 +19,12 @@
           <span @click="handleFooterClickRend" class="tracking-[-0.5px]">{{ $t("footerRights.rentBike") }}</span>
         </div>
         <div class="footer-policy inline-flex text-[16px] items-baseline flex-col">
-          <NuxtLink class="inline-block mb-[12px] font-Helvreg" to="/oferta/">{{ $t("footerRights.oferta") }}</NuxtLink>
-          <NuxtLink class="inline-block" to="/policy/">{{ $t("footerRights.privacyPolicy") }}</NuxtLink>
+          <NuxtLink class="inline-block mb-[12px] font-Helvreg" v-if="!wpData.oferta_page.hide_page" to="/oferta/">{{
+            $t("footerRights.oferta")
+          }}</NuxtLink>
+          <NuxtLink class="inline-block" v-if="!wpData.oferta_page.hide_page" to="/policy/">{{
+            $t("footerRights.privacyPolicy")
+          }}</NuxtLink>
         </div>
       </div>
       <div class="footer-col pl-[30px] pt-[11px]">
@@ -61,11 +67,15 @@
         <Logo class="text-[28px] tracking-[-0.9px] mb-[13px]"></Logo>
         <div class="footer-col-container">
           <div class="footer-policy mb-[10px] inline-flex text-[16px] items-baseline flex-col">
-            <NuxtLink class="footer-link mb-[10px] text-[16px]" to="/terms/">{{ $t("footerRights.terms") }}</NuxtLink>
-            <NuxtLink class="inline-block mb-[10px] font-Helvreg" to="/oferta/">{{
+            <NuxtLink class="footer-link mb-[10px] text-[16px]" v-if="!wpData.terms_page.hide_page" to="/terms/">{{
+              $t("footerRights.terms")
+            }}</NuxtLink>
+            <NuxtLink class="inline-block mb-[10px] font-Helvreg" v-if="!wpData.oferta_page.hide_page" to="/oferta/">{{
               $t("footerRights.oferta")
             }}</NuxtLink>
-            <NuxtLink class="inline-block" to="/policy/">{{ $t("footerRights.privacyPolicy") }}</NuxtLink>
+            <NuxtLink class="inline-block" v-if="!wpData.oferta_page.hide_page" to="/policy/">{{
+              $t("footerRights.privacyPolicy")
+            }}</NuxtLink>
           </div>
           <div class="footer-dev mb-[10px] flex">
             <span class="mr-[5px]">{{ $t("footerRights.dev") }}</span>
@@ -121,9 +131,15 @@
         <span v-html="wpData.common.contacts_address"></span>
       </div>
       <div class="footer-policy mb-[16px] inline-flex text-[16px] items-baseline flex-col">
-        <NuxtLink class="footer-link mb-[15px] text-[16px]" to="/terms/">{{ $t("footerRights.terms") }}</NuxtLink>
-        <NuxtLink class="inline-block mb-[15px] font-Helvreg" to="/oferta/">{{ $t("footerRights.oferta") }}</NuxtLink>
-        <NuxtLink class="inline-block" to="/policy/">{{ $t("footerRights.privacyPolicy") }}</NuxtLink>
+        <NuxtLink class="footer-link mb-[15px] text-[16px]" v-if="!wpData.terms_page.hide_page" to="/terms/">{{
+          $t("footerRights.terms")
+        }}</NuxtLink>
+        <NuxtLink class="inline-block mb-[15px] font-Helvreg" v-if="!wpData.oferta_page.hide_page" to="/oferta/">{{
+          $t("footerRights.oferta")
+        }}</NuxtLink>
+        <NuxtLink class="inline-block" v-if="!wpData.oferta_page.hide_page" to="/policy/">{{
+          $t("footerRights.privacyPolicy")
+        }}</NuxtLink>
       </div>
       <div class="footer-dev mb-[14px] flex">
         <span class="mr-[5px]">{{ $t("footerRights.dev") }}</span>

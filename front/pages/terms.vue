@@ -1,6 +1,6 @@
 <template>
   <section class="oferta">
-    <div v-if="locale == 'ru'">
+    <!-- <div v-if="locale == 'ru'">
       <h1 class="pb-[24px]">Условия аренды</h1>
       <h2 class="head">1. СРОК АРЕНДЫ И УСЛОВИЯ БРОНИРОВАНИЯ / ОПЛАТЫ</h2>
       <br />1.1 Минимальный срок аренды транспорта средства от 3 дней. <br />1.2 Срок аренды транспортного средства
@@ -209,12 +209,19 @@
       5.1 ПRe-issuance of the concluded agreement for another tenant with the preservation of the current lease terms is
       possible for an additional fee of $20.<br />5.2 All rental vehicles are subject to mileage limitation. <br />5.3
       It is forbidden to leave the island of Bali on the rented equipment.
-    </div>
+    </div> -->
+    <div class="oferta-ru" v-if="locale == 'ru'" v-html="wpData.terms_page.arenda_page_html_ru"></div>
+    <div class="oferta-eng" v-if="locale == 'eng'" v-html="wpData.terms_page.arenda_page_html_eng"></div>
   </section>
 </template>
 
 <script setup>
+import { useWordpressStore } from "~~/store/wordpressStore";
+
 let { locale } = useI18n();
+
+let wpStore = useWordpressStore();
+let wpData = wpStore.wpData;
 </script>
 
 <style lang="sass"></style>

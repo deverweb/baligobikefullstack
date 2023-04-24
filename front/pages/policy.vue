@@ -1,6 +1,8 @@
 <template>
   <div class="oferta">
-    <h1>Політика<br />конфіденційності</h1>
+    <div class="oferta-ru" v-if="locale == 'ru'" v-html="wpData.confidential_page.page_html_ru"></div>
+    <div class="oferta-eng" v-if="locale == 'eng'" v-html="wpData.confidential_page.page_html_eng"></div>
+    <!-- <h1>Політика<br />конфіденційності</h1>
     <br />Політика конфіденційності персональних даних (далі - Політика конфіденційності) діє відносно всієї інформації,
     яку компанія baligo.bike, розташувала за адресою - https://baligo.bike/, може отримати про Користувача під час
     використання сайту компанії baligo.bike, програм і продуктів компанії baligo.bike. <br />
@@ -109,11 +111,18 @@
     <br />9.1. Адміністрація сайту компанії baligo.bike вправі вносити зміни в справжню Політику конфіденційності без
     згоди Користувача. <br />9.2. Нова Політика конфіденційності вступає в силу з моменту її розміщення на Сайті
     компанії baligo.bike, якщо інше не передбачено новою редакцією Політики конфіденційності. <br />9.4. Діюча Політика
-    конфіденційності розміщена на сторінці за адресою "https://baligo.bike/policy ".
+    конфіденційності розміщена на сторінці за адресою "https://baligo.bike/policy ". -->
   </div>
 </template>
 
 <script setup>
+import { useWordpressStore } from "~~/store/wordpressStore";
+
+let { locale } = useI18n();
+
+let wpStore = useWordpressStore();
+let wpData = wpStore.wpData;
+
 useHead({
   title: "Полiтика конфiденцiйностi",
 });
