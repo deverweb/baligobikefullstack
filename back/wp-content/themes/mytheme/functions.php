@@ -124,9 +124,15 @@ function  markers_endpoint( $request_data ) {
   $contacts_page = get_fields(143);
   $about_page = get_fields(139);
   $faq_page = get_fields(137);
+	$terms_page = get_fields(385);
+	$oferta_page = get_fields(394);
+	$confidential_page = get_fields(392);
 	$posts = [
 		'main_page' => $main_page,
 		'invest_page' => $invest_page,
+		'terms_page' => $terms_page,
+		'oferta_page' => $oferta_page,
+		'confidential_page' => $confidential_page,
 		'contacts_page' => $contacts_page,
 		'about_page' => $about_page,
 		'faq_page' => $faq_page,
