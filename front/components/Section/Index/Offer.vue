@@ -15,11 +15,9 @@
             <li v-for="li in offerData.offer_list">{{ li.text[locale] }}</li>
           </ul>
           <div class="offer-social-links flex gap-[23px] xsm:mt-[15px] xsm:mb-[13px]">
-            <a :href="contactsData.contacts_wa">
-              <SvgIndexWaIcon></SvgIndexWaIcon>
-            </a>
-            <a :href="contactsData.contacts_tg">
-              <SvgIndexTgIcon></SvgIndexTgIcon>
+            <a v-for="btn in wpStore.wpData.common.contacts_buttons[locale]" :href="btn.link">
+              <SvgIndexWaIcon v-if="btn.messenger == 'whatsapp'"></SvgIndexWaIcon>
+              <SvgIndexTgIcon v-if="btn.messenger == 'telegram'"></SvgIndexTgIcon>
             </a>
           </div>
         </div>

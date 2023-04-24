@@ -14,9 +14,28 @@
       {{ $t("contactsComponent.communication") }}
     </div>
     <div
-      class="contacts-phone xsm:mb-[43px] xsm:w-full xsm:items-center xxsm:flex-col xxsm:items-start xxsm:gap-[10px] mb-[69px] xsm:gap-x-[10px] flex items-end gap-x-[14px]"
+      class="contacts-phone flex-wrap xsm:mb-[43px] xsm:w-full xsm:items-center xxsm:flex-col xxsm:items-start xxsm:gap-[10px] mb-[69px] xsm:gap-[10px] flex items-end gap-[14px]"
     >
-      <a class="xxsm:w-full" :href="wpData.common.contacts_wa"
+      <a v-for="btn in wpData.common.contacts_buttons[locale]" class="xxsm:w-full" :href="btn.link"
+        ><TheButton
+          :class="{
+            'btn-primary__dark': btn.messenger == 'whatsapp',
+            'btn-primary__blue': btn.messenger == 'telegram',
+          }"
+          class="btn-primary__dark xsm:rounded-[8px] xxsm:w-full pr-[22px] xsm:pr-[11px] xsm:w-[165px] xsm:h-[46px] xsm:text-[12px] w-[250px] gap-[10px] h-[70px]"
+        >
+          <SvgTelegramIcon
+            v-if="btn.messenger == 'telegram'"
+            class="h-[18px] w-[22px] xsm:w-[14px] xsm:h-[12px]"
+            opacity="1"
+            fill="#FBFBFD"
+          ></SvgTelegramIcon>
+          <SvgWhatsappIcon v-if="btn.messenger == 'whatsapp'" class="xsm:h-[14px] xsm:w-[14px]"></SvgWhatsappIcon>
+          <span v-if="btn.messenger == 'whatsapp'">WhatsApp</span>
+          <span v-if="btn.messenger == 'telegram'">Telegram</span>
+        </TheButton></a
+      >
+      <!-- <a class="xxsm:w-full" :href="wpData.common.contacts_wa"
         ><TheButton
           class="btn-primary__dark xsm:rounded-[8px] xxsm:w-full pr-[22px] xsm:pr-[11px] xsm:w-[165px] xsm:h-[46px] xsm:text-[12px] w-[250px] gap-[10px] h-[70px]"
         >
@@ -35,7 +54,7 @@
           ></SvgTelegramIcon>
           <span>Telegram</span>
         </TheButton>
-      </a>
+      </a> -->
     </div>
     <div
       class="contacts-items xsm:w-full font-Euroblack tracking-[-0.6px] lil:text-[14px] xsm:text-[16px] text-[25px] uppercase"
