@@ -28,7 +28,7 @@
                 }}
               </span>
             </SectionCustomNormalRadioField>
-            <SectionCustomNormalRadioField
+            <!-- <SectionCustomNormalRadioField
               field-value="russiacard"
               name="payment"
               :checked="false"
@@ -38,7 +38,7 @@
               <span class="sm:leading-[1] text-[18px] sm:text-[15px]">
                 {{ locale == "ru" ? "Оплата картой на сайте (Россия)" : "Payment by card on the site (Russia)" }}
               </span>
-            </SectionCustomNormalRadioField>
+            </SectionCustomNormalRadioField> -->
             <!-- <SectionOrderNormalRadioField
               field-value="worldcard"
               name="payment"

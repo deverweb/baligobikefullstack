@@ -155,31 +155,6 @@ const handleBron = () => {
   document.querySelector(".order ").scrollIntoView({ behavior: "smooth" });
 };
 
-const langObj = computed(() => {
-  if (locale.value == "ru")
-    return {
-      year: "Год выпуска",
-      trunk_volume: "Объем багажника",
-      capacity: "Мощность",
-      fuel_tank_volume: "Объем топливного бака",
-      average_consumption: "Средний расход",
-      dry_weight: "Сухой вес",
-      liters: "Литров",
-      fuel_tank_volume_second: "литров / 100 км",
-    };
-  if (locale.value == "eng")
-    return {
-      year: "Year",
-      trunk_volume: "Trunk volume",
-      capacity: "Capacity",
-      fuel_tank_volume: "Fuel tank volume",
-      average_consumption: "Average consumption",
-      dry_weight: "Dry weight",
-      liters: "liters",
-      fuel_tank_volume_second: "liters / 100 km",
-    };
-});
-
 let bikeImg = computed(() => {
   if (!bike) return "";
   if (!img.value) return bike.value.img;
