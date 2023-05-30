@@ -675,10 +675,8 @@ if (process.client) {
 }
 
 let drawing = ref(formStore.bike.drawing);
-// console.log(drawing.value);
 
 const handleBikeImage = (payload) => {
-  // console.log(payload);
   drawing.value = payload.drawing;
   formStore.bikeImage = payload.img;
 };
@@ -763,9 +761,7 @@ const formatDate = (date, addTime) => {
   }
 };
 let loading = ref(false);
-const submit = handleSubmit(async () => {
-  // console.log(errors.value);
-});
+
 
 const onSubmit = handleSubmit(
   async (values) => {

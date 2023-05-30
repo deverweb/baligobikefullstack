@@ -20,6 +20,8 @@
     "@gtm-support/vue-gtm": "^2.0.0",
     "@nuxtjs/robots": "^3.0.0",
     "@pinia/nuxt": "^0.4.7",
+    "@popperjs/core": "^2.11.8",
+    "@vuepic/vue-datepicker": "^5.1.2",
     "body-parser": "^1.20.2",
     "express": "^4.18.2",
     "google-spreadsheet": "^3.3.0",
@@ -30,7 +32,7 @@
     "sass": "^1.58.3",
     "sass-loader": "^13.2.0",
     "swiper": "^8.4.7",
-    "v-calendar": "^3.0.0-alpha.8",
+    "v-calendar": "^3.0.3",
     "vee-validate": "^4.7.4",
     "vue-tel-input": "^6.0.5",
     "vue3-slider": "^1.8.0"

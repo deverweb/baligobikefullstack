@@ -68,6 +68,9 @@ export default defineNuxtConfig({
       // script: [{ src: "https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" }],
     },
   },
+  build: {
+    transpile: ["@vuepic/vue-datepicker"],
+  },
   vite: {
     css: {
       preprocessorOptions: {

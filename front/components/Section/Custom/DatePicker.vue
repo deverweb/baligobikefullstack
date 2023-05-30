@@ -142,6 +142,8 @@ const { value, errorMessage } = useField(props.name, isRequired);
 			width: 100%
 			height: 100%
 			border: none
+	.vc-focus:focus-within
+		box-shadow: none
 	.vc-day-content
 		width: 40px
 		height: 40px

@@ -28,14 +28,23 @@
           </div>
           <div class="phone-datepicker-panel max-w-[340px] mx-auto flex flex-col items-center">
             <client-only>
-              <DatePicker
-                :min-date="new Date()"
-                is-range
+              <VueDatePicker
+                @internal-model-change="handleInterval"
                 :locale="locale"
-                v-model="range"
+                :enable-time-picker="false"
+                min-range="2"
+                inline
+                @update:model-value="listen"
+                range
+                v-model="date"
+              ></VueDatePicker>
+              <!-- <VDatePicker
+                :min-date="new Date()"
+                :locale="locale"
+                v-model.range="range"
                 color="green"
                 @update:modelValue="listenMobile"
-              ></DatePicker>
+              ></VDatePicker> -->
             </client-only>
           </div>
         </div>
@@ -43,22 +52,74 @@
     </Teleport>
     <div class="desktop-dp sm:hidden">
       <client-only>
-        <DatePicker
-          :min-date="new Date()"
-          is-range
-          v-model="range"
+        <VueDatePicker
+          @internal-model-change="handleInterval"
+          :locale="locale"
+          :enable-time-picker="false"
+          min-range="2"
+          inline
+          @update:model-value="listen"
+          range
+          v-model="date"
+        ></VueDatePicker>
+        <!-- <VDatePicker
+          range="range"
+          v-model.range="range"
           color="green"
           :locale="locale"
           @update:modelValue="listen"
-        ></DatePicker>
+          :disabled-dates="disabledDates"
+          :attributes="attrs"
+        ></VDatePicker> -->
       </client-only>
     </div>
   </div>
 </template>
 
 <script setup>
-import { DatePicker } from "v-calendar";
+// import { DatePicker } from "v-calendar";
+import VueDatePicker from "@vuepic/vue-datepicker";
 let { locale } = useI18n();
+
+function getNextDay(currentDay) {
+  var currentDate = new Date(currentDay);
+  currentDate.setDate(currentDate.getDate() + 1);
+
+  var nextDay = currentDate.toISOString().split("T")[0];
+  return nextDay;
+}
+let handleInterval = (res) => {
+  if (res != null && res.length == 2) {
+    let str = "";
+    let date = {
+      end: res[1],
+      start: res[0],
+    };
+    if (locale.value == "ru") {
+      str = `с ${formatDate(res[0])} — до ${formatDate(res[1])}`;
+    }
+    if (locale.value == "eng") {
+      str = `from ${formatDate(res[0])} — to ${formatDate(res[1])}`;
+    }
+    emit("daypick", { str, date });
+  }
+};
+let date = ref(null);
+let nextDay = getNextDay(new Date());
+let attrs = ref([
+  // {
+  // highlight: "blue",
+  // dates: [{ start: new Date("2023-05-20"), span: 3 }],
+  // },
+]);
+// let disabledDates = ref([{ start: new Date("2023-05-20"), day: new Date("2023-05-19"), end: null }]);
+
+onMounted(() => {
+  // const startDate = new Date();
+  // const endDate = new Date(new Date().setDate(startDate.getDate() + 7));
+  // date.value = [startDate, endDate];
+});
+
 const props = defineProps({
   active: {
     type: Boolean,
@@ -84,6 +145,7 @@ const listenMobile = (date) => {
   if (locale.value == "eng") {
     str = `from ${formatDate(range.value.start)} — to ${formatDate(range.value.end)}`;
   }
+  emit("daypick", { str, date });
 };
 
 const listen = (date) => {
@@ -122,6 +184,9 @@ watch(
 <style lang="sass">
 :root
 	--green-600: $green
+	--dp-primary-color: $green
+.dp__action_row
+	display: none
 .datepicker
 	&-head
 		&-close
@@ -140,14 +205,67 @@ watch(
 					transform: rotate(45deg)
 				&:last-child
 					transform: rotate(-45deg)
-.datepicker-panel
+.datepicker-panel, .phone-datepicker
 	+r(600)
 		position: fixed
 		top: 0
 		left: 0
 		right: 0
 		bottom: 0
+	.dp__action_row
+		display: none
+	.dp__month_year_row
+		margin-bottom: 10px
+	.dp__pointer
+		width: 40px
+		height: 40px
+	.dp__active_date, .dp__range_start, .dp__range_end
+		background-color: transparent
+		z-index: 10
+		&::after
+			content: ""
+			position: absolute
+			top: 0
+			left: 0
+			right: 0
+			bottom: 0
+			border-radius: 50%
+			z-index: -1
+			background-color: #{$green}
+	.dp__range_between
+		border-radius: 0
+	.dp__range_end
+		border-radius: 50%
+	.dp__range_start, .dp__range_end
+		&::before
+			position: absolute
+			// content: ""
+			background-color: #f3f3f3
+			top: -1px
+			left: 50%
+			bottom: 0
+			z-index: -1
+			right: 0
+			width: 60%
+			height: 40px
+	.dp__range_end
+		&::before
+			right: 50%
+			left: initial
+	.dp__range_end, .dp__range_start, .dp__active_date
+		--dp-primary-color: #{$green}
+		border-radius: 50%
+	.dp__today
+		border-radius: 50%
+	.dp__menu_inner
 
+		+helvm
+		padding: 10px 20px 15px
+	.dp__menu
+		border-radius: 10px
+	.dp__month_year_wrap
+		display: flex
+		gap: 10px
 	.vc-container
 		+helvr
 		--green-600: #{$green}

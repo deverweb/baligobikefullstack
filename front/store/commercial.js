@@ -6,19 +6,21 @@ export const useCommercialStore = defineStore("commercial", () => {
       bikeModelsArray.value = bikes.map((bike, i) => {
         let rates = [];
         for (const key in bike.bike_rates) {
-          // console.log("bike: ", bike);
-          // console.log("key: ", key);
+          // if (key == "first") return;
+          // if (key == "first") {
+          //   return;
+          // }
           let isFixed = key == "first" ? true : false;
           let isMonthly = key == "fifth" ? true : false;
           let minDays;
           let maxDays;
           switch (key) {
-            case "first":
-              minDays = 1;
-              maxDays = 3;
-              break;
+            // case "first":
+            //   minDays = 1;
+            //   maxDays = 3;
+            //   break;
             case "second":
-              minDays = 4;
+              minDays = 3;
               maxDays = 7;
 
               break;
@@ -48,10 +50,11 @@ export const useCommercialStore = defineStore("commercial", () => {
             dayPriceRUP,
             dayPriceUSD,
           };
-          rates.push(rate);
+          if (key != "first") {
+            rates.push(rate);
+          }
         }
         let bikes = bike.bike_drawings.map((draw, id) => {
-          // console.log("draw: ", draw);
           let idString = id.toString();
           return {
             id: idString,

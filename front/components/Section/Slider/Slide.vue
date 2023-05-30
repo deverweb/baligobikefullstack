@@ -17,7 +17,8 @@
           {{ locale == "ru" ? "Ежемесячно" : "Monthly" }}
         </div>
         <div v-else class="bike-rate-dates font-Helvmed opacity-50 text-[16px]">
-          {{ rate.minDays }} - {{ rate.maxDays }} {{ locale == "ru" ? "дней" : "days" }}
+          <div v-if="rate.minDays == 1">{{ rate.maxDays }} {{ locale == "ru" ? "дня" : "days" }}</div>
+          <div v-else>{{ rate.minDays }} - {{ rate.maxDays }} {{ locale == "ru" ? "дней" : "days" }}</div>
         </div>
         <div class="bike-rate-usd mb-[-3px] font-Helvbold text-[22px]" v-if="!rate.isFixed">
           {{ rate.dayPriceUSD }}$ {{ !rate.isMonthly ? (locale == "ru" ? "/ день" : "/ day") : "" }}

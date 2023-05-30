@@ -111,48 +111,10 @@ const { errorMessage, value } = useField(nameRef, isRequired);
 
 const emit = defineEmits(["fieldValue"]);
 let activeList = ref(false);
-let hasText = computed(() => {
-  return value.value == "";
-});
 
 const handleChange = (event) => {
   emit("fieldValue", value.value);
-  // console.log("event.value", event.target.value);
-  // if (!event.target.value) {
-  //   activeList.value = false;
-  //   return;
-  // }
-  // activeList.value = true;
-  // const displaySuggestions = function (predictions, status) {
-  //   if (status != google.maps.places.PlacesServiceStatus.OK || !predictions) {
-  //     alert(status);
-  //     return;
-  //   }
-  //   predictions.forEach((prediction) => {
-  //     console.log(prediction);
-  //   });
-  // };
-  // service.value.getQueryPredictions(
-  //   {
-  //     input: event.target.value,
-  //   },
-  //   displaySuggestions
-  // );
 };
-let service = ref(null);
-onMounted(() => {
-  if (props.autocomplete) {
-    // service.value = new window.google.maps.places.AutocompleteService({
-    //   componentRestrictions: { country: ["IDN"] },
-    // });
-    // rootInput.value.querySelector("input"),
-    //   {
-    //     types: ["establishment"],
-    //     componentRestrictions: { country: ["IDN"] },
-    //     fields: ["place_id", "geometry", "name"],
-    //   }
-  }
-});
 </script>
 
 <style lang="sass">

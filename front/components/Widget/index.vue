@@ -134,35 +134,9 @@ const onSubmit = handleSubmit(async (values) => {
 onMounted(() => {
   window.addEventListener("scroll", handleWidgetActive);
 
-  function getDurationHeight() {
-    let pageHeight = document.querySelector(".layout").offsetHeight;
-    let footerHeight = document.querySelector("footer").offsetHeight;
-    return pageHeight - footerHeight;
-  }
-  // console.log($widget.value);
-  // gsap.to(".wg", {
-  //   scrollTrigger: {
-  //     trigger: ".offer-title",
-  //     start: "top top",
-  //     end: "top 100px",
-  //     markers: true,
-  //     pin: true,
-  //   },
-  //   // duration: 2,
-  //   // y: -200,
-  // });
-  // ScrollTrigger.create({
-  // trigger: ".offer",
-  // start: "top top",
-  // endTrigger: "header",
-  // end: () => `+=${getDurationHeight()}`,
-  // pin: $widget.value,
-  // });
+  
 });
 
-onBeforeUnmount(() => {
-  // ScrollTrigger.getById("index").kill();
-});
 
 router.afterEach(() => {
   isActiveWidget.value = false;

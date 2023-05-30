@@ -157,25 +157,20 @@ const formatDate = (date, addTime) => {
   }
 };
 
-const onSubmit = handleSubmit(
-  async (values) => {
-    loading.value = true;
-    formStore.fillForm(values);
-    let data = await commercialStore.smallFormOrder({
-      order_date: formatDate(new Date(), true),
-      client_name: values.client_name,
-      client_messenger: " +" + values.client_phone.substring(1),
-      order_date_start: formatDate(values.date.start),
-      order_date_end: formatDate(values.date.end),
-      bike_choice: values.bike.name,
-    });
-    loading.value = false;
-    router.push({ path: "/order/" });
-  }
-  // (values) => {
-  //   console.log("values: ", values);
-  // }
-);
+const onSubmit = handleSubmit(async (values) => {
+  loading.value = true;
+  formStore.fillForm(values);
+  let data = await commercialStore.smallFormOrder({
+    order_date: formatDate(new Date(), true),
+    client_name: values.client_name,
+    client_messenger: " +" + values.client_phone.substring(1),
+    order_date_start: formatDate(values.date.start),
+    order_date_end: formatDate(values.date.end),
+    bike_choice: values.bike.name,
+  });
+  loading.value = false;
+  router.push({ path: "/order/" });
+});
 
 const bikeImageSrc = "/img/index/order-bike.png";
 const tooltips = {
