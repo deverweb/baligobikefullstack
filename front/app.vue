@@ -19,6 +19,7 @@ import { useGlobalStore } from "./store/global";
 import { useCommercialStore } from "~~/store/commercial";
 import { useWordpressStore } from "./store/wordpressStore";
 const { locale } = useI18n();
+const route = useRoute();
 const wpStore = useWordpressStore();
 const nuxtApp = useNuxtApp();
 const store = useGlobalStore();
@@ -54,6 +55,21 @@ watch(
         lang: locale.value,
       },
     });
+  }
+);
+onMounted(() => {
+  if (route.path == "/agent/") {
+    document.body.classList.add("agent-layout");
+  }
+});
+watch(
+  () => route.path,
+  () => {
+    if (route.path == "/agent/" || route.path == "/agentform/" || route.path == "/agentsuccess/") {
+      document.body.classList.add("agent-layout");
+    } else {
+      document.body.classList.remove("agent-layout");
+    }
   }
 );
 wpStore.wpData = await wpStore.getData();

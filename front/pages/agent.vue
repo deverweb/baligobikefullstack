@@ -270,6 +270,7 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <style lang="sass">
+
 .agent
 	&-pinned
 		max-width: 100%

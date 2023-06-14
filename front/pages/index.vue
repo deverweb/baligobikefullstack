@@ -1,5 +1,5 @@
 <template>
-  <div class="lel">
+  <div>
     <SectionIndexOffer></SectionIndexOffer>
     <SectionIndexCardsBlock></SectionIndexCardsBlock>
     <SectionIndexSlider></SectionIndexSlider>

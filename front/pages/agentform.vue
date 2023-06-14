@@ -577,24 +577,14 @@ const translate = (ruStr, engStr) => {
   return locale.value == "ru" ? ruStr : engStr;
 };
 
-let drawing = ref(formStore.bike.drawing);
-
 const { handleSubmit } = useForm();
 let order = ref(null);
 let orderSticky = ref(null);
 let orderBody = ref(null);
 
 onMounted(() => {
-  // ScrollTrigger.create({
-  //   id: "index",
-  //   trigger: ".order-body",
-  //   start: "top 180px",
-  //   end: () => `+=${getDurationHeight()}`,
-  //   pin: ".order-sticky",
-  // })
-
   if (!formStore.bike) {
-    router.push("/");
+    router.push("/agent/");
     return;
   }
   let getDurationHeight = () => {
@@ -610,17 +600,6 @@ onMounted(() => {
     end: () => `+=${getDurationHeight()}`,
     pin: orderSticky.value.orderSticky,
   });
-
-  // setTimeout(() => {
-  //   ScrollTrigger.create({
-  //     id: "index",
-  //     trigger: orderBody.value,
-  //     start: "top 180px",
-  //     end: () => `+=${getDurationHeight()}`,
-  //     pin: orderSticky.value,
-  //   })
-  // }, 500)
-  // ScrollTrigger.getById("index").enable()
 });
 const onSubmit = handleSubmit(
   async (values) => {
@@ -632,7 +611,13 @@ const onSubmit = handleSubmit(
 
       body: formData,
     });
-    let fileUrl = data.value;
+    let fileUrl;
+    if (data.value) {
+      fileUrl = data.value;
+    } else {
+      fileUrl = null;
+    }
+
     await commercialStore.agentFormOrder({
       order_date: formatDate(new Date(), true),
       villa_name: formStore.hotelName,
@@ -646,7 +631,7 @@ const onSubmit = handleSubmit(
       kid_helmets: values.childHelmetCount,
       raincoats: values.rainCoatCount,
       fullprice: formStore.computedRupPrice,
-      file: fileUrl.file_url,
+      file: fileUrl != null ? fileUrl.file_url : " ",
     });
     loading.value = false;
     useRouter().push("/agentsuccess/");
