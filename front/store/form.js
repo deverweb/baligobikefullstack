@@ -67,17 +67,19 @@ export const useFormStore = defineStore("form", () => {
   };
   let computedRupPrice = computed(() => {
     if (bike.value) {
-      if (rate.value.isMonthly) {
-        if (dateDif.value > 30) {
-          //ЗДЕСЬ СЧИТАТЬ
-          return Number(((rate.value.dayPriceRUP / 30) * dateDif.value).toFixed());
+      if (rate.value) {
+        if (rate.value.isMonthly) {
+          if (dateDif.value > 30) {
+            //ЗДЕСЬ СЧИТАТЬ
+            return Number(((rate.value.dayPriceRUP / 30) * dateDif.value).toFixed());
+          }
+          return rate.value.dayPriceRUP;
         }
-        return rate.value.dayPriceRUP;
-      }
-      if (rate.value.isFixed) {
-        return rate.value.dayPriceRUP;
-      } else {
-        return Number(dateDif.value) * rate.value.dayPriceRUP;
+        if (rate.value.isFixed) {
+          return rate.value.dayPriceRUP;
+        } else {
+          return Number(dateDif.value) * rate.value.dayPriceRUP;
+        }
       }
     }
     return "";

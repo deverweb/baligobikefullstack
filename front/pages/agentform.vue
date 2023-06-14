@@ -606,11 +606,12 @@ const onSubmit = handleSubmit(
     loading.value = true;
     let formData = new FormData();
     formData.append("file", values.passport);
-    let { data } = await useFetch("https://admin.baligo.bike/wp-json/markers/v1/save-file", {
+    let { data, error } = await useFetch("https://admin.baligo.bike/wp-json/markers/v1/save-file", {
       method: "POST",
 
       body: formData,
     });
+
     let fileUrl;
     if (data.value) {
       fileUrl = data.value;

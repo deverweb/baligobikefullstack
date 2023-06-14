@@ -62,7 +62,7 @@
         </div>
         <div
           class="agent-form-pinned md:hidden max-w-[100%] lg:w-[500px] w-[650px]"
-          v-if="indexFormStore.selectedOption && selectedDate"
+          v-if="indexFormStore.selectedOption && selectedDate && formStore.rate"
         >
           <SectionPinnedOrder
             class="static agent-pinned"
@@ -78,7 +78,7 @@
           </SectionPinnedOrder>
         </div>
         <div
-          v-if="formStore.bike && selectedDate"
+          v-if="formStore.bike && selectedDate && formStore.rate"
           class="order-mobile-modal sm:pt-[40px] hidden md:block md:max-w-full md:pt-[0px]"
         >
           <div class="order-mobile-container hidden md:block">
@@ -145,14 +145,10 @@
                     <div class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">
                       {{ formStore.computedRupPrice }} idr
                     </div>
-                    <!-- <div v-if="formStore.rate.isMonthly && formStore.dateDif > 30"  class="order-view-item-price sm:ml-auto hidden sm:text-[16px] sm:block">
-                    {{ (formStore.rate.dayPriceUSD/30).toFixed(2) }}$
-                  </div> -->
+
                     <div
                       class="order-view-item-price text-[14px] opacity-50 font-Helvmed hiddem: sm:block absolute right-0 sm:text-[12px] bottom-[-15px]"
-                    >
-                      <!-- {{ formStore.rate.dayPriceUSD }}rup / день -->
-                    </div>
+                    ></div>
                   </div>
                 </div>
 
@@ -215,9 +211,8 @@ import { useCommercialStore } from "~~/store/commercial";
 import { useIndexFormStore } from "~~/store/indexform";
 import { useFormStore } from "~~/store/form";
 
-const { handleSubmit, submitForm } = useForm();
+const { handleSubmit } = useForm();
 const router = useRouter();
-const route = useRoute();
 const indexFormStore = useIndexFormStore();
 const commercialStore = useCommercialStore();
 const formStore = useFormStore();
@@ -247,19 +242,29 @@ watch(
   }
 );
 
-const computedDayPrice = computed(() => {
-  if (formStore.dateDif > 30 && (formStore.rate.isMonthly || formStore.rate.isFixed)) {
-    return Number((formStore.rate.dayPriceUSD / 30).toFixed(2));
+// const computedDayPrice = computed(() => {
+//   if (formStore.dateDif > 30 && (formStore.rate.isMonthly || formStore.rate.isFixed)) {
+//     return Number((formStore.rate.dayPriceUSD / 30).toFixed(2));
+//   } else {
+//     return formStore.rate.dayPriceUSD;
+//   }
+// });
+
+const computedIsMonthly = computed(() => {
+  if (!formStore.rate) {
+    return false;
   } else {
-    return formStore.rate.dayPriceUSD;
+    return formStore.rate.isMonthly;
   }
 });
 
 const computedDayPriceRup = computed(() => {
-  if (formStore.dateDif > 30 && (formStore.rate.isMonthly || formStore.rate.isFixed)) {
-    return Number((formStore.rate.dayPriceRUP / 30).toFixed(2));
-  } else {
-    return formStore.rate.dayPriceRUP;
+  if (formStore.rate) {
+    if (formStore.dateDif > 30 && (formStore.rate.isMonthly || formStore.rate.isFixed)) {
+      return Number((formStore.rate.dayPriceRUP / 30).toFixed(2));
+    } else {
+      return formStore.rate.dayPriceRUP;
+    }
   }
 });
 const onSubmit = handleSubmit((values) => {

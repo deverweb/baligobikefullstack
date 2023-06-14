@@ -1,10 +1,10 @@
 export const useIndexFormStore = defineStore("indexform", () => {
   //
-  let selectedOption = ref(null)
+  let selectedOption = ref(null);
 
   const changeSelectedOption = (option) => {
-    selectedOption.value = option
-  }
+    selectedOption.value = option;
+  };
 
-  return { selectedOption, changeSelectedOption }
-})
+  return { selectedOption, changeSelectedOption };
+});

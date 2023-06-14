@@ -29,6 +29,8 @@
           <div class="phone-datepicker-panel max-w-[340px] mx-auto flex flex-col items-center">
             <client-only>
               <VueDatePicker
+                v-model="date"
+                :min-date="new Date()"
                 @internal-model-change="handleInterval"
                 :locale="locale"
                 :enable-time-picker="false"
@@ -36,7 +38,6 @@
                 inline
                 @update:model-value="listen"
                 range
-                v-model="date"
               ></VueDatePicker>
               <!-- <VDatePicker
                 :min-date="new Date()"
@@ -81,13 +82,6 @@
 import VueDatePicker from "@vuepic/vue-datepicker";
 let { locale } = useI18n();
 
-function getNextDay(currentDay) {
-  var currentDate = new Date(currentDay);
-  currentDate.setDate(currentDate.getDate() + 1);
-
-  var nextDay = currentDate.toISOString().split("T")[0];
-  return nextDay;
-}
 let handleInterval = (res) => {
   if (res != null && res.length == 2) {
     let str = "";
@@ -104,21 +98,7 @@ let handleInterval = (res) => {
     emit("daypick", { str, date });
   }
 };
-let date = ref(null);
-let nextDay = getNextDay(new Date());
-let attrs = ref([
-  // {
-  // highlight: "blue",
-  // dates: [{ start: new Date("2023-05-20"), span: 3 }],
-  // },
-]);
-// let disabledDates = ref([{ start: new Date("2023-05-20"), day: new Date("2023-05-19"), end: null }]);
-
-onMounted(() => {
-  // const startDate = new Date();
-  // const endDate = new Date(new Date().setDate(startDate.getDate() + 7));
-  // date.value = [startDate, endDate];
-});
+const date = ref(null);
 
 const props = defineProps({
   active: {
@@ -214,6 +194,9 @@ watch(
 		bottom: 0
 	.dp__action_row
 		display: none
+	.dp__outer_menu_wrap
+		+r(990)
+			width: 100%
 	.dp__month_year_row
 		margin-bottom: 10px
 	.dp__pointer

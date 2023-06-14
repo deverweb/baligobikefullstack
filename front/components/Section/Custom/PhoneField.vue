@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes" class="items-start pf">
+  <div :class="classes" class="items-start pf form-field">
     <div class="ci-subtitle font-Helvmed text-[14px] mb-[9px] opacity-50" v-if="props.subTitle">
       {{ props.subTitle }}
     </div>
