@@ -61,7 +61,11 @@ onMounted(() => {
   if (route.path == "/agent/") {
     document.body.classList.add("agent-layout");
   }
+  if (route.path == "/point2/") {
+    document.body.classList.add("point-layout");
+  }
 });
+
 watch(
   () => route.path,
   () => {
@@ -69,6 +73,11 @@ watch(
       document.body.classList.add("agent-layout");
     } else {
       document.body.classList.remove("agent-layout");
+    }
+    if (route.path == "/point2/") {
+      document.body.classList.add("point-layout");
+    } else {
+      document.body.classList.remove("point-layout");
     }
   }
 );
