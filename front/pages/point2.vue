@@ -4,42 +4,30 @@
       <Logo class="point-logo"></Logo>
     </div>
     <div class="point-body pt-[200px] sm:pt-[100px] sm:flex-col flex gap-[10px] flex-wrap">
-      <a class="xxsm:w-full" :href="'https://t.me/baligobike'"
+      <a v-for="btn in wpData.point_page.point_watg" class="xxsm:w-full" :href="btn.link"
         ><TheButton
-          class="btn-primary__blue sm:w-full xsm:rounded-[8px] xxsm:w-full pr-[22px] xsm:pr-[11px] xsm:h-[66px] xsm:text-[16px] w-[250px] gap-[10px] h-[70px]"
+          :class="{
+            'btn-primary__dark': btn.btn == 'whatsapp',
+            'btn-primary__blue': btn.btn == 'tg',
+          }"
+          class="btn-primary__dark xsm:rounded-[8px] xxsm:w-full pr-[22px] xsm:pr-[11px] xsm:w-full xsm:h-[66px] xsm:text-[16px] sm:w-full w-[250px] gap-[10px] h-[70px]"
         >
           <SvgTelegramIcon
+            v-if="btn.btn == 'tg'"
             class="h-[18px] w-[22px] xsm:w-[14px] xsm:h-[12px]"
             opacity="1"
             fill="#FBFBFD"
           ></SvgTelegramIcon>
-          <span>Telegram</span>
-        </TheButton>
-      </a>
-      <a class="xxsm:w-full" :href="'https://wa.me/+6281337413060'"
+          <SvgWhatsappIcon v-if="btn.btn == 'whatsapp'" class="xsm:h-[14px] xsm:w-[14px]"></SvgWhatsappIcon>
+          <span v-if="btn.btn == 'whatsapp'">WhatsApp</span>
+          <span v-if="btn.btn == 'tg'">Telegram</span>
+        </TheButton></a
+      >
+      <a v-for="link in wpData.point_page.point_links" class="xxsm:w-full" :href="link.link"
         ><TheButton
           class="btn-primary__dark sm:w-full xsm:rounded-[8px] xxsm:w-full pr-[22px] xsm:pr-[11px] xsm:h-[66px] xsm:text-[16px] w-[250px] gap-[10px] h-[70px]"
         >
-          <SvgWhatsappIcon
-            class="h-[18px] w-[22px] xsm:w-[14px] xsm:h-[12px]"
-            opacity="1"
-            fill="#FBFBFD"
-          ></SvgWhatsappIcon>
-          <span>Whatsapp</span>
-        </TheButton>
-      </a>
-      <a class="xxsm:w-full" :href="'https://baligo.bike/'"
-        ><TheButton
-          class="btn-primary__dark sm:w-full xsm:rounded-[8px] xxsm:w-full pr-[22px] xsm:pr-[11px] xsm:h-[66px] xsm:text-[16px] w-[250px] gap-[10px] h-[70px]"
-        >
-          <span>Main page</span>
-        </TheButton>
-      </a>
-      <a class="xxsm:w-full" :href="'https://baligo.bike/contacts/'"
-        ><TheButton
-          class="btn-primary__dark sm:w-full xsm:rounded-[8px] xxsm:w-full pr-[22px] xsm:pr-[11px] xsm:h-[66px] xsm:text-[16px] w-[250px] gap-[10px] h-[70px]"
-        >
-          <span>Contacts</span>
+          <span>{{ link.txt }}</span>
         </TheButton>
       </a>
     </div>
@@ -47,6 +35,11 @@
 </template>
 
 <script setup>
+import { useWordpressStore } from "~~/store/wordpressStore";
+
+const wpStore = useWordpressStore();
+const wpData = wpStore.wpData;
+
 definePageMeta({
   layout: "pointlayout",
 });
