@@ -15,14 +15,14 @@ services:
     volumes:
       - ./nginx/nginx-prod.conf:/etc/nginx/nginx.conf
       - certbot-etc:/etc/letsencrypt:rw
-      - certbot-var:/var/lib/letsencrypt:rw
-      - ./certbot/data:/var/www:rw
+      # - certbot-var:/var/lib/letsencrypt:rw
+      - ./certbot/www:/var/www/certbot:rw
       - certbot_challenges:/var/www/.well-known/acme-challenge
     networks:
       - app_network
     environment:
       - EMAIL=andreydever@gmail.com
-      - DOMAIN=deverweb.ru
+      - DOMAIN=baligo.bike
 
   certbot:
     image: certbot/certbot:latest
@@ -30,10 +30,11 @@ services:
       - nginx
     volumes:
       - certbot-etc:/etc/letsencrypt:rw
-      - certbot-var:/var/lib/letsencrypt:rw
-      - ./certbot/data:/var/www:rw
+      # - certbot-var:/var/lib/letsencrypt:rw
+      - ./certbot/www:/var/www/certbot:rw
       - certbot_challenges:/var/www/.well-known/acme-challenge:rw
-    command: certonly --webroot --webroot-path=/var/www -n -d baligo.bike  -d www.baligo.bike --webroot-path /var/www -d admin.baligo.bike
+    # command: certonly --webroot --webroot-path=/var/www -d baligo.bike -d www.baligo.bike --webroot-path /var/www -d admin.baligo.bike
+    command: ["renew"]
     networks:
       - app_network
   # certbot:
@@ -104,7 +105,7 @@ volumes:
   wordpress:
   db:
   certbot-etc:
-  certbot-var:
+  # certbot-var:
   certbot_challenges:
 networks:
   app_network:
