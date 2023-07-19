@@ -17,7 +17,7 @@ services:
       - certbot-etc:/etc/letsencrypt:rw
       - certbot-var:/var/lib/letsencrypt:rw
       - ./certbot/data:/var/www:rw
-      # - certbot_challenges:/var/www/.well-known/acme-challenge
+      - certbot_challenges:/var/www/.well-known/acme-challenge
     networks:
       - app_network
     environment:
