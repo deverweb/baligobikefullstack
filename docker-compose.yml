@@ -25,7 +25,7 @@ services:
       - DOMAIN=deverweb.ru
 
   certbot:
-    image: certbot/certbot
+    image: certbot/certbot:latest
     volumes:
       - certbot-etc:/etc/letsencrypt:rw
       - certbot-var:/var/lib/letsencrypt:rw
@@ -101,7 +101,7 @@ volumes:
   db:
   certbot-etc:
   certbot-var:
-  # certbot_challenges:
+  certbot_challenges:
 networks:
   app_network:
     driver: bridge
