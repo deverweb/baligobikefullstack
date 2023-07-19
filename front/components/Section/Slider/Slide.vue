@@ -27,7 +27,7 @@
           {{ rate.dayPriceUSD }}$ / {{ locale == "ru" ? "фикс." : "fixed" }}
         </div>
         <div class="bike-rate-rup font-Helvmed mb-[3px] text-[14px]">
-          {{ rate.dayPriceRUP }} {{ locale == "ru" ? "рупий" : "rupees" }}
+          {{ rate.dayPriceRUP }} {{ locale == "ru" ? "рупий" : "RP" }}
         </div>
         <div class="bike-rate-discount opacity-50 text-[12px] font-Helvmed">
           {{ locale == "ru" ? "Старая цена:" : "Old price:" }}

@@ -90,7 +90,7 @@ const enQuestions = [
   },
   {
     title: "What should I do if the police stopped me, but I don’t have my license?",
-    text: "If you do not have rights, then we advise you to set aside 100 thousand rupees separately in your pocket for such situations in order to quickly resolve the issue on a neutral-positive wave with a small donation to the police.",
+    text: "If you do not have rights, then we advise you to set aside 100 thousand RP separately in your pocket for such situations in order to quickly resolve the issue on a neutral-positive wave with a small donation to the police.",
   },
   {
     title: "Is it possible to drive around the island with the rights of another country?",
