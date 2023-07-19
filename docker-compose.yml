@@ -26,12 +26,16 @@ services:
 
   certbot:
     image: certbot/certbot:latest
+    depends_on:
+      - nginx
     volumes:
       - certbot-etc:/etc/letsencrypt:rw
       - certbot-var:/var/lib/letsencrypt:rw
       - ./certbot/data:/var/www:rw
       - certbot_challenges:/var/www/.well-known/acme-challenge:rw
     command: ["renew"]
+    networks:
+      - app_network
   # certbot:
   #   image: certbot/certbot:latest
   #   container_name: certbot
