@@ -33,7 +33,7 @@ services:
       - certbot-var:/var/lib/letsencrypt:rw
       - ./certbot/data:/var/www:rw
       - certbot_challenges:/var/www/.well-known/acme-challenge:rw
-    command: certonly --webroot --webroot-path=/var/www -n -d deverweb.ru  -d www.deverweb.ru --webroot-path /var/www -d admin.baligo.bike
+    command: certonly --webroot --webroot-path=/var/www -n -d baligo.bike  -d www.baligo.bike --webroot-path /var/www -d admin.baligo.bike
     networks:
       - app_network
   # certbot:
