@@ -23,6 +23,15 @@ services:
     environment:
       - EMAIL=andreydever@gmail.com
       - DOMAIN=deverweb.ru
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt:rw
+      - certbot-var:/var/lib/letsencrypt:rw
+      - ./certbot/data:/var/www:rw
+      - certbot_challenges:/var/www/.well-known/acme-challenge:rw
+    command: ["renew"]
   # certbot:
   #   image: certbot/certbot:latest
   #   container_name: certbot
