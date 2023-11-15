@@ -44,7 +44,7 @@
           </SectionCustomTextField>
 
           <SectionCustomPhoneField :prefered-countries="['ID', 'RU', 'UA']" type="widget" name="client_phone">
-            <SvgPhoneIcon></SvgPhoneIcon>
+            <SvgWhatsappIcon class="w-[18px]" fill="#111111"></SvgWhatsappIcon>
           </SectionCustomPhoneField>
         </div>
         <div
@@ -66,6 +66,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useCommercialStore } from "~~/store/commercial";
 import { useFormStore } from "~~/store/form";
 
+import { useWordpressStore } from "~~/store/wordpressStore";
+const wpStore = useWordpressStore();
+const wpData = wpStore.wpData;
 let { locale } = useI18n();
 gsap.registerPlugin(ScrollTrigger);
 let loading = ref(false);
@@ -116,7 +119,7 @@ const formatDate = (date, addTime) => {
 
 // let formvalues = useStorage("formvalues");
 const { handleSubmit } = useForm();
-const onSubmit = handleSubmit(async (values) => {
+const onSubmit = handleSubmit(async (values, { resetForm }) => {
   loading.value = true;
   formStore.fillForm(values);
   let data = await commercialStore.smallFormOrder({
@@ -128,15 +131,38 @@ const onSubmit = handleSubmit(async (values) => {
     bike_choice: values.bike.name,
   });
   loading.value = data.loading;
-  router.push({ path: "/order/" });
+
+  let phone = wpData.common.contacts_wa_forms;
+  let urlString;
+  let urlStringRu = `https://wa.me/${phone}?text=
+
+	Имя%20клиента:%20${encodeURIComponent(values.client_name)}%0A
+	Номер%20:%20${encodeURIComponent(values.client_phone)}%0A
+	Дата%20начала%20аренды:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Дата%20окончания%20аренды:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	Выбранная%20модель%20байка:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  let urlStringEng = `https://wa.me/${phone}?text=
+ 
+	Client%20name:%20${encodeURIComponent(values.client_name)}%0A
+	Client%20phone:%20${encodeURIComponent(values.client_phone)}%0A
+	Order%20date%20start:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Order%20date%20end:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	Bike:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  if (locale.value == "ru") urlString = urlStringRu;
+  if (locale.value == "eng") urlString = urlStringEng;
+  window.open(urlString, "_blank");
+
+  resetForm();
+  // router.push({ path: "/order/" });
 });
 
 onMounted(() => {
   window.addEventListener("scroll", handleWidgetActive);
-
-  
 });
-
 
 router.afterEach(() => {
   isActiveWidget.value = false;

@@ -294,8 +294,8 @@ const handleChange = (event) => {
 			border-radius: 12px
 			background-color: $light
 			z-index: 2
-			+r(768)
-				height: 60px
+			// +r(768)
+				// height: 60px
 		.ci-input
 			white-space: nowrap
 			height: 100%

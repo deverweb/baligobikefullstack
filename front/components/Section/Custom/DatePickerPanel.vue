@@ -195,7 +195,7 @@ watch(
 	.dp__action_row
 		display: none
 	.dp__outer_menu_wrap
-		+r(990)
+		+r(1200)
 			width: 100%
 	.dp__month_year_row
 		margin-bottom: 10px
