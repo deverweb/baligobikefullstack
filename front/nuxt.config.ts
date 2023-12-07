@@ -49,14 +49,28 @@ export default defineNuxtConfig({
 					fbq('track', 'PageView');
 					</script>`,
         },
+        // {
+        //   type: "text/javascript",
+        //   async: true,
+        //   innerHTML: `window.replainSettings = { id: '1264a380-7025-4ec0-9c79-522e48fd5eff' };
+        // 	(function(u){var s=document.createElement('script');s.async=true;s.src=u;
+        // 	var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);
+        // 	})('https://widget.replain.cc/dist/client.js');
+        // 	`,
+        // },
         {
           type: "text/javascript",
           async: true,
-          innerHTML: `window.replainSettings = { id: '1264a380-7025-4ec0-9c79-522e48fd5eff' }; 
-					(function(u){var s=document.createElement('script');s.async=true;s.src=u; 
-					var x=document.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x); 
-					})('https://widget.replain.cc/dist/client.js'); 
-					`,
+          body: true,
+          innerHTML: `
+						document.umnicoWidgetHash = 'f244b56e3c285de955eb410526a1185d'; 
+						var x = document.createElement('script'); 
+						x.src = 'https://umnico.com/assets/widget-loader.js'; 
+						x.type = 'text/javascript'; 
+            x.charset = 'UTF-8'; 
+            x.async = true; 
+						document.body.appendChild(x); 
+        	`,
         },
         // {
         // 	children: `<script async src="https://www.googletagmanager.com/gtag/js?id=G-123123123"></>`,

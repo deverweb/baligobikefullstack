@@ -215,33 +215,17 @@ let isOrder = computed(() => {
 	position: fixed
 	// right: 100px
 	// bottom: 80px
-	right: 27px
-	bottom: 105px
+	right: 35px
+	bottom: 155px
 	// position: sticky
 	// right: 100px
 	// bottom: 140px
 	// top: 0
 	// right: 100px
 	// margin-left: auto
-	+r(1200)
-		// right: 70px
-
-		right: 29px
-		bottom: 50px
-		bottom: 105px
-	+r(990)
-		// right: 50px
-		bottom: 105px
-
-		right: 27px
-	+r(600)
-		right: 25px
-		bottom: 25px
-		right: 30px
-		bottom: 105px
 	&-circle
-		width: 60px
-		height: 60px
+		width: 50px
+		height: 50px
 		border-radius: 50%
 		display: flex
 		justify-content: center
@@ -256,7 +240,7 @@ let isOrder = computed(() => {
 			transform: scale(0.8)
 	&-table
 		position: absolute
-		bottom: calc(100% + 35px)
+		bottom: calc(100% + 20px)
 		right: 50%
 		width: 353px
 		max-height: 507px

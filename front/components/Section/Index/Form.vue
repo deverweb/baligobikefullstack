@@ -114,6 +114,7 @@ const indexFormStore = useIndexFormStore();
 const wpStore = useWordpressStore();
 const wpData = wpStore.wpData;
 let loading = ref(false);
+
 let namePlaceholder = computed(() => {
   if (locale.value == "ru") return "Ваше Имя";
   if (locale.value == "eng") return "Your Name";
@@ -156,7 +157,9 @@ const formatDate = (date, addTime) => {
     return formattedDate;
   }
 };
+
 const onSubmit = handleSubmit(async (values, { resetForm }) => {
+  console.log('values:" "', values);
   loading.value = true;
   formStore.fillForm(values);
   let data = await commercialStore.smallFormOrder({
@@ -170,6 +173,7 @@ const onSubmit = handleSubmit(async (values, { resetForm }) => {
   loading.value = false;
   let phone = wpData.common.contacts_wa_forms;
   let urlString;
+
   let urlStringRu = `https://wa.me/${phone}?text=
 
 	Имя%20клиента:%20${encodeURIComponent(values.client_name)}%0A
@@ -179,6 +183,7 @@ const onSubmit = handleSubmit(async (values, { resetForm }) => {
 	Выбранная%20модель%20байка:%20${encodeURIComponent(values.bike.name)}%0A
 	
 	`;
+  urlStringRu2.value = urlStringRu;
   let urlStringEng = `https://wa.me/${phone}?text=
  
 	Client%20name:%20${encodeURIComponent(values.client_name)}%0A
@@ -188,6 +193,7 @@ const onSubmit = handleSubmit(async (values, { resetForm }) => {
 	Bike:%20${encodeURIComponent(values.bike.name)}%0A
 	
 	`;
+  urlStringEng2.value = urlStringEng;
   if (locale.value == "ru") urlString = urlStringRu;
   if (locale.value == "eng") urlString = urlStringEng;
   window.open(urlString, "_blank");
