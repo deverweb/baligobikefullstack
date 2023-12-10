@@ -52,7 +52,7 @@
               class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
             >
               <SvgCalendarIcon></SvgCalendarIcon>
-              <span class="relative top-[1px] sm:text-[14px]">Only dates</span>
+              <span class="relative top-[1px] sm:text-[14px]">Для проверки без commercial</span>
             </TheButton>
           </div>
         </form>
@@ -100,7 +100,7 @@
               class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
             >
               <SvgCalendarIcon></SvgCalendarIcon>
-              <span class="relative top-[1px] sm:text-[14px]">Все кроме дат</span>
+              <span class="relative top-[1px] sm:text-[14px]">Пустой объект передается</span>
             </TheButton>
           </div>
         </form>
@@ -217,15 +217,15 @@ let wpData = wpStore.wpData;
 let phone = "+79878025217";
 const onSubmit = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
-  // formStore.fillForm(values);
-  let data = await commercialStore.smallFormOrder({
-    order_date: formatDate(new Date(), true),
-    // client_name: values.client_name,
-    // client_messenger: " +" + values.client_phone.substring(1),
-    order_date_start: formatDate(values.date.start),
-    order_date_end: formatDate(values.date.end),
-    // bike_choice: values.bike.name,
-  });
+  formStore.fillForm(values);
+  // let data = await commercialStore.smallFormOrder({
+  // order_date: formatDate(new Date(), true),
+  // client_name: values.client_name,
+  // client_messenger: " +" + values.client_phone.substring(1),
+  // order_date_start: formatDate(values.date.start),
+  // order_date_end: formatDate(values.date.end),
+  // bike_choice: values.bike.name,
+  // });
 
   let urlString;
 
@@ -258,11 +258,11 @@ const onSubmit2 = handleSubmit(async (values, { resetForm }) => {
   // formStore.fillForm(values);
   let data = await commercialStore.smallFormOrder({
     // order_date: formatDate(new Date(), true),
-    client_name: values.client_name,
-    client_messenger: " +" + values.client_phone.substring(1),
+    // client_name: values.client_name,
+    // client_messenger: " +" + values.client_phone.substring(1),
     // order_date_start: formatDate(values.date.start),
     // order_date_end: formatDate(values.date.end),
-    bike_choice: values.bike.name,
+    // bike_choice: values.bike.name,
   });
 
   let urlString;
@@ -294,8 +294,8 @@ const onSubmit2 = handleSubmit(async (values, { resetForm }) => {
 const onSubmit3 = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
   // formStore.fillForm(values);
-  let data = await commercialStore.smallFormOrder({
-    // order_date: formatDate(new Date(), true),
+  let data = await commercialStore.smallFormOrder2({
+    order_date: formatDate(new Date(), true),
     client_name: values.client_name,
     client_messenger: " +" + values.client_phone.substring(1),
     order_date_start: formatDate(values.date.start),
