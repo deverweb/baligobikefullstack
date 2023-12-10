@@ -182,7 +182,6 @@ const onSubmit = handleSubmit(async (values, { resetForm }) => {
 	Выбранная%20модель%20байка:%20${encodeURIComponent(values.bike.name)}%0A
 	
 	`;
-  urlStringRu2.value = urlStringRu;
   let urlStringEng = `https://wa.me/${phone}?text=
  
 	Client%20name:%20${encodeURIComponent(values.client_name)}%0A
@@ -192,7 +191,6 @@ const onSubmit = handleSubmit(async (values, { resetForm }) => {
 	Bike:%20${encodeURIComponent(values.bike.name)}%0A
 	
 	`;
-  urlStringEng2.value = urlStringEng;
   if (locale.value == "ru") urlString = urlStringRu;
   if (locale.value == "eng") urlString = urlStringEng;
   window.open(urlString, "_blank");
