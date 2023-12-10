@@ -159,7 +159,6 @@ const formatDate = (date, addTime) => {
 };
 
 const onSubmit = handleSubmit(async (values, { resetForm }) => {
-  console.log('values:" "', values);
   loading.value = true;
   formStore.fillForm(values);
   let data = await commercialStore.smallFormOrder({
