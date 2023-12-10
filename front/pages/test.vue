@@ -217,7 +217,83 @@ let wpData = wpStore.wpData;
 let phone = "+79878025217";
 const onSubmit = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
+  // formStore.fillForm(values);
+  // let data = await commercialStore.smallFormOrder({
+  //   order_date: formatDate(new Date(), true),
+  //   client_name: values.client_name,
+  //   client_messenger: " +" + values.client_phone.substring(1),
+  //   order_date_start: formatDate(values.date.start),
+  //   order_date_end: formatDate(values.date.end),
+  //   bike_choice: values.bike.name,
+  // });
+
+  let urlString;
+
+  let urlStringRu = `https://wa.me/${phone}?text=
+
+	Имя%20клиента:%20${encodeURIComponent(values.client_name)}%0A
+	Номер%20:%20${encodeURIComponent(values.client_phone)}%0A
+	Дата%20начала%20аренды:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Дата%20окончания%20аренды:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	Выбранная%20модель%20байка:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  let urlStringEng = `https://wa.me/${phone}?text=
+ 
+	Client%20name:%20${encodeURIComponent(values.client_name)}%0A
+	Client%20phone:%20${encodeURIComponent(values.client_phone)}%0A
+	Order%20date%20start:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Order%20date%20end:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	Bike:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  if (locale.value == "ru") urlString = urlStringRu;
+  if (locale.value == "eng") urlString = urlStringEng;
+  window.open(urlString, "_blank");
+  // resetForm();
+  // router.push({ path: "/order/" });
+});
+const onSubmit2 = handleSubmit(async (values, { resetForm }) => {
+  // loading.value = true;
   formStore.fillForm(values);
+  // let data = await commercialStore.smallFormOrder({
+  //   order_date: formatDate(new Date(), true),
+  //   client_name: values.client_name,
+  //   client_messenger: " +" + values.client_phone.substring(1),
+  //   order_date_start: formatDate(values.date.start),
+  //   order_date_end: formatDate(values.date.end),
+  //   bike_choice: values.bike.name,
+  // });
+
+  let urlString;
+
+  let urlStringRu = `https://wa.me/${phone}?text=
+
+	Имя%20клиента:%20${encodeURIComponent(values.client_name)}%0A
+	Номер%20:%20${encodeURIComponent(values.client_phone)}%0A
+	Дата%20начала%20аренды:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Дата%20окончания%20аренды:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	Выбранная%20модель%20байка:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  let urlStringEng = `https://wa.me/${phone}?text=
+ 
+	Client%20name:%20${encodeURIComponent(values.client_name)}%0A
+	Client%20phone:%20${encodeURIComponent(values.client_phone)}%0A
+	Order%20date%20start:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Order%20date%20end:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	Bike:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  if (locale.value == "ru") urlString = urlStringRu;
+  if (locale.value == "eng") urlString = urlStringEng;
+  window.open(urlString, "_blank");
+  // resetForm();
+  // router.push({ path: "/order/" });
+});
+const onSubmit3 = handleSubmit(async (values, { resetForm }) => {
+  // loading.value = true;
+  // formStore.fillForm(values);
   let data = await commercialStore.smallFormOrder({
     order_date: formatDate(new Date(), true),
     client_name: values.client_name,
