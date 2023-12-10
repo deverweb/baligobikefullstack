@@ -102,9 +102,9 @@
 <script setup>
 import { useForm } from "vee-validate";
 import { useCommercialStore } from "~~/store/commercial";
+import { useWordpressStore } from "~~/store/wordpressStore";
 import { useFormStore } from "~~/store/form";
 import { useIndexFormStore } from "~~/store/indexform";
-import { useWordpressStore } from "~~/store/wordpressStore";
 let { locale } = useI18n();
 const { handleSubmit } = useForm();
 const router = useRouter();

@@ -1,7 +1,7 @@
 <template>
   <div
     class="datepicker-panel xsm:px-[25px] xsm:flex xsm:flex-col xsm:bg-[#181818]"
-    :class="{ 'z-[50]': props.active }"
+    :class="{ 'z-[10000000000]': props.active }"
   >
     <Teleport to="body">
       <Transition name="slide-right">
