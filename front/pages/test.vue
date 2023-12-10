@@ -56,41 +56,154 @@
             </TheButton>
           </div>
         </form>
+        <hr class="sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
+        <form @submit="onSubmit2" class="form">
+          <div class="max-w-[460px] lg:mx-auto lg:text-left">
+            <SectionCustomSelectField
+              :styleType="'index'"
+              class="mb-[10px] cs__index-form"
+              transition="widget-date"
+              :active="formData.bikeField.active"
+              v-model:selectedOption="indexFormStore.selectedOption"
+              :name="formData.bikeField.name"
+              :defaultLabel="bikePlaceholder"
+              :options="commercialStore.bikeModelsArray"
+            >
+              <SvgBikeIcon></SvgBikeIcon>
+            </SectionCustomSelectField>
+
+            <SectionCustomTextField
+              type="string"
+              class="ci__index-form mb-[10px]"
+              :name="'client_name'"
+              :placeholder="namePlaceholder"
+            >
+              <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
+            </SectionCustomTextField>
+            <SectionCustomPhoneField
+              class="mb-[10px]"
+              :prefered-countries="['ID', 'RU', 'UA']"
+              type="index"
+              name="client_phone"
+            >
+              <SvgWhatsappIcon class="w-[18px]" fill="#111111"></SvgWhatsappIcon>
+            </SectionCustomPhoneField>
+            <TheButton
+              type="submit"
+              class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
+            >
+              <SvgCalendarIcon></SvgCalendarIcon>
+              <span class="relative top-[1px] sm:text-[14px]">Перейти в whatsapp с написанным именем</span>
+            </TheButton>
+          </div>
+        </form>
+        <hr class="sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
+        <form @submit="onSubmit3" class="form">
+          <div class="max-w-[460px] lg:mx-auto lg:text-left">
+            <SectionCustomDatePicker
+              name="date"
+              styleType="index"
+              transition="slide-right"
+              class="mb-[10px] dp__index-form"
+            >
+            </SectionCustomDatePicker>
+
+            <SectionCustomTextField
+              type="string"
+              class="ci__index-form mb-[10px]"
+              :name="'client_name'"
+              :placeholder="namePlaceholder"
+            >
+              <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
+            </SectionCustomTextField>
+            <SectionCustomPhoneField
+              class="mb-[10px]"
+              :prefered-countries="['ID', 'RU', 'UA']"
+              type="index"
+              name="client_phone"
+            >
+              <SvgWhatsappIcon class="w-[18px]" fill="#111111"></SvgWhatsappIcon>
+            </SectionCustomPhoneField>
+            <TheButton
+              type="submit"
+              class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
+            >
+              <SvgCalendarIcon></SvgCalendarIcon>
+              <span class="relative top-[1px] sm:text-[14px]">Перейти в whatsapp с написанным именем</span>
+            </TheButton>
+          </div>
+        </form>
+        <hr class="sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
+        <form @submit="onSubmit4" class="form">
+          <div class="max-w-[460px] lg:mx-auto lg:text-left">
+            <SectionCustomTextField
+              type="string"
+              class="ci__index-form mb-[10px]"
+              :name="'client_name'"
+              :placeholder="namePlaceholder"
+            >
+              <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
+            </SectionCustomTextField>
+            <SectionCustomPhoneField
+              class="mb-[10px]"
+              :prefered-countries="['ID', 'RU', 'UA']"
+              type="index"
+              name="client_phone"
+            >
+              <SvgWhatsappIcon class="w-[18px]" fill="#111111"></SvgWhatsappIcon>
+            </SectionCustomPhoneField>
+            <TheButton
+              type="submit"
+              class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
+            >
+              <SvgCalendarIcon></SvgCalendarIcon>
+              <span class="relative top-[1px] sm:text-[14px]">Перейти в whatsapp с написанным именем</span>
+            </TheButton>
+          </div>
+        </form>
+        <hr class="sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
+        <form @submit="onSubmit5" class="form">
+          <div class="max-w-[460px] lg:mx-auto lg:text-left">
+            <SectionCustomTextField
+              type="string"
+              class="ci__index-form mb-[10px]"
+              :name="'client_name'"
+              :placeholder="namePlaceholder"
+            >
+              <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
+            </SectionCustomTextField>
+
+            <TheButton
+              type="submit"
+              class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
+            >
+              <SvgCalendarIcon></SvgCalendarIcon>
+              <span class="relative top-[1px] sm:text-[14px]">Перейти в whatsapp с написанным именем</span>
+            </TheButton>
+          </div>
+        </form>
+        <hr class="sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
+        <form @submit="onSubmit6" class="form">
+          <div class="max-w-[460px] lg:mx-auto lg:text-left">
+            <SectionCustomPhoneField
+              class="mb-[10px]"
+              :prefered-countries="['ID', 'RU', 'UA']"
+              type="index"
+              name="client_phone"
+            >
+              <SvgWhatsappIcon class="w-[18px]" fill="#111111"></SvgWhatsappIcon>
+            </SectionCustomPhoneField>
+            <TheButton
+              type="submit"
+              class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
+            >
+              <SvgCalendarIcon></SvgCalendarIcon>
+              <span class="relative top-[1px] sm:text-[14px]">Перейти в whatsapp с написанным именем</span>
+            </TheButton>
+          </div>
+        </form>
       </div>
       <hr class="sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
-      <div class="second-step">
-        <h1 class="mb-[25px] text-[20px]">2. Переход просто на google.com</h1>
-        <div class="form">
-          <div class="max-w-[360px] lg:mx-auto lg:text-left">
-            <a target="_blank" href="https://www.google.com">
-              <TheButton
-                type="submit"
-                class="w-[360px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
-              >
-                <SvgCalendarIcon></SvgCalendarIcon>
-                <span class="relative top-[1px] sm:text-[14px]">Google.com</span>
-              </TheButton></a
-            >
-          </div>
-        </div>
-      </div>
-      <hr class="sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
-      <div class="third-step">
-        <h1 class="mb-[25px] text-[20px]">3. Переход в whatsapp по другому</h1>
-        <div class="form">
-          <div class="max-w-[360px] lg:mx-auto lg:text-left">
-            <a target="_blank" href="https://wa.me/79878025217?text=Здравствуйте.">
-              <TheButton
-                type="submit"
-                class="w-[360px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
-              >
-                <SvgCalendarIcon></SvgCalendarIcon>
-                <span class="relative top-[1px] sm:text-[14px]">Whatsapp с текстом "Здравствуйте"</span>
-              </TheButton></a
-            >
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -180,6 +293,154 @@ const onSubmit = handleSubmit(async (values, { resetForm }) => {
 	Order%20date%20start:%20${encodeURIComponent(formatDate(values.date.start))}%0A
 	Order%20date%20end:%20${encodeURIComponent(formatDate(values.date.end))}%0A
 	Bike:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  if (locale.value == "ru") urlString = urlStringRu;
+  if (locale.value == "eng") urlString = urlStringEng;
+  window.open(urlString, "_blank");
+  resetForm();
+  // router.push({ path: "/order/" });
+});
+const onSubmit2 = handleSubmit(async (values, { resetForm }) => {
+  // loading.value = true;
+  formStore.fillForm(values);
+  let data = await commercialStore.smallFormOrder({
+    order_date: formatDate(new Date(), true),
+    client_name: values.client_name,
+    client_messenger: " +" + values.client_phone.substring(1),
+    bike_choice: values.bike.name,
+  });
+  let phone = "+79878025217";
+  let urlString;
+
+  let urlStringRu = `https://wa.me/${phone}?text=
+
+	Имя%20клиента:%20${encodeURIComponent(values.client_name)}%0A
+	Номер%20:%20${encodeURIComponent(values.client_phone)}%0A
+	Выбранная%20модель%20байка:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  let urlStringEng = `https://wa.me/${phone}?text=
+ 
+	Client%20name:%20${encodeURIComponent(values.client_name)}%0A
+	Client%20phone:%20${encodeURIComponent(values.client_phone)}%0A
+	Bike:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  if (locale.value == "ru") urlString = urlStringRu;
+  if (locale.value == "eng") urlString = urlStringEng;
+  window.open(urlString, "_blank");
+  resetForm();
+  // router.push({ path: "/order/" });
+});
+const onSubmit3 = handleSubmit(async (values, { resetForm }) => {
+  // loading.value = true;
+  formStore.fillForm(values);
+  let data = await commercialStore.smallFormOrder({
+    order_date: formatDate(new Date(), true),
+    client_name: values.client_name,
+    client_messenger: " +" + values.client_phone.substring(1),
+    order_date_start: formatDate(values.date.start),
+    order_date_end: formatDate(values.date.end),
+  });
+  let phone = "+79878025217";
+  let urlString;
+
+  let urlStringRu = `https://wa.me/${phone}?text=
+
+	Имя%20клиента:%20${encodeURIComponent(values.client_name)}%0A
+	Номер%20:%20${encodeURIComponent(values.client_phone)}%0A
+	Дата%20начала%20аренды:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Дата%20окончания%20аренды:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	
+	`;
+  let urlStringEng = `https://wa.me/${phone}?text=
+ 
+	Client%20name:%20${encodeURIComponent(values.client_name)}%0A
+	Client%20phone:%20${encodeURIComponent(values.client_phone)}%0A
+	Order%20date%20start:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Order%20date%20end:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	
+	`;
+  if (locale.value == "ru") urlString = urlStringRu;
+  if (locale.value == "eng") urlString = urlStringEng;
+  window.open(urlString, "_blank");
+  resetForm();
+  // router.push({ path: "/order/" });
+});
+const onSubmit4 = handleSubmit(async (values, { resetForm }) => {
+  // loading.value = true;
+  formStore.fillForm(values);
+  let data = await commercialStore.smallFormOrder({
+    order_date: formatDate(new Date(), true),
+    client_name: values.client_name,
+    client_messenger: " +" + values.client_phone.substring(1),
+  });
+  let phone = "+79878025217";
+  let urlString;
+
+  let urlStringRu = `https://wa.me/${phone}?text=
+
+	Имя%20клиента:%20${encodeURIComponent(values.client_name)}%0A
+	Номер%20:%20${encodeURIComponent(values.client_phone)}%0A
+	
+	`;
+  let urlStringEng = `https://wa.me/${phone}?text=
+ 
+	Client%20name:%20${encodeURIComponent(values.client_name)}%0A
+	Client%20phone:%20${encodeURIComponent(values.client_phone)}%0A
+	
+	`;
+  if (locale.value == "ru") urlString = urlStringRu;
+  if (locale.value == "eng") urlString = urlStringEng;
+  window.open(urlString, "_blank");
+  resetForm();
+  // router.push({ path: "/order/" });
+});
+const onSubmit5 = handleSubmit(async (values, { resetForm }) => {
+  // loading.value = true;
+  formStore.fillForm(values);
+  let data = await commercialStore.smallFormOrder({
+    order_date: formatDate(new Date(), true),
+    client_name: values.client_name,
+  });
+  let phone = "+79878025217";
+  let urlString;
+
+  let urlStringRu = `https://wa.me/${phone}?text=
+
+	Имя%20клиента:%20${encodeURIComponent(values.client_name)}%0A
+	
+	`;
+  let urlStringEng = `https://wa.me/${phone}?text=
+ 
+	Client%20name:%20${encodeURIComponent(values.client_name)}%0A
+	
+	`;
+  if (locale.value == "ru") urlString = urlStringRu;
+  if (locale.value == "eng") urlString = urlStringEng;
+  window.open(urlString, "_blank");
+  resetForm();
+  // router.push({ path: "/order/" });
+});
+const onSubmit6 = handleSubmit(async (values, { resetForm }) => {
+  // loading.value = true;
+  formStore.fillForm(values);
+  let data = await commercialStore.smallFormOrder({
+    order_date: formatDate(new Date(), true),
+    client_messenger: " +" + values.client_phone.substring(1),
+  });
+  let phone = "+79878025217";
+  let urlString;
+
+  let urlStringRu = `https://wa.me/${phone}?text=
+
+	Номер%20:%20${encodeURIComponent(values.client_phone)}%0A
+	
+	`;
+  let urlStringEng = `https://wa.me/${phone}?text=
+ 
+	Client%20phone:%20${encodeURIComponent(values.client_phone)}%0A
 	
 	`;
   if (locale.value == "ru") urlString = urlStringRu;

@@ -6,7 +6,7 @@
     <Teleport to="body">
       <Transition name="slide-right">
         <div
-          :class="{ 'z-[150]': props.active }"
+          :class="{ 'z-[10000000000]': props.active }"
           v-show="props.active"
           class="phone-datepicker overflow-auto pt-0 dp hidden bg-dark-300 p-[25px] sm:flex flex-col left-0 right-0 bottom-0 top-0 w-full fixed"
         >
