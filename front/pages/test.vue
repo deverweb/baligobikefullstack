@@ -202,6 +202,27 @@
             </TheButton>
           </div>
         </form>
+        <hr class="sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
+        <form @submit="onSubmitText" class="form">
+          <div class="max-w-[460px] lg:mx-auto lg:text-left">
+            <SectionCustomTextField
+              type="string"
+              class="ci__index-form mb-[10px]"
+              :name="'client_name'"
+              :placeholder="namePlaceholder"
+            >
+              <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
+            </SectionCustomTextField>
+
+            <TheButton
+              type="submit"
+              class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
+            >
+              <SvgCalendarIcon></SvgCalendarIcon>
+              <span class="relative top-[1px] sm:text-[14px]">Перейти в whatsapp с написанным именем</span>
+            </TheButton>
+          </div>
+        </form>
       </div>
       <hr class="sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
     </div>
@@ -263,18 +284,20 @@ let { locale } = useI18n();
 const { handleSubmit } = useForm();
 let wpStore = useWordpressStore();
 let wpData = wpStore.wpData;
+
+let phone = "+79878025217";
 const onSubmit = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
-  formStore.fillForm(values);
-  let data = await commercialStore.smallFormOrder({
-    order_date: formatDate(new Date(), true),
-    client_name: values.client_name,
-    client_messenger: " +" + values.client_phone.substring(1),
-    order_date_start: formatDate(values.date.start),
-    order_date_end: formatDate(values.date.end),
-    bike_choice: values.bike.name,
-  });
-  let phone = "+79878025217";
+  // formStore.fillForm(values);
+  // let data = await commercialStore.smallFormOrder({
+  //   order_date: formatDate(new Date(), true),
+  //   client_name: values.client_name,
+  //   client_messenger: " +" + values.client_phone.substring(1),
+  //   order_date_start: formatDate(values.date.start),
+  //   order_date_end: formatDate(values.date.end),
+  //   bike_choice: values.bike.name,
+  // });
+
   let urlString;
 
   let urlStringRu = `https://wa.me/${phone}?text=
@@ -298,19 +321,19 @@ const onSubmit = handleSubmit(async (values, { resetForm }) => {
   if (locale.value == "ru") urlString = urlStringRu;
   if (locale.value == "eng") urlString = urlStringEng;
   window.open(urlString, "_blank");
-  resetForm();
+  // resetForm();
   // router.push({ path: "/order/" });
 });
 const onSubmit2 = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
-  formStore.fillForm(values);
-  let data = await commercialStore.smallFormOrder({
-    order_date: formatDate(new Date(), true),
-    client_name: values.client_name,
-    client_messenger: " +" + values.client_phone.substring(1),
-    bike_choice: values.bike.name,
-  });
-  let phone = "+79878025217";
+  // formStore.fillForm(values);
+  // let data = await commercialStore.smallFormOrder({
+  //   order_date: formatDate(new Date(), true),
+  //   client_name: values.client_name,
+  //   client_messenger: " +" + values.client_phone.substring(1),
+  //   bike_choice: values.bike.name,
+  // });
+
   let urlString;
 
   let urlStringRu = `https://wa.me/${phone}?text=
@@ -330,20 +353,20 @@ const onSubmit2 = handleSubmit(async (values, { resetForm }) => {
   if (locale.value == "ru") urlString = urlStringRu;
   if (locale.value == "eng") urlString = urlStringEng;
   window.open(urlString, "_blank");
-  resetForm();
+  // resetForm();
   // router.push({ path: "/order/" });
 });
 const onSubmit3 = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
-  formStore.fillForm(values);
-  let data = await commercialStore.smallFormOrder({
-    order_date: formatDate(new Date(), true),
-    client_name: values.client_name,
-    client_messenger: " +" + values.client_phone.substring(1),
-    order_date_start: formatDate(values.date.start),
-    order_date_end: formatDate(values.date.end),
-  });
-  let phone = "+79878025217";
+  // formStore.fillForm(values);
+  // let data = await commercialStore.smallFormOrder({
+  //   order_date: formatDate(new Date(), true),
+  //   client_name: values.client_name,
+  //   client_messenger: " +" + values.client_phone.substring(1),
+  //   order_date_start: formatDate(values.date.start),
+  //   order_date_end: formatDate(values.date.end),
+  // });
+
   let urlString;
 
   let urlStringRu = `https://wa.me/${phone}?text=
@@ -365,18 +388,18 @@ const onSubmit3 = handleSubmit(async (values, { resetForm }) => {
   if (locale.value == "ru") urlString = urlStringRu;
   if (locale.value == "eng") urlString = urlStringEng;
   window.open(urlString, "_blank");
-  resetForm();
+  // resetForm();
   // router.push({ path: "/order/" });
 });
 const onSubmit4 = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
-  formStore.fillForm(values);
-  let data = await commercialStore.smallFormOrder({
-    order_date: formatDate(new Date(), true),
-    client_name: values.client_name,
-    client_messenger: " +" + values.client_phone.substring(1),
-  });
-  let phone = "+79878025217";
+  // formStore.fillForm(values);
+  // let data = await commercialStore.smallFormOrder({
+  //   order_date: formatDate(new Date(), true),
+  //   client_name: values.client_name,
+  //   client_messenger: " +" + values.client_phone.substring(1),
+  // });
+
   let urlString;
 
   let urlStringRu = `https://wa.me/${phone}?text=
@@ -394,17 +417,17 @@ const onSubmit4 = handleSubmit(async (values, { resetForm }) => {
   if (locale.value == "ru") urlString = urlStringRu;
   if (locale.value == "eng") urlString = urlStringEng;
   window.open(urlString, "_blank");
-  resetForm();
+  // resetForm();
   // router.push({ path: "/order/" });
 });
 const onSubmit5 = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
-  formStore.fillForm(values);
-  let data = await commercialStore.smallFormOrder({
-    order_date: formatDate(new Date(), true),
-    client_name: values.client_name,
-  });
-  let phone = "+79878025217";
+  // formStore.fillForm(values);
+  // let data = await commercialStore.smallFormOrder({
+  //   order_date: formatDate(new Date(), true),
+  //   client_name: values.client_name,
+  // });
+
   let urlString;
 
   let urlStringRu = `https://wa.me/${phone}?text=
@@ -420,17 +443,35 @@ const onSubmit5 = handleSubmit(async (values, { resetForm }) => {
   if (locale.value == "ru") urlString = urlStringRu;
   if (locale.value == "eng") urlString = urlStringEng;
   window.open(urlString, "_blank");
-  resetForm();
+  // resetForm();
+  // router.push({ path: "/order/" });
+});
+const onSubmitText = handleSubmit(async (values, { resetForm }) => {
+  // loading.value = true;
+  // formStore.fillForm(values);
+  // let data = await commercialStore.smallFormOrder({
+  //   order_date: formatDate(new Date(), true),
+  //   client_name: values.client_name,
+  // });
+
+  let urlString;
+
+  let urlStringRu = `https://wa.me/${phone}?text=Имя`;
+  // let urlStringEng = `https://wa.me/${phone}?text=Client`;
+  // if (locale.value == "ru") urlString = urlStringRu;
+  // if (locale.value == "eng") urlString = urlStringEng;
+  window.open(`https://wa.me/${phone}?text=Имя`, "_blank");
+  // resetForm();
   // router.push({ path: "/order/" });
 });
 const onSubmit6 = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
-  formStore.fillForm(values);
-  let data = await commercialStore.smallFormOrder({
-    order_date: formatDate(new Date(), true),
-    client_messenger: " +" + values.client_phone.substring(1),
-  });
-  let phone = "+79878025217";
+  // formStore.fillForm(values);
+  // let data = await commercialStore.smallFormOrder({
+  //   order_date: formatDate(new Date(), true),
+  //   client_messenger: " +" + values.client_phone.substring(1),
+  // });
+
   let urlString;
 
   let urlStringRu = `https://wa.me/${phone}?text=
@@ -446,7 +487,7 @@ const onSubmit6 = handleSubmit(async (values, { resetForm }) => {
   if (locale.value == "ru") urlString = urlStringRu;
   if (locale.value == "eng") urlString = urlStringEng;
   window.open(urlString, "_blank");
-  resetForm();
+  // resetForm();
   // router.push({ path: "/order/" });
 });
 </script>
