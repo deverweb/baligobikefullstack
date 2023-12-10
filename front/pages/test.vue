@@ -218,14 +218,14 @@ let phone = "+79878025217";
 const onSubmit = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
   formStore.fillForm(values);
-  // let data = await commercialStore.smallFormOrder({
-  // order_date: formatDate(new Date(), true),
-  // client_name: values.client_name,
-  // client_messenger: " +" + values.client_phone.substring(1),
-  // order_date_start: formatDate(values.date.start),
-  // order_date_end: formatDate(values.date.end),
-  // bike_choice: values.bike.name,
-  // });
+  let data = await commercialStore.smallFormOrder({
+    order_date: formatDate(new Date(), true),
+    client_name: values.client_name,
+    client_messenger: " +" + values.client_phone.substring(1),
+    order_date_start: formatDate(values.date.start),
+    order_date_end: formatDate(values.date.end),
+    bike_choice: values.bike.name,
+  });
 
   let urlString;
 
@@ -256,13 +256,13 @@ const onSubmit = handleSubmit(async (values, { resetForm }) => {
 const onSubmit2 = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
   // formStore.fillForm(values);
-  let data = await commercialStore.smallFormOrder({
-    // order_date: formatDate(new Date(), true),
-    // client_name: values.client_name,
-    // client_messenger: " +" + values.client_phone.substring(1),
-    // order_date_start: formatDate(values.date.start),
-    // order_date_end: formatDate(values.date.end),
-    // bike_choice: values.bike.name,
+  let data = await commercialStore.smallFormOrder2({
+    order_date: formatDate(new Date(), true),
+    client_name: values.client_name,
+    client_messenger: " +" + values.client_phone.substring(1),
+    order_date_start: formatDate(values.date.start),
+    order_date_end: formatDate(values.date.end),
+    bike_choice: values.bike.name,
   });
 
   let urlString;
@@ -294,7 +294,7 @@ const onSubmit2 = handleSubmit(async (values, { resetForm }) => {
 const onSubmit3 = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
   // formStore.fillForm(values);
-  let data = await commercialStore.smallFormOrder2({
+  let data = await commercialStore.smallFormOrder3({
     order_date: formatDate(new Date(), true),
     client_name: values.client_name,
     client_messenger: " +" + values.client_phone.substring(1),

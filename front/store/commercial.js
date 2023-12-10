@@ -100,15 +100,24 @@ export const useCommercialStore = defineStore("commercial", () => {
     return data.value;
   };
   const smallFormOrder2 = async (values) => {
-    // let { data } = await useFetch("/api/docs", {
-    //   method: "POST",
-    //   body: {
-    //     sheet: "smallform",
-    //     data: values,
-    //   },
-    // });
+    let { data } = await useFetch("/api/docs", {
+      method: "POST",
+      body: {
+        sheet: "smallform2",
+        data: values,
+      },
+    });
     // return data.value;
-    return "true";
+  };
+  const smallFormOrder3 = async (values) => {
+    let { data } = await useFetch("/api/docs", {
+      method: "POST",
+      body: {
+        sheet: "smallform3",
+        data: values,
+      },
+    });
+    return data.value;
   };
   const investFormOrder = async (values) => {
     let { data } = await useFetch("/api/docs", {
@@ -136,6 +145,7 @@ export const useCommercialStore = defineStore("commercial", () => {
     bikeModelsArray,
     smallFormOrder,
     smallFormOrder2,
+    smallFormOrder3,
     agentFormOrder,
     investFormOrder,
   };
