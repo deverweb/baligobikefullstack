@@ -122,16 +122,6 @@ const { handleSubmit } = useForm();
 const onSubmit = handleSubmit(async (values, { resetForm }) => {
   loading.value = true;
   formStore.fillForm(values);
-  let data = await commercialStore.smallFormOrder({
-    order_date: formatDate(new Date(), true),
-    client_name: values.client_name,
-    client_messenger: " +" + values.client_phone.substring(1),
-    order_date_start: formatDate(new Date(formStore.dates.start)),
-    order_date_end: formatDate(new Date(formStore.dates.end)),
-    bike_choice: values.bike.name,
-  });
-  loading.value = data.loading;
-
   let phone = wpData.common.contacts_wa_forms;
   let urlString;
   let urlStringRu = `https://wa.me/${phone}?text=
@@ -155,8 +145,18 @@ const onSubmit = handleSubmit(async (values, { resetForm }) => {
   if (locale.value == "ru") urlString = urlStringRu;
   if (locale.value == "eng") urlString = urlStringEng;
   window.open(urlString, "_blank");
-
   resetForm();
+
+  let data = await commercialStore.smallFormOrder({
+    order_date: formatDate(new Date(), true),
+    client_name: values.client_name,
+    client_messenger: " +" + values.client_phone.substring(1),
+    order_date_start: formatDate(new Date(formStore.dates.start)),
+    order_date_end: formatDate(new Date(formStore.dates.end)),
+    bike_choice: values.bike.name,
+  });
+  loading.value = data.loading;
+
   // router.push({ path: "/order/" });
 });
 
