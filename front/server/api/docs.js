@@ -48,6 +48,40 @@ export default defineEventHandler(async (event) => {
     //   loading: false,
     // };
   }
+  if (body.sheet == "smallform2") {
+    console.log("smallFormOrder2 before sheet.addRow");
+    sheet = doc.sheetsByIndex[0];
+    console.log("smallFormOrder2 data: ", body.data);
+    await sheet.addRow({
+      order_date: body.data.order_date || "order_date",
+      client_name: body.data.client_name || "client_name",
+      client_messenger: body.data.client_messenger || "client_messenger",
+      order_date_start: body.data.order_date_start || "order_date_start",
+      order_date_end: body.data.order_date_end || "order_date_end",
+      bike_model: body.data.bike_choice || "bike_model",
+    });
+    console.log("smallFormOrder2 after sheet.addRow");
+    // return {
+    //   loading: false,
+    // };
+  }
+  if (body.sheet == "smallform3") {
+    console.log("smallFormOrder3 before sheet.addRow");
+    sheet = doc.sheetsByIndex[0];
+    console.log("smallFormOrder3 data: ", body.data);
+    await sheet.addRow({
+      order_date: body.data.order_date || "order_date",
+      client_name: body.data.client_name || "client_name",
+      client_messenger: body.data.client_messenger || "client_messenger",
+      order_date_start: body.data.order_date_start || "order_date_start",
+      order_date_end: body.data.order_date_end || "order_date_end",
+      bike_model: body.data.bike_choice || "bike_model",
+    });
+    console.log("smallFormOrder3 after sheet.addRow");
+    // return {
+    //   loading: false,
+    // };
+  }
 
   if (body.sheet == "bigform") {
     sheet = doc.sheetsByIndex[1];

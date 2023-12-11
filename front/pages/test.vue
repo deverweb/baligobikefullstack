@@ -3,8 +3,60 @@
     class="test min-h-screen bg-dark-300 sm:pb-[80px] pb-[135px] rounded-t-[70px] sm:pt-[65px] sm:rounded-t-[44px] md:pt-[95px] pt-[210px]"
   >
     <div class="steps md:px-[30px] px-[80px] flex-col flex items-start">
+      <h1 class="mb-[40px] md:text-[20px] text-[30px] max-w-[600px]">
+        Перед этим необходимо включить функцию всплывающих окон на iphone, если она выключена
+      </h1>
       <hr class="sm:my-[20px] opacity-10 w-full my-[30px] h-[2px] bg-light" />
       <div class="first-step">
+        <form @submit="onSubmit0" class="form">
+          <div class="max-w-[460px] lg:mx-auto lg:text-left">
+            <SectionCustomDatePicker
+              name="date"
+              styleType="index"
+              transition="slide-right"
+              class="mb-[10px] dp__index-form"
+            >
+            </SectionCustomDatePicker>
+            <SectionCustomSelectField
+              :styleType="'index'"
+              class="mb-[10px] cs__index-form"
+              transition="widget-date"
+              :active="formData.bikeField.active"
+              v-model:selectedOption="indexFormStore.selectedOption"
+              :name="formData.bikeField.name"
+              :defaultLabel="bikePlaceholder"
+              :options="commercialStore.bikeModelsArray"
+            >
+              <SvgBikeIcon></SvgBikeIcon>
+            </SectionCustomSelectField>
+
+            <SectionCustomTextField
+              type="string"
+              class="ci__index-form mb-[10px]"
+              :name="'client_name'"
+              :placeholder="namePlaceholder"
+            >
+              <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
+            </SectionCustomTextField>
+            <SectionCustomPhoneField
+              class="mb-[10px]"
+              :prefered-countries="['ID', 'RU', 'UA']"
+              type="index"
+              name="client_phone"
+            >
+              <SvgWhatsappIcon class="w-[18px]" fill="#111111"></SvgWhatsappIcon>
+            </SectionCustomPhoneField>
+            <TheButton
+              type="submit"
+              class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
+            >
+              <SvgCalendarIcon></SvgCalendarIcon>
+              <span class="relative top-[1px] sm:text-[14px]">Простая проверка без commercial</span>
+            </TheButton>
+          </div>
+        </form>
+        <hr class="sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
+        <h1 class="mb-[25px] text-[20px]">1. Переход в whatsapp(туда должно передасться имя), который не работает</h1>
         <form @submit="onSubmit" class="form">
           <div class="max-w-[460px] lg:mx-auto lg:text-left">
             <SectionCustomDatePicker
@@ -48,7 +100,103 @@
               class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
             >
               <SvgCalendarIcon></SvgCalendarIcon>
-              <span class="relative top-[1px] sm:text-[14px]">Без commercialStore</span>
+              <span class="relative top-[1px] sm:text-[14px]">window.open без текста перед commercial</span>
+            </TheButton>
+          </div>
+        </form>
+        <hr class="sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
+        <form @submit="onSubmit2" class="form">
+          <div class="max-w-[460px] lg:mx-auto lg:text-left">
+            <SectionCustomDatePicker
+              name="date"
+              styleType="index"
+              transition="slide-right"
+              class="mb-[10px] dp__index-form"
+            >
+            </SectionCustomDatePicker>
+            <SectionCustomSelectField
+              :styleType="'index'"
+              class="mb-[10px] cs__index-form"
+              transition="widget-date"
+              :active="formData.bikeField.active"
+              v-model:selectedOption="indexFormStore.selectedOption"
+              :name="formData.bikeField.name"
+              :defaultLabel="bikePlaceholder"
+              :options="commercialStore.bikeModelsArray"
+            >
+              <SvgBikeIcon></SvgBikeIcon>
+            </SectionCustomSelectField>
+
+            <SectionCustomTextField
+              type="string"
+              class="ci__index-form mb-[10px]"
+              :name="'client_name'"
+              :placeholder="namePlaceholder"
+            >
+              <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
+            </SectionCustomTextField>
+            <SectionCustomPhoneField
+              class="mb-[10px]"
+              :prefered-countries="['ID', 'RU', 'UA']"
+              type="index"
+              name="client_phone"
+            >
+              <SvgWhatsappIcon class="w-[18px]" fill="#111111"></SvgWhatsappIcon>
+            </SectionCustomPhoneField>
+            <TheButton
+              type="submit"
+              class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
+            >
+              <SvgCalendarIcon></SvgCalendarIcon>
+              <span class="relative top-[1px] sm:text-[14px]">window.open без текста после commercial</span>
+            </TheButton>
+          </div>
+        </form>
+        <hr class="sm:my-[40px] opacity-10 w-full my-[50px] h-[2px] bg-light" />
+        <form @submit="onSubmit3" class="form">
+          <div class="max-w-[460px] lg:mx-auto lg:text-left">
+            <SectionCustomDatePicker
+              name="date"
+              styleType="index"
+              transition="slide-right"
+              class="mb-[10px] dp__index-form"
+            >
+            </SectionCustomDatePicker>
+            <SectionCustomSelectField
+              :styleType="'index'"
+              class="mb-[10px] cs__index-form"
+              transition="widget-date"
+              :active="formData.bikeField.active"
+              v-model:selectedOption="indexFormStore.selectedOption"
+              :name="formData.bikeField.name"
+              :defaultLabel="bikePlaceholder"
+              :options="commercialStore.bikeModelsArray"
+            >
+              <SvgBikeIcon></SvgBikeIcon>
+            </SectionCustomSelectField>
+
+            <SectionCustomTextField
+              type="string"
+              class="ci__index-form mb-[10px]"
+              :name="'client_name'"
+              :placeholder="namePlaceholder"
+            >
+              <SvgPersonIcon opacity="1" fill="#111111"></SvgPersonIcon>
+            </SectionCustomTextField>
+            <SectionCustomPhoneField
+              class="mb-[10px]"
+              :prefered-countries="['ID', 'RU', 'UA']"
+              type="index"
+              name="client_phone"
+            >
+              <SvgWhatsappIcon class="w-[18px]" fill="#111111"></SvgWhatsappIcon>
+            </SectionCustomPhoneField>
+            <TheButton
+              type="submit"
+              class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
+            >
+              <SvgCalendarIcon></SvgCalendarIcon>
+              <span class="relative top-[1px] sm:text-[14px]">Не работает</span>
             </TheButton>
           </div>
         </form>
@@ -115,47 +263,173 @@ let wpStore = useWordpressStore();
 let wpData = wpStore.wpData;
 
 let phone = "79878025217";
-const onSubmit = handleSubmit((values, { resetForm }) => {
+const onSubmit0 = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
   formStore.fillForm(values);
-  commercialStore
-    .smallFormOrder({
-      order_date: formatDate(new Date(), true),
-      client_name: values.client_name,
-      client_messenger: " +" + values.client_phone.substring(1),
-      order_date_start: formatDate(values.date.start),
-      order_date_end: formatDate(values.date.end),
-      bike_choice: values.bike.name,
-    })
-    .then(() => {
-      let urlString;
+  // await commercialStore.smallFormOrder({
+  //   order_date: formatDate(new Date(), true),
+  //   client_name: values.client_name,
+  //   client_messenger: " +" + values.client_phone.substring(1),
+  //   order_date_start: formatDate(values.date.start),
+  //   order_date_end: formatDate(values.date.end),
+  //   bike_choice: values.bike.name,
+  // });
 
-      let urlStringRu = `https://wa.me/${phone}?text=
+  let urlString;
 
-				Имя%20клиента:%20${encodeURIComponent(values.client_name)}%0A
-				Номер%20:%20${encodeURIComponent(values.client_phone)}%0A
-				Дата%20начала%20аренды:%20${encodeURIComponent(formatDate(values.date.start))}%0A
-				Дата%20окончания%20аренды:%20${encodeURIComponent(formatDate(values.date.end))}%0A
-				Выбранная%20модель%20байка:%20${encodeURIComponent(values.bike.name)}%0A
+  let urlStringRu = `https://wa.me/${phone}?text=
 
-				`;
-      let urlStringEng = `https://wa.me/${phone}?text=
+	Имя%20клиента:%20${encodeURIComponent(values.client_name)}%0A
+	Номер%20:%20${encodeURIComponent(values.client_phone)}%0A
+	Дата%20начала%20аренды:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Дата%20окончания%20аренды:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	Выбранная%20модель%20байка:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  let urlStringEng = `https://wa.me/${phone}?text=
+ 
+	Client%20name:%20${encodeURIComponent(values.client_name)}%0A
+	Client%20phone:%20${encodeURIComponent(values.client_phone)}%0A
+	Order%20date%20start:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Order%20date%20end:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	Bike:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  if (locale.value == "ru") urlString = urlStringRu;
+  if (locale.value == "eng") urlString = urlStringEng;
+  console.log("urlString: ", urlString);
+  console.log("Переход в ватсап здесь");
+  window.open(urlString, "_blank");
+  console.log("Должен был перейти");
+  // router.push({ path: "/order/" });
+});
+const onSubmit = handleSubmit(async (values, { resetForm }) => {
+  // loading.value = true;
+  formStore.fillForm(values);
+  console.log("перед commercialStore и window.open");
+  window.open(`https://wa.me/${phone}`, "_blank");
+  await commercialStore.smallFormOrder({
+    order_date: formatDate(new Date(), true),
+    client_name: values.client_name,
+    client_messenger: " +" + values.client_phone.substring(1),
+    order_date_start: formatDate(values.date.start),
+    order_date_end: formatDate(values.date.end),
+    bike_choice: values.bike.name,
+  });
+  console.log("после smallformorder и window.open");
+  return;
+  console.log("после commercialStore");
 
-					Client%20name:%20${encodeURIComponent(values.client_name)}%0A
-					Client%20phone:%20${encodeURIComponent(values.client_phone)}%0A
-					Order%20date%20start:%20${encodeURIComponent(formatDate(values.date.start))}%0A
-					Order%20date%20end:%20${encodeURIComponent(formatDate(values.date.end))}%0A
-					Bike:%20${encodeURIComponent(values.bike.name)}%0A
+  let urlString;
 
-					`;
-      if (locale.value == "ru") urlString = urlStringRu;
-      if (locale.value == "eng") urlString = urlStringEng;
-      console.log("urlString: ", urlString);
-      console.log("Переход в ватсап здесь");
-      window.open(urlString, "_blank");
-      console.log("Должен был перейти");
-    });
+  let urlStringRu = `https://wa.me/${phone}?text=
 
+	Имя%20клиента:%20${encodeURIComponent(values.client_name)}%0A
+	Номер%20:%20${encodeURIComponent(values.client_phone)}%0A
+	Дата%20начала%20аренды:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Дата%20окончания%20аренды:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	Выбранная%20модель%20байка:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  let urlStringEng = `https://wa.me/${phone}?text=
+ 
+	Client%20name:%20${encodeURIComponent(values.client_name)}%0A
+	Client%20phone:%20${encodeURIComponent(values.client_phone)}%0A
+	Order%20date%20start:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Order%20date%20end:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	Bike:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  if (locale.value == "ru") urlString = urlStringRu;
+  if (locale.value == "eng") urlString = urlStringEng;
+
+  window.open(urlString, "_blank");
+  // router.push({ path: "/order/" });
+});
+const onSubmit2 = handleSubmit(async (values, { resetForm }) => {
+  // loading.value = true;
+  // formStore.fillForm(values);
+  console.log("перед commercialStore2");
+  await commercialStore.smallFormOrder2({
+    order_date: formatDate(new Date(), true),
+    client_name: values.client_name,
+    client_messenger: " +" + values.client_phone.substring(1),
+    order_date_start: formatDate(values.date.start),
+    order_date_end: formatDate(values.date.end),
+    bike_choice: values.bike.name,
+  });
+  window.open(`https://wa.me/${phone}`, "_blank");
+  console.log("после commercialStore2");
+
+  let urlString;
+
+  let urlStringRu = `https://wa.me/${phone}?text=
+
+	Имя%20клиента:%20${encodeURIComponent(values.client_name)}%0A
+	Номер%20:%20${encodeURIComponent(values.client_phone)}%0A
+	Дата%20начала%20аренды:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Дата%20окончания%20аренды:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	Выбранная%20модель%20байка:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  let urlStringEng = `https://wa.me/${phone}?text=
+ 
+	Client%20name:%20${encodeURIComponent(values.client_name)}%0A
+	Client%20phone:%20${encodeURIComponent(values.client_phone)}%0A
+	Order%20date%20start:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Order%20date%20end:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	Bike:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  if (locale.value == "ru") urlString = urlStringRu;
+  if (locale.value == "eng") urlString = urlStringEng;
+  console.log("urlString: ", urlString);
+  console.log("Переход в ватсап здесь");
+  window.open(urlString, "_blank");
+  console.log("Должен был перейти");
+  // resetForm();
+  // router.push({ path: "/order/" });
+});
+const onSubmit3 = handleSubmit(async (values, { resetForm }) => {
+  // loading.value = true;
+  // formStore.fillForm(values);
+  console.log("перед commercialStore3");
+  await commercialStore.smallFormOrder3({
+    order_date: formatDate(new Date(), true),
+    client_name: values.client_name,
+    client_messenger: " +" + values.client_phone.substring(1),
+    order_date_start: formatDate(values.date.start),
+    order_date_end: formatDate(values.date.end),
+    bike_choice: values.bike.name,
+  });
+  console.log("после commercialStore3");
+
+  let urlString;
+
+  let urlStringRu = `https://wa.me/${phone}?text=
+
+	Имя%20клиента:%20${encodeURIComponent(values.client_name)}%0A
+	Номер%20:%20${encodeURIComponent(values.client_phone)}%0A
+	Дата%20начала%20аренды:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Дата%20окончания%20аренды:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	Выбранная%20модель%20байка:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  let urlStringEng = `https://wa.me/${phone}?text=
+ 
+	Client%20name:%20${encodeURIComponent(values.client_name)}%0A
+	Client%20phone:%20${encodeURIComponent(values.client_phone)}%0A
+	Order%20date%20start:%20${encodeURIComponent(formatDate(values.date.start))}%0A
+	Order%20date%20end:%20${encodeURIComponent(formatDate(values.date.end))}%0A
+	Bike:%20${encodeURIComponent(values.bike.name)}%0A
+	
+	`;
+  if (locale.value == "ru") urlString = urlStringRu;
+  if (locale.value == "eng") urlString = urlStringEng;
+  console.log("urlString: ", urlString);
+  console.log("Переход в ватсап здесь");
+  window.open(urlString, "_blank");
+  console.log("Должен был перейти");
   // router.push({ path: "/order/" });
 });
 </script>
