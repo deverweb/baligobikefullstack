@@ -41,9 +41,9 @@ export default defineEventHandler(async (event) => {
       order_date_end: body.data.order_date_end || "order_date_end",
       bike_model: body.data.bike_choice || "bike_model",
     });
-    return {
-      loading: false,
-    };
+    // return {
+    //   loading: false,
+    // };
   }
   if (body.sheet == "smallform2") {
     sheet = doc.sheetsByIndex[0];
@@ -55,9 +55,9 @@ export default defineEventHandler(async (event) => {
       order_date_end: body.data.order_date_end || "order_date_end",
       bike_model: body.data.bike_choice || "bike_model",
     });
-    return {
-      loading: false,
-    };
+    // return {
+    //   loading: false,
+    // };
   }
   if (body.sheet == "smallform3") {
     sheet = doc.sheetsByIndex[0];
@@ -69,9 +69,9 @@ export default defineEventHandler(async (event) => {
       order_date_end: body.data.order_date_end || "order_date_end",
       bike_model: body.data.bike_choice || "bike_model",
     });
-    return {
-      loading: false,
-    };
+    // return {
+    //   loading: false,
+    // };
   }
 
   if (body.sheet == "bigform") {
