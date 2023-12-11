@@ -262,7 +262,7 @@ const { handleSubmit } = useForm();
 let wpStore = useWordpressStore();
 let wpData = wpStore.wpData;
 
-let phone = "+79878025217";
+let phone = "79878025217";
 const onSubmit0 = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
   formStore.fillForm(values);
@@ -297,13 +297,16 @@ const onSubmit0 = handleSubmit(async (values, { resetForm }) => {
 	`;
   if (locale.value == "ru") urlString = urlStringRu;
   if (locale.value == "eng") urlString = urlStringEng;
+  console.log("urlString: ", urlString);
+  console.log("Переход в ватсап здесь");
   window.open(urlString, "_blank");
-  // resetForm();
+  console.log("Должен был перейти");
   // router.push({ path: "/order/" });
 });
 const onSubmit = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
   formStore.fillForm(values);
+  console.log("перед commercialStore");
   await commercialStore.smallFormOrder({
     order_date: formatDate(new Date(), true),
     client_name: values.client_name,
@@ -312,6 +315,7 @@ const onSubmit = handleSubmit(async (values, { resetForm }) => {
     order_date_end: formatDate(values.date.end),
     bike_choice: values.bike.name,
   });
+  console.log("после commercialStore");
 
   let urlString;
 
@@ -335,13 +339,16 @@ const onSubmit = handleSubmit(async (values, { resetForm }) => {
 	`;
   if (locale.value == "ru") urlString = urlStringRu;
   if (locale.value == "eng") urlString = urlStringEng;
+  console.log("urlString: ", urlString);
+  console.log("Переход в ватсап здесь");
   window.open(urlString, "_blank");
-  // resetForm();
+  console.log("Должен был перейти");
   // router.push({ path: "/order/" });
 });
 const onSubmit2 = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
   // formStore.fillForm(values);
+  console.log("перед commercialStore2");
   await commercialStore.smallFormOrder2({
     order_date: formatDate(new Date(), true),
     client_name: values.client_name,
@@ -350,6 +357,7 @@ const onSubmit2 = handleSubmit(async (values, { resetForm }) => {
     order_date_end: formatDate(values.date.end),
     bike_choice: values.bike.name,
   });
+  console.log("после commercialStore2");
 
   let urlString;
 
@@ -373,13 +381,17 @@ const onSubmit2 = handleSubmit(async (values, { resetForm }) => {
 	`;
   if (locale.value == "ru") urlString = urlStringRu;
   if (locale.value == "eng") urlString = urlStringEng;
+  console.log("urlString: ", urlString);
+  console.log("Переход в ватсап здесь");
   window.open(urlString, "_blank");
+  console.log("Должен был перейти");
   // resetForm();
   // router.push({ path: "/order/" });
 });
 const onSubmit3 = handleSubmit(async (values, { resetForm }) => {
   // loading.value = true;
   // formStore.fillForm(values);
+  console.log("перед commercialStore3");
   await commercialStore.smallFormOrder3({
     order_date: formatDate(new Date(), true),
     client_name: values.client_name,
@@ -388,6 +400,7 @@ const onSubmit3 = handleSubmit(async (values, { resetForm }) => {
     order_date_end: formatDate(values.date.end),
     bike_choice: values.bike.name,
   });
+  console.log("после commercialStore3");
 
   let urlString;
 
@@ -411,8 +424,10 @@ const onSubmit3 = handleSubmit(async (values, { resetForm }) => {
 	`;
   if (locale.value == "ru") urlString = urlStringRu;
   if (locale.value == "eng") urlString = urlStringEng;
+  console.log("urlString: ", urlString);
+  console.log("Переход в ватсап здесь");
   window.open(urlString, "_blank");
-  // resetForm();
+  console.log("Должен был перейти");
   // router.push({ path: "/order/" });
 });
 </script>

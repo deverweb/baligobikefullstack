@@ -90,13 +90,13 @@ export const useCommercialStore = defineStore("commercial", () => {
     return data.value;
   };
   const smallFormOrder = async (values) => {
-    // let { data } = await useFetch("/api/docs", {
-    //   method: "POST",
-    //   body: {
-    //     sheet: "smallform",
-    //     data: values,
-    //   },
-    // });
+    let { data } = await useFetch("/api/docs", {
+      method: "POST",
+      body: {
+        sheet: "smallform",
+        data: values,
+      },
+    });
     return false;
   };
   const smallFormOrder2 = async (values) => {
