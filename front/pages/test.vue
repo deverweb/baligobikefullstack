@@ -51,7 +51,7 @@
               class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
             >
               <SvgCalendarIcon></SvgCalendarIcon>
-              <span class="relative top-[1px] sm:text-[14px]">Для проверки без commercial</span>
+              <span class="relative top-[1px] sm:text-[14px]">Без commercialStore</span>
             </TheButton>
           </div>
         </form>
@@ -100,7 +100,7 @@
               class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
             >
               <SvgCalendarIcon></SvgCalendarIcon>
-              <span class="relative top-[1px] sm:text-[14px]">Для проверки без commercial</span>
+              <span class="relative top-[1px] sm:text-[14px]">store не юзает useFetch, return false</span>
             </TheButton>
           </div>
         </form>
@@ -148,7 +148,7 @@
               class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
             >
               <SvgCalendarIcon></SvgCalendarIcon>
-              <span class="relative top-[1px] sm:text-[14px]">Пустой объект передается</span>
+              <span class="relative top-[1px] sm:text-[14px]">Пустой docs.js блок smallform2</span>
             </TheButton>
           </div>
         </form>
@@ -196,7 +196,7 @@
               class="w-[460px] btn-primary__dark black sm:w-full sm:max-w-full h-[70px] gap-[9px]"
             >
               <SvgCalendarIcon></SvgCalendarIcon>
-              <span class="relative top-[1px] sm:text-[14px]">Кроме new Date()</span>
+              <span class="relative top-[1px] sm:text-[14px]">Все нормально кроме того что убрал await в docs.js</span>
             </TheButton>
           </div>
         </form>
