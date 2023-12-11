@@ -99,26 +99,6 @@ export const useCommercialStore = defineStore("commercial", () => {
     });
     return false;
   };
-  const smallFormOrder2 = async (values) => {
-    let { data } = await $fetch("/api/docs", {
-      method: "POST",
-      body: {
-        sheet: "smallform2",
-        data: values,
-      },
-    });
-    return false;
-  };
-  const smallFormOrder3 = async (values) => {
-    let { data } = await useFetch("/api/docs", {
-      method: "POST",
-      body: {
-        sheet: "smallform3",
-        data: values,
-      },
-    });
-    return false;
-  };
   const investFormOrder = async (values) => {
     let { data } = await useFetch("/api/docs", {
       method: "POST",
@@ -144,8 +124,6 @@ export const useCommercialStore = defineStore("commercial", () => {
     orderBike,
     bikeModelsArray,
     smallFormOrder,
-    smallFormOrder2,
-    smallFormOrder3,
     agentFormOrder,
     investFormOrder,
   };
