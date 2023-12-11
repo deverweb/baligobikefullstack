@@ -125,8 +125,6 @@ export const useCommercialStore = defineStore("commercial", () => {
     orderBike,
     bikeModelsArray,
     smallFormOrder,
-    smallFormOrder2,
-    smallFormOrder3,
     agentFormOrder,
     investFormOrder,
   };
