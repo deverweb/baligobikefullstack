@@ -3,26 +3,17 @@
     v-show="activeMobileMenu"
     class="mobile-menu overflow-y-auto hidden md:block rounded-b-[44px] xsm:rounded-none xsm:pl-[26px] xsm:pr-[5px] xsm:pt-[58px] absolute top-[100px] sm:top-[80px] w-full left-0 md:h-[355px] md:pr-[50px] md:pl-[50px] md:pt-[49px]"
   >
-    <div class="mobile-menu-inner flex flex-col justify-between h-full">
-      <ul
-        class="font-Euroblack mobile-menu-nav lil:text-[20px] text-[24px] uppercase text-light tracking-[-0.8px]"
-      >
+    <div class="mobile-menu-inner flex flex-col justify-start h-full">
+      <ul class="font-Euroblack mobile-menu-nav lil:text-[20px] text-[24px] uppercase text-light tracking-[-0.8px]">
         <li v-for="link in links">
           <NuxtLink :to="link.to">{{ link.label }}</NuxtLink>
         </li>
       </ul>
-      <div
-        class="mobile-menu-lang xsm:pt-[40px] xsm:pb-[80px] hidden xsm:flex items-center"
-      >
+      <div class="mobile-menu-lang xsm:py-[60px] hidden xsm:flex items-center">
         <SvgWorldIcon class="opacity-[0.3] mr-[14px]"></SvgWorldIcon>
-        <ul
-          class="mobile-menu-lang-list leading-[1] flex items-center gap-[17px]"
-        >
+        <ul class="mobile-menu-lang-list leading-[1] flex items-center gap-[17px]">
           <li v-for="lc in locales" @click="setLocale(lc.code)">
-            <button
-              :class="lc.code == locale ? 'opacity-100' : 'opacity-20'"
-              class="uppercase text-light"
-            >
+            <button :class="lc.code == locale ? 'opacity-100' : 'opacity-20'" class="uppercase text-light">
               {{ lc.code }}
             </button>
           </li>
