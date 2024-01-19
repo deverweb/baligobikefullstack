@@ -80,10 +80,10 @@
           <div class="bmodal-title text-[#181818] md:hidden">
             {{ bike?.model }}
           </div>
-          <div class="bmodal-price md:hidden">
+          <!-- <div class="bmodal-price md:hidden">
             ({{ locale == "ru" ? "от" : "from" }} {{ bike.rates[3].dayPriceUSD }}$ /
             {{ locale == "ru" ? "день" : "day" }})
-          </div>
+          </div> -->
           <div class="bmodal-paint md:hidden mb-[31px]">
             <SectionCustomRadioField
               @bikeImgChanged="handleRadioChange"
@@ -287,7 +287,7 @@ watch(
 		+helvb
 		font-size: 28px
 		text-transform: uppercase
-		margin-bottom: 3px
+		margin-bottom: 36px
 		+r(600)
 			margin-bottom: -2px
 	&-price
