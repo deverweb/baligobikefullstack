@@ -20,16 +20,16 @@
           <div v-if="rate.minDays == 1">{{ rate.maxDays }} {{ locale == "ru" ? "дня" : "days" }}</div>
           <div v-else>{{ rate.minDays }} - {{ rate.maxDays }} {{ locale == "ru" ? "дней" : "days" }}</div>
         </div>
-        <div class="bike-rate-usd mb-[-3px] font-Helvbold text-[22px]" v-if="!rate.isFixed">
-          {{ rate.dayPriceUSD }}$ {{ !rate.isMonthly ? (locale == "ru" ? "/ день" : "/ day") : "" }}
+        <div class="bike-rate-usd mb-[-3px] font-Helvbold text-[20px]" v-if="!rate.isFixed">
+          {{ rate.dayPriceRUP / 1000 }}K IDR {{ !rate.isMonthly ? (locale == "ru" ? "/ день" : "/ day") : "" }}
         </div>
-        <div class="bike-rate-usd mb-[-3px] font-Helvbold text-[22px]" v-if="rate.isFixed">
-          {{ rate.dayPriceUSD }}$ / {{ locale == "ru" ? "фикс." : "fixed" }}
+        <div class="bike-rate-usd mb-[-3px] font-Helvbold text-[20px]" v-if="rate.isFixed">
+          {{ rate.dayPriceRUP / 1000 }}K IDR / {{ locale == "ru" ? "фикс." : "fixed" }}
         </div>
-        <div class="bike-rate-rup font-Helvmed mb-[3px] text-[14px]">
+        <!-- <div class="bike-rate-rup font-Helvmed mb-[3px] text-[14px]">
           {{ rate.dayPriceRUP }} {{ locale == "ru" ? "рупий" : "RP" }}
-        </div>
-        <div class="bike-rate-discount opacity-50 text-[12px] font-Helvmed">
+        </div> -->
+        <!-- <div class="bike-rate-discount opacity-50 text-[12px] font-Helvmed">
           {{ locale == "ru" ? "Старая цена:" : "Old price:" }}
           <span v-if="!rate.isMonthly" class="line-through">
             {{ (rate.dayPriceUSD * ((100 + props.discount) / 100)).toFixed(0) }}$ /
@@ -39,7 +39,7 @@
             {{ (rate.dayPriceUSD * ((100 + props.discount) / 100)).toFixed(0) }}$ /
             {{ locale == "ru" ? "месяц" : "month" }}
           </span>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="bike-bottom flex items-center justify-between">
@@ -83,7 +83,7 @@ const globalStore = useGlobalStore();
 const handleDetailsClick = (bikeId) => {
   globalStore.setActiveBikeModal(bikeId);
 };
-
+console.log(props);
 const handleBikeClick = (event) => {
   indexFormStore.changeSelectedOption(commercialStore.bikeModelsArray.find((val) => val.id == props.id));
 
